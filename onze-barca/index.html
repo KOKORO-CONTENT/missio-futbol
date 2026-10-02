@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>L'Onze del Barça</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+/* Filtre horitzontal: càmera a pantalla completa i, a sobre, un escenari de 1651×953 (la mida del disseny original) escalat per encaixar a la pantalla.
+   Totes les peces (camp, marcs, barra) són retalls del disseny i es col·loquen a les seves coordenades exactes. */
+:root {
+  color-scheme: dark;
+  --ink: #0b0d0b;
+  --plate: #0a0b08;
+  --verd: #25e24b;
+  --verd-fosc: #0f7a27;
+  --paper: #ececec;
+  --chalk: #ffffff;
+  --dim: #b7c4b9;
+  --display: "Kanit", "Arial Black", Impact, sans-serif;
+  --text: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  --u: 1vh;
+}
+@supports (height: 1dvh) { :root { --u: 1dvh; } }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+[hidden] { display: none !important; }
+html, body { height: 100%; margin: 0; overflow: hidden; background: var(--ink); color: var(--chalk); font-family: var(--text); user-select: none; -webkit-user-select: none; }
+#cam { position: fixed; inset: 0; width: 100%; height: 100%; object-fit: cover; background: var(--ink); }
+#cam.mirror { transform: scaleX(-1); }
+.hud { position: fixed; inset: 0; overflow: hidden; }
+.stage { position: absolute; left: 50%; top: 50%; width: 1651px; height: 953px; margin: -476.5px 0 0 -825.5px; transform: scale(var(--k, 1)); }
+
+/* Camp i posicions */
+.field { position: absolute; inset: 0; transform: scale(.85); transform-origin: 22px 50%; }
+.pitch { position: absolute; left: 22px; top: 18px; width: 657px; height: 903px; background: url(ui/pitch.png) 0 0 / 100% 100% no-repeat; }
+.slot { position: absolute; width: 110px; height: 110px; margin: -55px 0 0 -55px; }
+/* Cercles i etiquetes es dibuixen en vectorial a sobre dels del disseny, perquè surtin nítids a qualsevol mida. */
+.slot .disc { position: absolute; inset: -3px; border-radius: 50%; overflow: hidden; background: var(--plate); border: 3px solid var(--verd); box-shadow: 0 0 0 1px rgba(255,255,255,.3); display: grid; place-items: center; }
+.slot .disc svg { width: 64%; height: 64%; margin-top: 16%; fill: #a9a9a9; }
+.slot .disc img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 18%; animation: pop .35s cubic-bezier(.2,.9,.3,1.5); }
+.slot .tag { position: absolute; left: 50%; top: 93px; min-width: 84px; text-align: center; transform: translateX(-50%); display: block; background: var(--plate); color: var(--chalk); border-radius: 9px; padding: 6px 11px 9px; font: italic 800 20px/1 var(--display); text-transform: uppercase; white-space: nowrap; box-shadow: 0 2px 0 rgba(0,0,0,.5); }
+.slot.done .disc, .slot.coach .disc { display: grid; }
+.slot.done .tag, .slot.coach .tag { display: block; }
+.slot.coach { width: 96px; height: 96px; margin: -48px 0 0 -48px; }
+.slot.coach .disc { inset: 0; border: 3px solid var(--verd); }
+.slot.coach .tag { top: 78px; }
+/* L'anell de la posició actual deixa lliure la part de baix per no tapar l'etiqueta del disseny. */
+.slot.now::before { content: ""; position: absolute; inset: -8px; border-radius: 50%; border: 6px solid var(--chalk); -webkit-mask: conic-gradient(from 225deg, #000 0 270deg, transparent 270deg); mask: conic-gradient(from 225deg, #000 0 270deg, transparent 270deg); animation: pulse 1.1s ease-in-out infinite; }
+@keyframes pulse { 50% { transform: scale(1.1); border-color: var(--verd); } }
+@keyframes pop { from { transform: scale(.3); opacity: 0; } }
+
+/* Candidats: la foto va darrere del marc retallat del disseny */
+.cand { --s: .74; position: absolute; top: 15px; background: none; border: 0; padding: 0; color: inherit; font: inherit; cursor: pointer; transform: scale(var(--s)); transition: transform .25s, opacity .25s, filter .25s; }
+#candL { left: 625px; width: 345px; height: 529px; transform-origin: left top; }
+#candR { left: 1294px; width: 343px; height: 520px; transform-origin: right top; }
+.cand .win { position: absolute; left: 32px; top: 99px; width: 287px; height: 385px; overflow: hidden; background: var(--ink); }
+.cand .win img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
+.cand .win::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 58%, rgba(11,13,11,.92) 94%); }
+.cname { position: absolute; left: 10px; right: 10px; bottom: 30px; z-index: 1; text-align: center; font: italic 900 38px/.95 var(--display); text-transform: uppercase; text-wrap: balance; text-shadow: 0 3px 0 rgba(0,0,0,.6); }
+.cand .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 22px; z-index: 2; background: var(--verd); transform: scaleX(var(--p, 0)); transform-origin: left; }
+.cand .frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.era { position: absolute; left: 62px; top: 26px; width: 214px; height: 52px; background: var(--plate); display: grid; place-items: center; font: italic 900 47px/1 var(--display); color: #f1f1f1; letter-spacing: .01em; pointer-events: none; }
+.cand.live { transform: scale(calc(var(--s) * 1.04)); filter: drop-shadow(0 0 16px var(--verd)); }
+.cand.picked { transform: scale(calc(var(--s) * 1.07)); filter: drop-shadow(0 0 26px var(--verd)); }
+.cand.lost { opacity: .35; filter: grayscale(1); transform: scale(calc(var(--s) * .95)); }
+.cand.enter { animation: drop .4s cubic-bezier(.2,.9,.3,1.2); }
+@keyframes drop { from { transform: translateY(-50px) scale(var(--s)); opacity: 0; } }
+.cand:focus-visible, .back:focus-visible { outline: 5px solid var(--chalk); outline-offset: 4px; }
+
+/* Barra de baix */
+.bottom { position: absolute; left: 742px; top: 809px; width: 872px; height: 122px; transform: scale(.7); transform-origin: center bottom; }
+.posbar { position: absolute; left: 0; top: 0; width: 503px; height: 112px; background: url(ui/bar.png) 0 0 / 100% 100% no-repeat; }
+.pos { position: absolute; left: 52px; top: 22px; width: 216px; height: 68px; display: grid; place-items: center; }
+.pos span { display: inline-block; max-width: 216px; text-align: center; color: var(--ink); font: italic 900 58px/.92 var(--display); text-transform: uppercase; }
+.step { position: absolute; left: 330px; top: 22px; width: 130px; height: 68px; display: grid; place-items: center; font: italic 900 48px/1 var(--display); font-variant-numeric: tabular-nums; }
+.back { position: absolute; left: 501px; top: 5px; width: 371px; height: 117px; background: url(ui/back.png) 0 0 / 100% 100% no-repeat; border: 0; padding: 0; cursor: pointer; }
+.back span { position: absolute; left: 44px; top: 29px; width: 272px; height: 60px; clip-path: polygon(7% 0, 100% 0, 100% 100%, 7% 100%, 0 50%); background: var(--plate); display: flex; align-items: center; justify-content: center; gap: 16px; font: italic 900 41px/1 var(--display); color: #f1f1f1; text-transform: uppercase; }
+.back svg { width: 40px; height: 40px; }
+.hint { position: absolute; left: 742px; width: 870px; top: 735px; text-align: center; pointer-events: none; }
+.hint span { display: inline-block; background: rgba(11,13,11,.82); padding: 9px 20px 11px; border-radius: 10px; font: 700 26px/1.1 var(--text); letter-spacing: .08em; text-transform: uppercase; }
+
+.cursor { position: fixed; z-index: 4; width: calc(6 * var(--u)); height: calc(6 * var(--u)); margin: calc(-3 * var(--u)) 0 0 calc(-3 * var(--u)); border-radius: 50%; border: calc(.7 * var(--u)) solid var(--verd); box-shadow: 0 0 0 calc(.35 * var(--u)) var(--ink), inset 0 0 0 calc(.35 * var(--u)) var(--ink); pointer-events: none; }
+.fly { position: fixed; z-index: 5; border-radius: 50%; object-fit: cover; object-position: center 18%; border: calc(.45 * var(--u)) solid var(--verd); transition: left .6s cubic-bezier(.5,0,.2,1), top .6s cubic-bezier(.5,0,.2,1), width .6s, height .6s; pointer-events: none; }
+
+/* Panells */
+.panel { background: rgba(11,13,11,.94); border: 5px solid var(--verd); box-shadow: 0 0 0 5px var(--ink), 10px 10px 0 var(--verd-fosc); text-align: center; display: flex; flex-direction: column; align-items: center; }
+#done { position: absolute; left: 1150px; top: 40px; width: 470px; padding: 26px; gap: 14px; }
+#done h1 { margin: 0; font: italic 900 50px/1 var(--display); text-transform: uppercase; color: var(--verd); }
+.tally { display: flex; gap: 40px; font: italic 900 84px/1 var(--display); font-variant-numeric: tabular-nums; }
+.tally small { display: block; font: 700 24px/1.3 var(--text); letter-spacing: .1em; color: var(--dim); font-style: normal; }
+.big { font: italic 900 34px/1 var(--display); text-transform: uppercase; background: var(--verd); color: var(--ink); border: 0; padding: 14px 30px 17px; cursor: pointer; transform: skewX(-8deg); }
+.big:focus-visible, .mini:focus-visible { outline: 4px solid var(--chalk); outline-offset: 4px; }
+#intro { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(calc(104 * var(--u)), 90vw); padding: calc(3.5 * var(--u)); gap: calc(2.2 * var(--u)); border-width: calc(.6 * var(--u)); }
+#intro h1 { margin: 0; font: italic 900 calc(8 * var(--u))/1 var(--display); text-transform: uppercase; }
+#intro h1 b { color: var(--verd); font-weight: inherit; }
+#intro p { margin: 0; font-size: calc(3.5 * var(--u)); line-height: 1.25; max-width: 40ch; }
+#intro .big { font-size: calc(5 * var(--u)); padding: calc(2 * var(--u)) calc(6 * var(--u)) calc(2.5 * var(--u)); }
+.row { display: flex; gap: calc(2 * var(--u)); flex-wrap: wrap; justify-content: center; }
+.mini { font: 700 calc(3 * var(--u))/1 var(--text); letter-spacing: .08em; text-transform: uppercase; background: var(--ink); color: var(--chalk); border: calc(.3 * var(--u)) solid var(--dim); padding: calc(1.4 * var(--u)) calc(3 * var(--u)); cursor: pointer; }
+#done .mini { font-size: 22px; padding: 9px 18px; border-width: 2px; }
+.mini[aria-pressed="true"] { border-color: var(--verd); color: var(--verd); }
+
+/* Mode render: només els grafismes sobre fons transparent, per exportar-los amb alfa. */
+html.render, html.render body { background: transparent; }
+html.render #cam, html.render #intro, html.render .hint, html.render .rotate, html.render #saveBtn { display: none !important; }
+.rotate { display: none; position: fixed; inset: 0; z-index: 9; background: var(--ink); place-items: center; text-align: center; padding: 24px; font: italic 900 1.8rem/1.15 var(--display); text-transform: uppercase; }
+@media (orientation: portrait) { .rotate { display: grid; } }
+@media (prefers-reduced-motion: reduce) { .slot.now::before, .slot .disc img, .cand.enter { animation: none; } .fly, .cand { transition: none; } }
+</style>
+</head>
+<body>
+<video id="cam" class="mirror" playsinline muted autoplay></video>
+
+<div class="hud" id="hud" hidden>
+  <div class="stage" id="stage">
+    <div class="field" id="field"><div class="pitch"></div></div>
+
+    <button class="cand" id="candL" type="button" aria-label="2014/15">
+      <span class="win"><img id="imgL" alt=""><span class="cname" id="nameL"></span><i class="bar"></i></span>
+      <img class="frame" src="ui/card-l.png" alt=""><span class="era">2014/15</span>
+    </button>
+    <button class="cand" id="candR" type="button" aria-label="2026/27">
+      <span class="win"><img id="imgR" alt=""><span class="cname" id="nameR"></span><i class="bar"></i></span>
+      <img class="frame" src="ui/card-r.png" alt=""><span class="era">2026/27</span>
+    </button>
+
+    <div class="hint" id="hint" hidden><span id="hintTxt"></span></div>
+    <div class="bottom">
+      <div class="posbar" id="posbar"><div class="pos"><span id="pos"></span></div><div class="step" id="step"></div></div>
+      <button class="back" id="back" type="button" hidden><span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 2 1.5 8 7 14v-4h7.5V6H7z" fill="currentColor"/></svg>Enrere</span></button>
+    </div>
+
+    <div class="panel" id="done" hidden>
+      <h1>Onze fet</h1>
+      <div class="tally"><div><span id="tOld">0</span><small>2014/15</small></div><div><span id="tNew">0</span><small>2026/27</small></div></div>
+      <button class="big" id="again" type="button">Torna a començar</button>
+      <button class="mini" id="saveBtn" type="button">Desa la gravació</button>
+    </div>
+  </div>
+  <div class="cursor" id="cursor" hidden></div>
+</div>
+
+<div class="panel" id="intro">
+  <h1>L'onze del <b>Barça</b></h1>
+  <p>A cada posició surten dos jugadors: el del 2014/15 i el del 2026/27. Posa el dit sobre el que triïs i aguanta un moment. Fes el teu onze amb entrenador inclòs.</p>
+  <div class="row">
+    <button class="mini" id="camFront" type="button" aria-pressed="true">Càmera frontal</button>
+    <button class="mini" id="camBack" type="button" aria-pressed="false">Càmera del darrere</button>
+  </div>
+  <button class="big" id="startBtn" type="button">Comença</button>
+  <button class="mini" id="lastBtn" type="button" hidden>Baixa l'última gravació</button>
+</div>
+
+<div class="rotate">Gira el mòbil<br>en horitzontal</div>
+
+<script type="module">
+// Cada posició: nom, centre del seu cercle al disseny (píxels de l'escenari 1651×953) i la parella [2014/15, 2026/27] amb [nom, fitxer].
+const ROUNDS = [
+  { tag: "POR", pos: "Porter",           x: 352,   y: 812,   old: ["Ter Stegen", "ter-stegen"],     cur: ["Joan Garcia", "joan-garcia"] },
+  { tag: "LI", pos: "Lateral esquerre", x: 141.5, y: 629.5, old: ["Jordi Alba", "jordi-alba"],     cur: ["Cancelo", "cancelo"] },
+  { tag: "DFC", pos: "Central",          x: 271,   y: 681,   old: ["Piqué", "pique"],               cur: ["Cubarsí", "cubarsi"] },
+  { tag: "DFC", pos: "Central",          x: 437.5, y: 681.5, old: ["Mascherano", "mascherano"],     cur: ["Christensen", "christensen"] },
+  { tag: "LD", pos: "Lateral dret",     x: 566,   y: 629,   old: ["Alves", "alves"],               cur: ["Eric Garcia", "eric-garcia"] },
+  { tag: "MCD", pos: "Pivot",            x: 352.5, y: 503.5, old: ["Busquets", "busquets"],         cur: ["Rodri", "rodri"] },
+  { tag: "MC", pos: "Interior",         x: 199.5, y: 408.5, old: ["Rakitic", "rakitic"],           cur: ["Fermín", "fermin"] },
+  { tag: "MC", pos: "Interior",         x: 508.5, y: 408.5, old: ["Iniesta", "iniesta"],           cur: ["Pedri", "pedri"] },
+  { tag: "EE", pos: "Extrem esquerre",  x: 144,   y: 237,   old: ["Neymar", "neymar"],             cur: ["Gordon", "gordon"] },
+  { tag: "DC", pos: "Davanter centre",  x: 352,   y: 169,   old: ["Suárez", "suarez"],             cur: ["Raphinha", "raphinha"] },
+  { tag: "ED", pos: "Extrem dret",      x: 561,   y: 237,   old: ["Messi", "messi"],               cur: ["Lamine Yamal", "lamine-yamal"] },
+  { tag: "ENT", pos: "Entrenador",       x: 582,   y: 800,   old: ["Luis Enrique", "luis-enrique"], cur: ["Hansi Flick", "hansi-flick"], coach: true }
+];
+const SILHOUETTE = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="5"/><path d="M2 24c0-7 4.5-10.5 10-10.5S22 17 22 24z"/></svg>';
+
+const $ = id => document.getElementById(id);
+const HOLD_MS = 750;
+// Mode render (?render): l'exportador torna a reproduir una partida gravada, fotograma a fotograma, sense càmera.
+const RENDER = new URLSearchParams(location.search).has("render");
+const reduced = !RENDER && matchMedia("(prefers-reduced-motion: reduce)").matches;
+// Rellotge del joc: en directe és el real; en mode render és virtual i l'avança l'exportador.
+const clock = { t: 0, timers: [], seq: 0 };
+const later = (fn, ms) => RENDER ? clock.timers.push({ at: clock.t + ms, fn, n: clock.seq++ }) : setTimeout(fn, ms);
+
+// Gravació de la partida: cada acció amb el seu instant (ms des de "Comença"), per poder-la tornar a generar després.
+let log = null, t0 = 0, lastFill = "";
+function rec(e, extra) {
+  if (RENDER || !log) return;
+  log.events.push(Object.assign({ t: Math.round(performance.now() - t0), e }, extra));
+  if (e !== "fill") try { localStorage.setItem("onze-last", JSON.stringify(stamp(log))); } catch (err) {}
+}
+function stamp(l) {
+  l.viewport = { w: innerWidth, h: innerHeight };
+  l.duration = Math.round(performance.now() - t0);
+  return l;
+}
+function download(l) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(l)], { type: "application/json" }));
+  a.download = "partida-" + l.started.slice(0, 19).replace(/[:T]/g, "-") + ".json";
+  document.body.appendChild(a); a.click(); a.remove();
+}
+const src = f => "img/" + f + ".jpg";
+
+let idx = 0, picks = [], phase = "intro"; // intro | play | move | done
+let facing = "user", landmarker = null, stream = null;
+let holdSide = 0, holdStart = 0, needNeutral = false;
+
+function fitStage() {
+  $("stage").style.setProperty("--k", Math.min(innerWidth / 1651, innerHeight / 953));
+}
+addEventListener("resize", fitStage);
+fitStage();
+
+function emptySlot(s, r) {
+  s.classList.remove("done");
+  s.querySelector(".disc").innerHTML = SILHOUETTE;
+  s.querySelector(".tag").textContent = r.tag;
+}
+
+function buildPitch() {
+  document.querySelectorAll(".slot").forEach(s => s.remove());
+  ROUNDS.forEach((r, i) => {
+    const s = document.createElement("div");
+    s.className = "slot" + (r.coach ? " coach" : "");
+    s.id = "slot" + i;
+    s.style.left = r.x + "px"; s.style.top = r.y + "px";
+    s.innerHTML = '<div class="disc"></div><div class="tag"></div>';
+    emptySlot(s, r);
+    $("field").appendChild(s);
+  });
+}
+
+function setFill(side, p) {
+  const key = side + ":" + p.toFixed(2);
+  if (key !== lastFill) { lastFill = key; rec("fill", { s: side, p: +p.toFixed(3) }); }
+  $("candL").style.setProperty("--p", side < 0 ? p : 0);
+  $("candR").style.setProperty("--p", side > 0 ? p : 0);
+  $("candL").classList.toggle("live", side < 0);
+  $("candR").classList.toggle("live", side > 0);
+}
+
+// Encongeix el nom de la posició fins que cap dins la placa (en una o dues línies).
+function fitPos() {
+  const el = $("pos");
+  for (let size = 58; size >= 18; size -= 2) {
+    el.style.fontSize = size + "px";
+    if (el.scrollWidth <= 216 && el.offsetHeight <= 70) break;
+  }
+}
+
+function showRound() {
+  const r = ROUNDS[idx];
+  $("imgL").src = src(r.old[1]); $("nameL").textContent = r.old[0];
+  $("imgR").src = src(r.cur[1]); $("nameR").textContent = r.cur[0];
+  for (const id of ["candL", "candR"]) {
+    const c = $(id);
+    c.classList.remove("picked", "lost", "live", "enter"); void c.offsetWidth; c.classList.add("enter");
+  }
+  setFill(0, 0);
+  document.querySelectorAll(".slot.now").forEach(s => s.classList.remove("now"));
+  $("slot" + idx).classList.add("now");
+  $("pos").textContent = r.pos; fitPos();
+  $("step").textContent = (idx + 1) + "/" + ROUNDS.length;
+  $("back").hidden = idx === 0;
+  needNeutral = true;
+  phase = "play";
+}
+
+// Desfà l'última tria i torna a preguntar aquella posició.
+function undo() {
+  if ((phase !== "play" && phase !== "done") || idx === 0) return;
+  rec("undo");
+  idx--;
+  picks.length = idx;
+  emptySlot($("slot" + idx), ROUNDS[idx]);
+  $("done").hidden = true;
+  $("candL").hidden = $("candR").hidden = false;
+  $("posbar").hidden = false;
+  showRound();
+}
+
+function fillSlot(i, who) {
+  const s = $("slot" + i);
+  s.classList.remove("now"); s.classList.add("done");
+  s.querySelector(".disc").innerHTML = '<img src="' + src(who[1]) + '" alt="">';
+  s.querySelector(".tag").textContent = who[0];
+}
+
+// side: -1 = targeta de l'esquerra (2014/15), 1 = la de la dreta (2026/27)
+function choose(side) {
+  if (phase !== "play") return;
+  rec("choose", { s: side });
+  phase = "move";
+  const r = ROUNDS[idx], who = side < 0 ? r.old : r.cur;
+  picks[idx] = side;
+  setFill(0, 0);
+  $(side < 0 ? "candL" : "candR").classList.add("picked");
+  $(side < 0 ? "candR" : "candL").classList.add("lost");
+  const at = idx;
+  const next = () => {
+    fillSlot(at, who);
+    idx++;
+    later(() => idx < ROUNDS.length ? showRound() : finish(), 450);
+  };
+  if (reduced) return later(next, 500);
+  // La foto triada vola fins al seu lloc al camp.
+  const from = $(side < 0 ? "imgL" : "imgR").getBoundingClientRect();
+  const to = $("slot" + at).getBoundingClientRect();
+  const fly = document.createElement("img");
+  fly.className = "fly"; fly.src = src(who[1]);
+  const size = Math.min(from.width, from.height);
+  Object.assign(fly.style, { left: from.left + (from.width - size) / 2 + "px", top: from.top + "px", width: size + "px", height: size + "px" });
+  document.body.appendChild(fly);
+  later(() => {
+    void fly.offsetWidth;
+    Object.assign(fly.style, { left: to.left + "px", top: to.top + "px", width: to.width + "px", height: to.height + "px" });
+    later(() => { fly.remove(); next(); }, 640);
+  }, 450);
+}
+
+function finish() {
+  phase = "done";
+  $("candL").hidden = $("candR").hidden = true;
+  $("posbar").hidden = true;
+  $("cursor").hidden = true;
+  $("tOld").textContent = picks.filter(s => s < 0).length;
+  $("tNew").textContent = picks.filter(s => s > 0).length;
+  $("done").hidden = false;
+}
+
+function newGame() {
+  rec("new");
+  idx = 0; picks = [];
+  buildPitch();
+  $("done").hidden = true;
+  $("candL").hidden = $("candR").hidden = false;
+  $("posbar").hidden = false;
+  showRound();
+}
+
+// Passa un punt de la imatge de la càmera (0..1) a píxels de pantalla, tenint en compte el retall i el mirall.
+function toScreen(pt, video) {
+  const W = innerWidth, H = innerHeight, vw = video.videoWidth, vh = video.videoHeight;
+  const k = Math.max(W / vw, H / vh);
+  const x = pt.x * vw * k - (vw * k - W) / 2, y = pt.y * vh * k - (vh * k - H) / 2;
+  return { x: facing === "user" ? W - x : x, y };
+}
+
+// Quina targeta toca la punta de l'índex: -1 la de l'esquerra, 1 la de la dreta, 0 cap.
+// Només compta si el dit és a sobre de la targeta (amb un petit marge), perquè un gest qualsevol no triï res.
+const NEAR = 0.12;   // marge al voltant de la targeta, en amplades de targeta
+function handSide(lm, video) {
+  const tip = toScreen(lm[8], video);
+  const over = id => {
+    const r = $(id).getBoundingClientRect(), m = r.width * NEAR;
+    return tip.x > r.left - m && tip.x < r.right + m && tip.y > r.top - m && tip.y < r.bottom + m;
+  };
+  return { side: over("candL") ? -1 : over("candR") ? 1 : 0, tip };
+}
+
+function onHands(hands, video, now) {
+  let side = 0, tip = null;
+  for (const lm of hands) {
+    const h = handSide(lm, video);
+    if (!tip || h.side) tip = h.tip;
+    if (h.side && side && h.side !== side) { side = 0; break; }   // dues mans que es contradiuen
+    if (h.side) side = h.side;
+  }
+  if (phase !== "play") return;
+  if (needNeutral) { if (!side) needNeutral = false; holdSide = 0; setFill(0, 0); return; }
+  if (side !== holdSide) { holdSide = side; holdStart = now; }
+  if (!side) { setFill(0, 0); return; }
+  const p = Math.min(1, (now - holdStart) / HOLD_MS);
+  setFill(side, p);
+  if (p >= 1) { holdSide = 0; choose(side); }
+}
+
+function note(text, ms) {
+  if (RENDER) return;
+  $("hintTxt").textContent = text; $("hint").hidden = false;
+  if (ms) setTimeout(() => { if ($("hintTxt").textContent === text) $("hint").hidden = true; }, ms);
+}
+
+function loop() {
+  const video = $("cam"), now = performance.now();
+  if (landmarker && video.readyState >= 2 && phase !== "intro") {
+    let res = null;
+    try { res = landmarker.detectForVideo(video, now); } catch (e) {}
+    onHands((res && res.landmarks) || [], video, now);
+  }
+  requestAnimationFrame(loop);
+}
+
+async function startCamera() {
+  if (stream) stream.getTracks().forEach(t => t.stop());
+  stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: facing, width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false });
+  const video = $("cam");
+  video.classList.toggle("mirror", facing === "user");
+  video.srcObject = stream;
+  await video.play();
+}
+
+async function loadTracker() {
+  const V = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14";
+  const { HandLandmarker, FilesetResolver } = await import(V + "/vision_bundle.mjs");
+  const files = await FilesetResolver.forVisionTasks(V + "/wasm");
+  landmarker = await HandLandmarker.createFromOptions(files, {
+    baseOptions: { modelAssetPath: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task", delegate: "GPU" },
+    runningMode: "VIDEO", numHands: 2
+  });
+}
+
+// El joc comença de seguida amb els tocs; la càmera i la detecció de la mà s'hi afegeixen quan estan a punt.
+function start() {
+  const root = document.documentElement;
+  try { root.requestFullscreen && root.requestFullscreen().catch(() => {}); } catch (e) {}
+  try { screen.orientation && screen.orientation.lock && screen.orientation.lock("landscape").catch(() => {}); } catch (e) {}
+  try { navigator.wakeLock && navigator.wakeLock.request("screen").catch(() => {}); } catch (e) {}
+  $("intro").hidden = true; $("hud").hidden = false;
+  fitStage();
+  log = { v: 1, game: "onze-barca", started: new Date().toISOString(), events: [] };
+  t0 = performance.now();
+  newGame();
+  requestAnimationFrame(loop);
+  note("Obrint la càmera…");
+  (async () => {
+    try {
+      if (!navigator.mediaDevices) throw new Error("no camera api");
+      await startCamera();
+    } catch (e) {
+      return note("No s'ha pogut obrir la càmera. Toca el jugador que triïs.", 6000);
+    }
+    note("Carregant la detecció de la mà…");
+    try { await loadTracker(); $("hint").hidden = true; }
+    catch (e) { note("No s'ha pogut carregar la detecció de la mà. Toca el jugador que triïs.", 6000); }
+  })();
+}
+
+function pickCam(f) {
+  facing = f;
+  $("camFront").setAttribute("aria-pressed", f === "user");
+  $("camBack").setAttribute("aria-pressed", f !== "user");
+}
+$("camFront").onclick = () => pickCam("user");
+$("camBack").onclick = () => pickCam("environment");
+$("startBtn").onclick = start;
+$("candL").onclick = () => choose(-1);
+$("candR").onclick = () => choose(1);
+$("again").onclick = newGame;
+$("back").onclick = undo;
+$("saveBtn").onclick = () => { if (log) download(stamp(log)); };
+try {
+  const last = localStorage.getItem("onze-last");
+  if (last) { $("lastBtn").hidden = false; $("lastBtn").onclick = () => download(JSON.parse(last)); }
+} catch (err) {}
+addEventListener("keydown", e => {
+  if (e.key === "ArrowLeft") choose(-1);
+  if (e.key === "ArrowRight") choose(1);
+  if (e.key === "Backspace") undo();
+  if (e.key === "s" && log) download(stamp(log));
+});
+document.fonts && document.fonts.ready.then(() => { if (phase === "play") fitPos(); });
+// Precarrega les fotos perquè no parpellegin en canviar de posició.
+ROUNDS.forEach(r => { new Image().src = src(r.old[1]); new Image().src = src(r.cur[1]); });
+["pitch", "bar", "back"].forEach(n => { new Image().src = "ui/" + n + ".png"; });
+
+if (RENDER) {
+  document.documentElement.classList.add("render");
+
+  // Export en mirall (--mirall): cada peça canvia de costat però no s'inverteix, perquè el grafisme quadri
+  // amb el vídeo de la càmera frontal del mòbil (que no fa mirall) i els textos es llegeixin bé.
+  const MIRROR = new URLSearchParams(location.search).has("mirall");
+  function mirrorLayout(sels, W) {
+    const st = $("stage").getBoundingClientRect(), k = st.width / W;
+    for (const el of document.querySelectorAll(sels)) {
+      // Es mesura la peça visible (el camp és .pitch dins de .field) sense animacions d'entrada.
+      const m = el.querySelector(":scope > .pitch") || el;
+      const hid = el.hidden, anim = m.style.animation;
+      el.hidden = false; m.style.animation = "none";
+      const r = m.getBoundingClientRect();
+      el.hidden = hid; m.style.animation = anim;
+      const x = (r.left - st.left) / k, w = r.width / k;
+      el.style.translate = (W - 2 * x - w) + "px 0";
+    }
+  }
+  // Les animacions CSS es posen en pausa i s'avancen a mà amb el rellotge virtual, perquè cada fotograma surti exacte.
+  const started = new Map();
+  let ev = [], ei = 0;
+  const track = at => { for (const a of document.getAnimations()) if (!started.has(a)) { a.pause(); started.set(a, at); } };
+  const run = { new: () => newGame(), choose: e => choose(e.s), undo: () => undo(), fill: e => { if (phase === "play") setFill(e.s, e.p); } };
+  const settled = () => Promise.all([...document.images].filter(i => !i.complete).map(i => new Promise(r => { i.onload = i.onerror = r; })));
+  window.renderInit = async session => {
+    ev = session.events; ei = 0;
+    $("intro").hidden = true; $("hud").hidden = false;
+    fitStage();
+    await document.fonts.ready;
+    await settled();
+    if (MIRROR) mirrorLayout(".field, #candL, #candR, .bottom, #done", 1651);
+    return ev.length ? ev[ev.length - 1].t : 0;
+  };
+  window.renderFrame = async t => {
+    for (;;) {
+      clock.timers.sort((a, b) => a.at - b.at || a.n - b.n);
+      const tm = clock.timers[0], e = ev[ei];
+      const tt = tm && tm.at <= t ? tm.at : Infinity, te = e && e.t <= t ? e.t : Infinity;
+      if (tt === Infinity && te === Infinity) break;
+      if (tt <= te) { clock.timers.shift(); clock.t = tt; tm.fn(); }
+      else { ei++; clock.t = te; if (run[e.e]) run[e.e](e); }
+      track(clock.t);
+    }
+    clock.t = t;
+    for (const [a, at] of started) {
+      if (a.playState === "idle") { started.delete(a); continue; }
+      const end = a.effect ? a.effect.getComputedTiming().endTime : 0;
+      if (t - at >= end) { a.finish(); started.delete(a); } else a.currentTime = t - at;
+    }
+    await settled();
+    return true;
+  };
+}
+</script>
+</body>
+</html>

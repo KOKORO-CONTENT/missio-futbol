@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Missió Futbol · Jocs</title>
+<link rel="stylesheet" href="champions/fonts/fonts.css">
+<style>
+  :root { --negre: #0b0d0b; --verd: #25e24b; --verd-fosc: #0f7a27; --blanc: #f1f1f1; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body { background: var(--negre); color: var(--blanc); font-family: "Barlow Condensed", "Arial Narrow", sans-serif; display: grid; place-items: center; padding: 24px 16px; }
+  main { display: grid; gap: 28px; justify-items: center; width: min(100%, 760px); }
+  h1 { font-family: "Kanit", "Arial Black", sans-serif; font-weight: 900; font-style: italic; text-transform: uppercase; font-size: clamp(32px, 7vw, 64px); margin: 0; letter-spacing: .01em; }
+  h1 span { color: var(--verd); }
+  .jocs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; width: 100%; }
+  a { display: block; text-decoration: none; color: var(--blanc); background: #0a0b08; border: 3px solid var(--verd); box-shadow: 8px 8px 0 var(--verd-fosc); padding: 24px 22px; transform: skewX(-6deg); transition: transform .15s, box-shadow .15s; }
+  a:hover, a:focus-visible { transform: skewX(-6deg) translate(-3px, -3px); box-shadow: 11px 11px 0 var(--verd-fosc); outline: none; }
+  a strong { display: block; font-family: "Kanit", "Arial Black", sans-serif; font-weight: 900; font-style: italic; text-transform: uppercase; font-size: 30px; line-height: 1; }
+  a small { display: block; margin-top: 8px; font-size: 18px; color: #bfc7bf; }
+  p { margin: 0; font-size: 17px; color: #9aa39a; text-align: center; max-width: 60ch; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Missió <span>Futbol</span></h1>
+  <div class="jocs">
+    <a href="champions/index.html"><strong>Quantes Champions?</strong><small>Sticker al front i resposta amb el dit</small></a>
+    <a href="onze-barca/index.html"><strong>L'Onze del Barça</strong><small>2014/15 contra 2026/27</small></a>
+  </div>
+  <p>Obre'l amb Google Chrome i dona permís a la càmera. A "Càmera" tria OBS Virtual Camera i marca "Sense mirall".</p>
+</main>
+</body>
+</html>
