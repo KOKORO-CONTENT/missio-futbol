@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Qui ha jugat més clàssics?</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+/* Filtre horitzontal: càmera a pantalla completa, sticker de jugador al front (segueix el cap),
+   a l'esquerra el rànquing que fa el jugador (1-14) i, en revelar, a la dreta el rànquing real.
+   Escenari 1920×1080 escalat a la pantalla. */
+:root {
+  color-scheme: dark;
+  --ink: #0b0d0b;
+  --plate: #0a0b08;
+  --verd: #25e24b;
+  --verd-fosc: #0f7a27;
+  --vermell: #ff2d3f;
+  --chalk: #f1f1f1;
+  --paper: #ececec;
+  --dim: #b7c4b9;
+  --display: "Kanit", "Arial Black", Impact, sans-serif;
+  --text: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  --u: 1vh;
+}
+@supports (height: 1dvh) { :root { --u: 1dvh; } }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+[hidden] { display: none !important; }
+html, body { height: 100%; margin: 0; overflow: hidden; background: var(--ink); color: var(--chalk); font-family: var(--text); user-select: none; -webkit-user-select: none; }
+#cam { position: fixed; left: var(--fl, 0px); top: var(--ft, 0px); width: var(--fw, 100vw); height: var(--fh, 100vh); object-fit: contain; background: var(--ink); }
+#cam.mirror { transform: scaleX(-1); }
+.hud { position: fixed; left: var(--fl, 0px); top: var(--ft, 0px); width: var(--fw, 100vw); height: var(--fh, 100vh); overflow: hidden; }
+.stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; margin: -540px 0 0 -960px; transform: scale(var(--k, 1)); }
+
+/* Sticker del front */
+.sticker { position: absolute; left: 0; top: 0; transform-origin: 50% 100%; pointer-events: none; z-index: 2; will-change: transform; }
+.sticker img { display: block; height: 100%; width: auto; filter: drop-shadow(0 6px 10px rgba(0,0,0,.35)); }
+.sticker.stop img { animation: stop .35s cubic-bezier(.2,.9,.3,1.6); }
+@keyframes stop { from { transform: scale(1.18); } }
+.sticker .tag { position: absolute; left: 50%; bottom: 100%; margin-bottom: .04em; transform: translateX(-50%) skewX(-8deg); white-space: nowrap; background: var(--plate); color: var(--chalk); border: .06em solid var(--verd); box-shadow: .12em .12em 0 var(--verd-fosc); padding: .08em .45em .14em; font: italic 900 1em/1 var(--display); text-transform: uppercase; animation: tagIn .3s cubic-bezier(.2,.9,.3,1.4); }
+@keyframes tagIn { from { opacity: 0; transform: translateX(-50%) translateY(.4em) skewX(-8deg); } }
+
+/* Llistes (la meva a l'esquerra, la real a la dreta) */
+.list { position: absolute; top: 60px; width: 480px; }
+#mine { left: 46px; }
+#real { right: 46px; width: 540px; animation: realIn .45s cubic-bezier(.2,.9,.3,1.2); }
+@keyframes realIn { from { transform: translateX(80px); opacity: 0; } }
+.head { position: relative; height: 62px; margin: 0 0 12px; display: grid; place-items: center; isolation: isolate; font: italic 900 31px/1 var(--display); text-transform: uppercase; color: var(--ink); white-space: nowrap; }
+.head::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--verd); clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%); box-shadow: none; }
+.head::after { content: ""; position: absolute; inset: 0; z-index: -2; background: var(--verd-fosc); clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%); transform: translate(8px, 8px); }
+#real .head::before { background: var(--paper); }
+.rows { display: grid; gap: 4px; }
+.row { position: relative; height: 57px; display: grid; grid-template-columns: 68px 1fr; gap: 6px; cursor: pointer; }
+.num { display: grid; place-items: center; background: var(--verd); color: var(--ink); font: italic 900 36px/1 var(--display); font-variant-numeric: tabular-nums; clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%); }
+.slot { position: relative; display: flex; align-items: center; gap: 12px; padding: 0 14px 0 6px; background: rgba(10,11,8,.78); border: 3px dashed rgba(37,226,75,.55); overflow: hidden; }
+.slot .face { flex: none; width: 46px; height: 46px; border-radius: 50%; overflow: hidden; background: #2a2f2a; box-shadow: 0 0 0 3px var(--verd), 0 0 0 5px var(--ink); }
+.slot .face img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; display: block; }
+.slot .name { flex: 1; min-width: 0; font: italic 900 29px/1 var(--display); text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--ink); }
+.row.full .slot { background: var(--paper); border: 3px solid var(--ink); animation: pop .35s cubic-bezier(.2,.9,.3,1.5); }
+@keyframes pop { from { transform: scale(1.12); } }
+.row .bar { position: absolute; left: 74px; right: 0; bottom: 0; height: 8px; background: var(--verd); transform: scaleX(var(--p, 0)); transform-origin: left; }
+.row.live .slot { border-style: solid; border-color: var(--verd); background: rgba(37,226,75,.22); box-shadow: 0 0 18px var(--verd); }
+#mine.locked .row:not(.full) { cursor: default; }
+/* Correcció */
+.mark { position: absolute; right: -22px; top: 50%; width: 46px; height: 46px; margin-top: -23px; border-radius: 50%; display: grid; place-items: center; border: 4px solid var(--ink); animation: markIn .35s cubic-bezier(.2,.9,.3,1.6); z-index: 1; }
+.mark svg { width: 26px; height: 26px; }
+@keyframes markIn { from { transform: scale(0); } }
+.row.ok .slot { border-color: var(--verd); box-shadow: inset 0 0 0 3px var(--verd); }
+.row.ok .mark { background: var(--verd); }
+.row.ko .slot { border-color: var(--vermell); box-shadow: inset 0 0 0 3px var(--vermell); background: #f3d9db; }
+.row.ko .mark { background: var(--vermell); }
+.row.ko .num { background: var(--vermell); color: var(--chalk); }
+/* Rànquing real */
+#real .row { cursor: default; animation: rowIn .4s cubic-bezier(.2,.9,.3,1.3) backwards; }
+@keyframes rowIn { from { transform: translateX(60px); opacity: 0; } }
+#real .slot { background: var(--paper); border: 3px solid var(--ink); padding-right: 0; }
+#real .slot .name { font-size: 27px; }
+#real .cnt { flex: none; align-self: stretch; width: 96px; display: grid; place-items: center; align-content: center; background: var(--plate); color: var(--verd); font: italic 900 34px/1 var(--display); font-variant-numeric: tabular-nums; clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%); padding-left: 8px; }
+#real .cnt small { display: block; font: italic 800 16px/1 var(--display); color: var(--dim); margin-top: 1px; }
+#real .row.hidden { visibility: hidden; }
+
+/* Resultat */
+.result { position: absolute; left: 50%; top: 42px; transform: translateX(-50%); display: grid; grid-template-columns: auto auto; align-items: center; gap: 16px; padding: 12px 38px 16px 34px; isolation: isolate; animation: resIn .45s cubic-bezier(.2,.9,.3,1.5); }
+.result::before, .result::after { content: ""; position: absolute; clip-path: polygon(8% 0, 100% 0, 100% 68%, 92% 100%, 0 100%, 0 32%); z-index: -1; }
+.result::before { inset: 0; background: var(--verd); }
+.result::after { inset: 6px; background: var(--plate); }
+.result b { font: italic 900 78px/1 var(--display); font-variant-numeric: tabular-nums; }
+.result b span { color: var(--dim); font-size: .6em; }
+.result small { font: italic 800 30px/1 var(--display); text-transform: uppercase; color: var(--verd); }
+@keyframes resIn { from { transform: translateX(-50%) scale(1.4); opacity: 0; } }
+
+/* Controls (no surten a l'export) */
+.ctrls { position: absolute; right: 46px; bottom: 26px; display: flex; gap: 16px; }
+.ctrl { font: italic 900 24px/1 var(--display); text-transform: uppercase; background: var(--plate); color: var(--chalk); border: 3px solid var(--verd); padding: 9px 18px 11px; cursor: pointer; transform: skewX(-8deg); box-shadow: 5px 5px 0 var(--verd-fosc); }
+.ctrl:focus-visible { outline: 4px solid var(--chalk); outline-offset: 4px; }
+.hint { position: absolute; left: 0; right: 0; top: 880px; text-align: center; pointer-events: none; }
+.hint span { display: inline-block; background: rgba(11,13,11,.82); padding: 10px 22px 12px; border: 3px solid var(--verd); font: italic 800 30px/1.1 var(--display); text-transform: uppercase; }
+
+/* Mode render: només grafismes sobre transparent */
+html.render, html.render body { background: transparent; }
+html.render #cam, html.render #intro, html.render .hint, html.render .ctrls, html.render .rotate { display: none !important; }
+
+/* Pantalla d'inici */
+.panel { background: rgba(11,13,11,.94); border: 5px solid var(--verd); box-shadow: 0 0 0 5px var(--ink), 10px 10px 0 var(--verd-fosc); text-align: center; display: flex; flex-direction: column; align-items: center; }
+#intro { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(calc(110 * var(--u)), 90vw); padding: calc(3.5 * var(--u)); gap: calc(2.2 * var(--u)); border-width: calc(.6 * var(--u)); z-index: 5; }
+#intro h1 { margin: 0; font: italic 900 calc(7.5 * var(--u))/1 var(--display); text-transform: uppercase; }
+#intro h1 b { color: var(--verd); font-weight: inherit; }
+#intro p { margin: 0; font-size: calc(3.3 * var(--u)); line-height: 1.25; max-width: 46ch; }
+.big { font: italic 900 calc(5 * var(--u))/1 var(--display); text-transform: uppercase; background: var(--verd); color: var(--ink); border: 0; padding: calc(2 * var(--u)) calc(6 * var(--u)) calc(2.5 * var(--u)); cursor: pointer; transform: skewX(-8deg); }
+.row2 { display: flex; gap: calc(2 * var(--u)); flex-wrap: wrap; justify-content: center; }
+.mini { font: 700 calc(3 * var(--u))/1 var(--text); letter-spacing: .08em; text-transform: uppercase; background: var(--ink); color: var(--chalk); border: calc(.3 * var(--u)) solid var(--dim); padding: calc(1.4 * var(--u)) calc(3 * var(--u)); cursor: pointer; }
+#camSel { font: 700 calc(3 * var(--u))/1 var(--text); background: var(--ink); color: var(--chalk); border: calc(.3 * var(--u)) solid var(--verd); padding: calc(1.2 * var(--u)) calc(2 * var(--u)); max-width: 80vw; }
+.mini[aria-pressed="true"] { border-color: var(--verd); color: var(--verd); }
+.big:focus-visible, .mini:focus-visible { outline: 4px solid var(--chalk); outline-offset: 4px; }
+
+.rotate { display: none; position: fixed; inset: 0; z-index: 9; background: var(--ink); place-items: center; text-align: center; padding: 24px; font: italic 900 1.8rem/1.15 var(--display); text-transform: uppercase; }
+@media (orientation: portrait) { .rotate { display: grid; } }
+@media (prefers-reduced-motion: reduce) { .sticker.stop img, .row.full .slot, .mark, #real .row, .result, #real { animation: none; } }
+</style>
+</head>
+<body>
+<video id="cam" playsinline muted autoplay></video>
+
+<div class="hud" id="hud" hidden>
+  <div class="sticker" id="sticker" hidden><span class="tag" id="tag" hidden></span><img id="stickerImg" alt=""></div>
+  <div class="stage" id="stage">
+    <div class="list" id="mine"><div class="head">Qui ha jugat més clàssics?</div><div class="rows" id="mineRows"></div></div>
+    <div class="list" id="real" hidden><div class="head">Rànquing real</div><div class="rows" id="realRows"></div></div>
+    <div class="result" id="result" hidden><b id="resN"></b><small>Encerts</small></div>
+    <div class="hint" id="hint" hidden><span id="hintTxt"></span></div>
+    <div class="ctrls">
+      <button class="ctrl" id="undoBtn" type="button">Enrere</button>
+      <button class="ctrl" id="reset" type="button">Reinicia</button>
+      <button class="ctrl" id="saveBtn" type="button">Desa la gravació</button>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="intro">
+  <h1>Qui ha jugat més <b>clàssics</b>?</h1>
+  <p>Et sortirà un jugador al front. Posa el dit sobre la posició del rànquing on creus que va (1 = més clàssics) i aguanta un moment. Quan els hagis col·locat tots, toca la pantalla per veure el rànquing real.</p>
+  <div class="row2">
+    <button class="mini" id="camFront" type="button" aria-pressed="false">Mirall (càmera frontal)</button>
+    <button class="mini" id="camBack" type="button" aria-pressed="true">Sense mirall</button>
+  </div>
+  <label for="camSel" hidden id="camLbl" style="font-size:calc(2.6 * var(--u));letter-spacing:.08em;text-transform:uppercase">Càmera</label>
+  <select id="camSel" hidden></select>
+  <button class="big" id="startBtn" type="button">Comença</button>
+  <button class="mini" id="lastBtn" type="button" hidden>Baixa l'última gravació</button>
+</div>
+
+<div class="rotate">Gira el mòbil<br>en horitzontal</div>
+
+<script type="module">
+// Llista definitiva: surten en aquest ordre i sense repetir.
+// [nom que es mostra, fitxer de stickers/, clàssics, text del nombre (opcional)]
+// Xavi: 42 com a jugador + 10 com a entrenador = 52 (Flick també compta els d'entrenador).
+const PLAYERS = [
+  ["Raphinha", "raphinha", 13],
+  ["Leo Messi", "lionel-messi", 45],
+  ["Sergio Ramos", "sergio-ramos", 45],
+  ["Alexia Putellas", "alexia-putellas", 25],
+  ["Karim Benzema", "karim-benzema", 43],
+  ["Misa", "misa-rodriguez", 25],
+  ["Hansi Flick", "hansi-flick", 6],
+  ["Piqué", "gerard-pique", 40],
+  ["Xavi Hernández", "xavi-hernandez", 52, "42+10"],
+  ["Mbappé", "kylian-mbappe", 6],
+  ["Luuk de Jong", "luuk-de-jong", 2],
+  ["Bellingham", "jude-bellingham", 10],
+  ["Sergio Busquets", "sergio-busquets", 48],
+  ["Aitana Bonmatí", "aitana-bonmati", 22]
+].map(([name, file, n, label]) => ({ name, file, n, label }));
+const N = PLAYERS.length;
+// Posicions correctes de cada jugador (amb empats, qualsevol de les posicions empatades és bona).
+const rankRange = p => {
+  const above = PLAYERS.filter(q => q.n > p.n).length, same = PLAYERS.filter(q => q.n === p.n).length;
+  return [above, above + same - 1];
+};
+
+const STAGE_W = 1920, STAGE_H = 1080;
+const HOLD_MS = 750, NEAR = 0.06;
+const SPIN_STEPS = 18;
+const NEXT_MS = 800;            // pausa entre col·locar un jugador i que surti el següent
+const REVEAL_STEP = 300;        // ritme de la revelació, de l'últim al primer
+
+const $ = id => document.getElementById(id);
+const RENDER = new URLSearchParams(location.search).has("render");
+const clock = { t: 0, timers: [], seq: 0 };
+const later = (fn, ms) => RENDER ? clock.timers.push({ at: clock.t + ms, fn, n: clock.seq++ }) : setTimeout(fn, ms);
+const src = f => "stickers/" + f + ".png";
+const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+
+let phase = "intro";            // intro | idle | spin | place | full | reveal
+let cur = -1, nextIdx = 0, gen = 0;
+let placed = new Array(N).fill(-1), history = [];
+let facing = "environment", faceLm = null, handLm = null, stream = null;
+let holdIdx = -1, holdStart = 0, needNeutral = false;
+
+// --- Gravació de la partida -------------------------------------------------------------
+let log = null, t0 = 0, lastFill = "", lastPose = 0;
+function rec(e, extra) {
+  if (RENDER || !log) return;
+  log.events.push(Object.assign({ t: Math.round(performance.now() - t0), e }, extra));
+  if (e !== "fill" && e !== "pose") try { localStorage.setItem("classics-last", JSON.stringify(stamp(log))); } catch (err) {}
+}
+function stamp(l) { l.viewport = { w: STAGE_W, h: STAGE_H }; l.duration = Math.round(performance.now() - t0); return l; }
+function download(l) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(l)], { type: "application/json" }));
+  a.download = "classics-" + l.started.slice(0, 19).replace(/[:T]/g, "-") + ".json";
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+// --- Escenari ---------------------------------------------------------------------------
+const frame = { l: 0, t: 0, w: 1920, h: 1080 };
+function fitStage() {
+  const W = innerWidth, H = innerHeight;
+  frame.w = Math.min(W, H * STAGE_W / STAGE_H); frame.h = frame.w * STAGE_H / STAGE_W;
+  frame.l = (W - frame.w) / 2; frame.t = (H - frame.h) / 2;
+  const r = document.documentElement.style;
+  r.setProperty("--fl", frame.l + "px"); r.setProperty("--ft", frame.t + "px");
+  r.setProperty("--fw", frame.w + "px"); r.setProperty("--fh", frame.h + "px");
+  $("stage").style.setProperty("--k", frame.w / STAGE_W);
+}
+addEventListener("resize", fitStage);
+fitStage();
+
+const faceHtml = p => '<span class="face"><img src="' + src(p.file) + '" alt=""></span><span class="name">' + esc(p.name) + '</span>';
+for (let s = 0; s < N; s++) {
+  const r = document.createElement("div");
+  r.className = "row"; r.id = "slot" + s;
+  r.innerHTML = '<span class="num">' + (s + 1) + '</span><div class="slot"></div><i class="bar"></i>';
+  r.onclick = e => { e.stopPropagation(); if (phase === "place") place(s); else tap(); };
+  $("mineRows").appendChild(r);
+}
+
+function drawSlot(s) {
+  const r = $("slot" + s), i = placed[s];
+  r.classList.toggle("full", i >= 0);
+  r.querySelector(".slot").innerHTML = i >= 0 ? faceHtml(PLAYERS[i]) : "";
+}
+function setFill(s, p) {
+  const key = s + ":" + p.toFixed(2);
+  if (key !== lastFill) { lastFill = key; rec("fill", { i: s, p: +p.toFixed(3) }); }
+  for (let j = 0; j < N; j++) {
+    const r = $("slot" + j);
+    r.style.setProperty("--p", j === s ? p : 0);
+    r.classList.toggle("live", j === s && p > 0);
+  }
+}
+function note(text) { if (RENDER) return; $("hintTxt").textContent = text; $("hint").hidden = !text; }
+
+// --- Ruleta ------------------------------------------------------------------------------
+const stepDelay = k => 40 + Math.pow(k / SPIN_STEPS, 3) * 230;
+function showFace(i) { $("stickerImg").src = src(PLAYERS[i].file); }
+function setTag(i) { const t = $("tag"); t.hidden = i < 0; if (i >= 0) { t.textContent = PLAYERS[i].name; t.style.animation = "none"; void t.offsetWidth; t.style.animation = ""; } }
+
+function spin(seq) {
+  if (phase !== "idle") return;
+  if (!seq) {
+    if (nextIdx >= N) return;
+    const target = nextIdx;
+    seq = Array.from({ length: SPIN_STEPS - 1 }, () => Math.floor(Math.random() * N));
+    seq.push(target);
+  }
+  rec("spin", { seq });
+  phase = "spin"; cur = -1; setTag(-1); note("");
+  const g = gen;
+  let k = 0;
+  const tick = () => {
+    if (g !== gen) return;
+    showFace(seq[k]);
+    if (k === seq.length - 1) {
+      cur = seq[k]; nextIdx = cur + 1;
+      const s = $("sticker"); s.classList.remove("stop"); void s.offsetWidth; s.classList.add("stop");
+      setTag(cur);
+      phase = "place"; needNeutral = true;
+      return;
+    }
+    later(tick, stepDelay(k++));
+  };
+  tick();
+}
+
+// --- Col·locar ---------------------------------------------------------------------------
+function place(s) {
+  if (phase !== "place" || placed[s] >= 0) return;
+  rec("place", { s });
+  setFill(-1, 0);
+  placed[s] = cur; history.push(s); drawSlot(s);
+  cur = -1; setTag(-1);
+  const g = ++gen;
+  if (history.length === N) {
+    phase = "full";
+    $("mine").classList.add("locked");
+    note("Toca la pantalla per veure el rànquing real");
+  } else {
+    phase = "wait";
+    later(() => { if (g !== gen) return; phase = "idle"; if (!RENDER) spin(); }, NEXT_MS);
+  }
+}
+
+// Desfà l'última col·locació: el jugador torna al front.
+function undo() {
+  if (!history.length || phase === "reveal" || phase === "intro") return;
+  rec("undo");
+  gen++;
+  const s = history.pop(), i = placed[s];
+  placed[s] = -1; drawSlot(s);
+  $("mine").classList.remove("locked");
+  cur = i; nextIdx = i + 1;
+  showFace(i); setTag(i);
+  setFill(-1, 0); note("");
+  phase = "place"; needNeutral = true;
+}
+
+// --- Revelació ---------------------------------------------------------------------------
+const tickSvg = '<svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6.5" fill="none" stroke="#0b0d0b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const cross = '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="#f1f1f1" stroke-width="4" stroke-linecap="round"/></svg>';
+function reveal() {
+  if (phase !== "full") return;
+  rec("reveal");
+  phase = "reveal"; note("");
+  // Ordre real; en un empat es respecta l'ordre que ha triat el jugador.
+  const slotOf = i => placed.indexOf(i);
+  const order = PLAYERS.map((p, i) => i).sort((a, b) => PLAYERS[b].n - PLAYERS[a].n || slotOf(a) - slotOf(b));
+  $("realRows").innerHTML = order.map((i, s) => {
+    const p = PLAYERS[i];
+    return '<div class="row hidden" id="real' + s + '"><span class="num">' + (s + 1) + '</span><div class="slot">' + faceHtml(p) +
+      '<span class="cnt">' + p.n + (p.label ? '<small>' + p.label + '</small>' : '') + '</span></div></div>';
+  }).join("");
+  $("real").hidden = false;
+  let hits = 0;
+  const g = gen;
+  for (let s = N - 1, k = 0; s >= 0; s--, k++) {
+    later(() => {
+      if (g !== gen) return;
+      $("real" + s).classList.remove("hidden");
+      const [lo, hi] = rankRange(PLAYERS[placed[s]]), good = s >= lo && s <= hi;
+      const r = $("slot" + s);
+      r.classList.add(good ? "ok" : "ko");
+      r.insertAdjacentHTML("beforeend", '<span class="mark">' + (good ? tickSvg : cross) + '</span>');
+      if (good) hits++;
+      if (s === 0) later(() => { if (g !== gen) return; $("resN").innerHTML = hits + '<span>/' + N + '</span>'; $("result").hidden = false; }, 500);
+    }, 500 + k * REVEAL_STEP);
+  }
+}
+
+function reset() {
+  rec("reset");
+  gen++;
+  placed = new Array(N).fill(-1); history = []; cur = -1; nextIdx = 0;
+  for (let s = 0; s < N; s++) { const r = $("slot" + s); r.classList.remove("ok", "ko"); r.querySelector(".mark")?.remove(); drawSlot(s); }
+  $("mine").classList.remove("locked");
+  $("real").hidden = true; $("result").hidden = true;
+  setFill(-1, 0); setTag(-1);
+  $("sticker").hidden = true;
+  phase = "idle";
+  note(RENDER ? "" : "Toca la pantalla per començar");
+}
+
+// --- Seguiment del cap i de la mà ---------------------------------------------------------
+let mirrored = false;
+function toScreen(pt, video) {
+  const W = frame.w, H = frame.h, vw = video.videoWidth, vh = video.videoHeight;
+  const k = Math.min(W / vw, H / vh);
+  const x = pt.x * vw * k + (W - vw * k) / 2, y = pt.y * vh * k + (H - vh * k) / 2;
+  return { x: frame.l + (mirrored ? W - x : x), y: frame.t + y };
+}
+
+let pose = null;
+const FIXED_POSE = { x: .5, y: .36, h: .3, r: 0 };
+function applyPose(p) {
+  const s = $("sticker");
+  if (!p || !p.h || (phase !== "spin" && phase !== "place")) { s.hidden = true; return; }
+  s.hidden = false;
+  const W = frame.w, H = frame.h, h = p.h * H;
+  s.style.height = h + "px";
+  s.style.fontSize = (h * 0.13) + "px";
+  const w = s.querySelector("img").offsetWidth || h;
+  s.style.width = w + "px";
+  s.style.transform = `translate(${p.x * W - w / 2}px, ${p.y * H - h}px) rotate(${p.r}deg)`;
+}
+
+function faceToPose(lm, video) {
+  const top = toScreen(lm[10], video), chin = toScreen(lm[152], video);
+  const eL = toScreen(lm[33], video), eR = toScreen(lm[263], video);
+  const fh = Math.hypot(chin.x - top.x, chin.y - top.y);
+  const ux = (top.x - chin.x) / fh, uy = (top.y - chin.y) / fh;
+  const foot = { x: top.x + ux * fh * 0.08, y: top.y + uy * fh * 0.08 };
+  let r = Math.atan2(eR.y - eL.y, eR.x - eL.x) * 180 / Math.PI;
+  if (r > 90) r -= 180; if (r < -90) r += 180;
+  return { x: (foot.x - frame.l) / frame.w, y: (foot.y - frame.t) / frame.h, h: fh * 1.05 / frame.h, r };
+}
+function smooth(a, b, k) { return a && a.h ? { x: a.x + (b.x - a.x) * k, y: a.y + (b.y - a.y) * k, h: a.h + (b.h - a.h) * k, r: a.r + (b.r - a.r) * k } : b; }
+
+// Només compten les posicions buides, i la punta de l'índex ha de ser a sobre de la fila.
+function handPick(lms, video) {
+  for (const lm of lms) {
+    const tip = toScreen(lm[8], video);
+    for (let s = 0; s < N; s++) {
+      if (placed[s] >= 0) continue;
+      const r = $("slot" + s).getBoundingClientRect(), m = r.width * NEAR;
+      if (tip.x > r.left - m && tip.x < r.right + m && tip.y > r.top && tip.y < r.bottom) return s;
+    }
+  }
+  return -1;
+}
+function onHand(idx, now) {
+  if (phase !== "place") return;
+  if (needNeutral) { if (idx < 0) needNeutral = false; holdIdx = -1; setFill(-1, 0); return; }
+  if (idx !== holdIdx) { holdIdx = idx; holdStart = now; }
+  if (idx < 0) { setFill(-1, 0); return; }
+  const p = Math.min(1, (now - holdStart) / HOLD_MS);
+  setFill(idx, p);
+  if (p >= 1) { holdIdx = -1; place(idx); }
+}
+
+let faceModel = null, handModel = null, tickN = 0;
+function loop() {
+  const video = $("cam"), now = performance.now();
+  if (video.readyState >= 2 && phase !== "intro") {
+    if (faceModel) {
+      try { const r = faceModel.detectForVideo(video, now); faceLm = r.faceLandmarks && r.faceLandmarks[0]; } catch (e) {}
+      pose = faceLm ? smooth(pose, faceToPose(faceLm, video), .55) : null;
+    }
+    if (handModel && phase === "place" && (tickN++ & 1)) {
+      try { const r = handModel.detectForVideo(video, now); handLm = r.landmarks || []; } catch (e) { handLm = []; }
+      onHand(handPick(handLm, video), now);
+    }
+  }
+  if (!faceModel && phase !== "intro") pose = FIXED_POSE;
+  if (phase !== "intro") {
+    applyPose(pose);
+    if (now - lastPose > 33) { lastPose = now; rec("pose", pose ? { x: +pose.x.toFixed(4), y: +pose.y.toFixed(4), h: +pose.h.toFixed(4), r: +pose.r.toFixed(1) } : { h: 0 }); }
+  }
+  requestAnimationFrame(loop);
+}
+
+async function startCamera() {
+  if (stream) stream.getTracks().forEach(t => t.stop());
+  const dev = $("camSel").value;
+  const video0 = dev ? { deviceId: { exact: dev } } : { facingMode: facing };
+  stream = await navigator.mediaDevices.getUserMedia({ video: Object.assign(video0, { width: { ideal: 1920 }, height: { ideal: 1080 } }), audio: false });
+  const video = $("cam");
+  mirrored = facing === "user";
+  video.classList.toggle("mirror", mirrored);
+  video.srcObject = stream;
+  try { localStorage.setItem("classics-cam", dev); } catch (e) {}
+  await video.play();
+}
+
+async function loadModels() {
+  const V = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14";
+  const { FaceLandmarker, HandLandmarker, FilesetResolver } = await import(V + "/vision_bundle.mjs");
+  const files = await FilesetResolver.forVisionTasks(V + "/wasm");
+  const M = "https://storage.googleapis.com/mediapipe-models/";
+  faceModel = await FaceLandmarker.createFromOptions(files, {
+    baseOptions: { modelAssetPath: M + "face_landmarker/face_landmarker/float16/1/face_landmarker.task", delegate: "GPU" },
+    runningMode: "VIDEO", numFaces: 1
+  });
+  handModel = await HandLandmarker.createFromOptions(files, {
+    baseOptions: { modelAssetPath: M + "hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task", delegate: "GPU" },
+    runningMode: "VIDEO", numHands: 2
+  });
+}
+
+// Pitet de sincronia al segon 0 de la gravació.
+function beep() {
+  try {
+    const ac = new (window.AudioContext || window.webkitAudioContext)();
+    const o = ac.createOscillator(), g = ac.createGain();
+    o.frequency.value = 1000; g.gain.value = 0.6;
+    o.connect(g); g.connect(ac.destination);
+    o.start(); o.stop(ac.currentTime + 0.25);
+  } catch (e) {}
+}
+
+function start() {
+  const root = document.documentElement;
+  try { root.requestFullscreen && root.requestFullscreen().catch(() => {}); } catch (e) {}
+  try { screen.orientation && screen.orientation.lock && screen.orientation.lock("landscape").catch(() => {}); } catch (e) {}
+  try { navigator.wakeLock && navigator.wakeLock.request("screen").catch(() => {}); } catch (e) {}
+  $("intro").hidden = true; $("hud").hidden = false;
+  fitStage();
+  log = { v: 1, game: "classics", started: new Date().toISOString(), events: [] };
+  t0 = performance.now();
+  beep();
+  reset();
+  requestAnimationFrame(loop);
+  (async () => {
+    try { if (!navigator.mediaDevices) throw 0; await startCamera(); }
+    catch (e) { return note("No s'ha pogut obrir la càmera"); }
+    try { await loadModels(); }
+    catch (e) { note("No s'ha pogut carregar el seguiment. Toca les posicions per col·locar."); }
+  })();
+}
+
+function pickCam(f) {
+  facing = f;
+  $("camFront").setAttribute("aria-pressed", f === "user");
+  $("camBack").setAttribute("aria-pressed", f !== "user");
+}
+$("camFront").onclick = () => pickCam("user");
+$("camBack").onclick = () => pickCam("environment");
+$("startBtn").onclick = start;
+async function listCams() {
+  try {
+    const devs = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === "videoinput");
+    if (devs.length < 2) return;
+    let saved = ""; try { saved = localStorage.getItem("classics-cam") || ""; } catch (e) {}
+    $("camSel").innerHTML = '<option value="">Per defecte</option>' + devs.map((d, k) =>
+      '<option value="' + d.deviceId + '"' + (d.deviceId === saved ? " selected" : "") + '>' + (d.label || "Càmera " + (k + 1)).replace(/</g, "&lt;") + '</option>').join("");
+    $("camSel").hidden = $("camLbl").hidden = false;
+  } catch (e) {}
+}
+if (!RENDER && navigator.mediaDevices) {
+  listCams();
+  navigator.mediaDevices.addEventListener && navigator.mediaDevices.addEventListener("devicechange", listCams);
+}
+$("undoBtn").onclick = e => { e.stopPropagation(); undo(); };
+$("reset").onclick = e => { e.stopPropagation(); reset(); };
+$("saveBtn").onclick = e => { e.stopPropagation(); if (log) download(stamp(log)); };
+// Tocar la pantalla: el primer jugador al principi, i la revelació quan ja estan tots col·locats.
+function tap() { if (phase === "idle") spin(); else if (phase === "full") reveal(); }
+$("hud").addEventListener("click", tap);
+addEventListener("keydown", e => {
+  if (phase === "intro") return;
+  if (e.key === " " || e.key === "Enter") { e.preventDefault(); tap(); }
+  if (e.key === "Backspace") { e.preventDefault(); undo(); }
+  if (e.key === "r") reset();
+  if (e.key === "s" && log) download(stamp(log));
+});
+try {
+  const last = localStorage.getItem("classics-last");
+  if (last) { $("lastBtn").hidden = false; $("lastBtn").onclick = () => download(JSON.parse(last)); }
+} catch (err) {}
+PLAYERS.forEach(p => { new Image().src = src(p.file); });
+
+if (RENDER) {
+  document.documentElement.classList.add("render");
+  const MIRROR = new URLSearchParams(location.search).has("mirall");
+  // Export en mirall: cada peça canvia de costat sense invertir-se.
+  function mirrorLayout(sels, W) {
+    const st = $("stage").getBoundingClientRect(), k = st.width / W;
+    for (const el of document.querySelectorAll(sels)) {
+      const hid = el.hidden, anim = el.style.animation;
+      el.hidden = false; el.style.animation = "none";
+      const r = el.getBoundingClientRect();
+      el.hidden = hid; el.style.animation = anim;
+      const x = (r.left - st.left) / k, w = r.width / k;
+      el.style.translate = (W - 2 * x - w) + "px 0";
+    }
+  }
+  const started = new Map();
+  let ev = [], ei = 0;
+  const track = at => { for (const a of document.getAnimations()) if (!started.has(a)) { a.pause(); started.set(a, at); } };
+  const run = {
+    reset: () => reset(),
+    spin: e => { phase = "idle"; spin(e.seq); },
+    place: e => place(e.s),
+    undo: () => undo(),
+    reveal: () => reveal(),
+    fill: e => { if (phase === "place") setFill(e.i, e.p); },
+    pose: e => { pose = e.h ? (MIRROR ? Object.assign({}, e, { x: 1 - e.x, r: -e.r }) : e) : null; applyPose(pose); }
+  };
+  const settled = () => Promise.all([...document.images].filter(i => !i.complete).map(i => new Promise(r => { i.onload = i.onerror = r; })));
+  window.renderInit = async session => {
+    ev = session.events; ei = 0;
+    $("intro").hidden = true; $("hud").hidden = false;
+    fitStage();
+    await document.fonts.ready;
+    await settled();
+    if (MIRROR) mirrorLayout("#mine, #real", STAGE_W);
+    return ev.length ? ev[ev.length - 1].t : 0;
+  };
+  window.renderFrame = async t => {
+    for (;;) {
+      clock.timers.sort((a, b) => a.at - b.at || a.n - b.n);
+      const tm = clock.timers[0], e = ev[ei];
+      const tt = tm && tm.at <= t ? tm.at : Infinity, te = e && e.t <= t ? e.t : Infinity;
+      if (tt === Infinity && te === Infinity) break;
+      if (tt <= te) { clock.timers.shift(); clock.t = tt; tm.fn(); }
+      else { ei++; clock.t = te; if (run[e.e]) run[e.e](e); }
+      track(clock.t);
+    }
+    clock.t = t;
+    for (const [a, at] of started) {
+      if (a.playState === "idle") { started.delete(a); continue; }
+      const end = a.effect ? a.effect.getComputedTiming().endTime : 0;
+      if (t - at >= end) { a.finish(); started.delete(a); } else a.currentTime = t - at;
+    }
+    applyPose(pose);
+    await settled();
+    return true;
+  };
+}
+</script>
+</body>
+</html>
