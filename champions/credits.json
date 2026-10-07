@@ -318,5 +318,21 @@
   "llicencia": "CC BY-SA 4.0",
   "font": "https://commons.wikimedia.org/wiki/File:20250906-Jana_Fernandez_Velasco.jpg",
   "data": "2025-09-06 12:54:25"
+ },
+ {
+  "jugador": "Pep Guardiola",
+  "fitxer": "pep-guardiola",
+  "autor": "Steffen Prößdorf, crop by ArsenalGhanaPartey",
+  "llicencia": "CC BY-SA 4.0",
+  "font": "https://commons.wikimedia.org/wiki/File:Pep_Guardiola_2021.jpg",
+  "data": "2021-12-07"
+ },
+ {
+  "jugador": "Alèxia Putellas",
+  "fitxer": "alexia-putellas",
+  "autor": "Foto del programa",
+  "llicencia": "-",
+  "font": "-",
+  "data": "-"
  }
 ]

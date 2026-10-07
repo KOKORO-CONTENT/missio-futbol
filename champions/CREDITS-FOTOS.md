@@ -44,3 +44,4 @@ Fotos de Wikimedia Commons amb llicència lliure. Les CC BY i CC BY-SA obliguen 
 | 38 | Gerard Piqué | Антон Зайцев | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Gerard_Piqu%C3%A9_in_2018.jpg |
 | 39 | Megan Rapinoe | Jamie Smed | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Megan_Rapinoe_(May_2019)_(cropped).jpg |
 | 40 | Jana Fernández | Katie Chan | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:20250906-Jana_Fernandez_Velasco.jpg |
+| | Pep Guardiola | Steffen Prößdorf, crop by ArsenalGhanaPartey | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Pep_Guardiola_2021.jpg |
