@@ -13,3 +13,5 @@ Fotos noves de Wikimedia Commons (llicència lliure). La resta surten dels altre
 ## Fotos actualitzades (2026-10-09)
 
 Les fotos dels jugadors del Barça (Lamine Yamal, Pau Cubarsí, Rodri, Aitana Bonmatí, Cata Coll, Clàudia Pina) surten de la web oficial del FC Barcelona (fcbarcelona.cat); la resta, de Transfermarkt (vegeu _fotos-transfermarkt/fonts.json). **No tenen llicència lliure**: cal tenir-ne els drets per emetre-les. Alèxia Putellas, Lucy Bronze i Ona Batlle mantenen les fotos de Wikimedia Commons. Les anteriors són a stickers-anterior/.
+
+Actualització: les fotos dels candidats ara són les oficials dels clubs (Real Madrid, PSG, Manchester City, Bayern, Inter Miami i FC Barcelona), enquadrades a cap i espatlles. Quiñones i Ferran Torres mantenen la foto anterior.
