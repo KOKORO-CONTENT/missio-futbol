@@ -9,3 +9,7 @@ Fotos noves de Wikimedia Commons (llicència lliure). La resta surten dels altre
 | Fabián Ruiz | Rolandhino1 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Fabian_Ruiz_6_(cropped).jpg |
 | Vinícius Júnior | Bryan Berlin | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Vin%C3%ADcius_J%C3%BAnior_Brazil_V_Morocco_13_June_2026-207_(cropped).jpg |
 | Vitinha | Bryan Berlin | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Vitinha_USMNT_v_Portugal_Mar_31_2026-50_(cropped).jpg |
+
+## Fotos actualitzades (2026-10-09)
+
+Les fotos dels jugadors del Barça (Lamine Yamal, Pau Cubarsí, Rodri, Aitana Bonmatí, Cata Coll, Clàudia Pina) surten de la web oficial del FC Barcelona (fcbarcelona.cat); la resta, de Transfermarkt (vegeu _fotos-transfermarkt/fonts.json). **No tenen llicència lliure**: cal tenir-ne els drets per emetre-les. Alèxia Putellas, Lucy Bronze i Ona Batlle mantenen les fotos de Wikimedia Commons. Les anteriors són a stickers-anterior/.

@@ -45,3 +45,7 @@ Fotos de Wikimedia Commons amb llicència lliure. Les CC BY i CC BY-SA obliguen 
 | 39 | Megan Rapinoe | Jamie Smed | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Megan_Rapinoe_(May_2019)_(cropped).jpg |
 | 40 | Jana Fernández | Katie Chan | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:20250906-Jana_Fernandez_Velasco.jpg |
 | | Pep Guardiola | Steffen Prößdorf, crop by ArsenalGhanaPartey | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Pep_Guardiola_2021.jpg |
+
+## Fotos actualitzades (2026-10-09)
+
+Les fotos dels jugadors del Barça (Lamine Yamal, Pau Cubarsí, Rodri, Aitana Bonmatí, Cata Coll, Clàudia Pina) surten de la web oficial del FC Barcelona (fcbarcelona.cat); la resta, de Transfermarkt (vegeu _fotos-transfermarkt/fonts.json). **No tenen llicència lliure**: cal tenir-ne els drets per emetre-les. Alèxia Putellas, Lucy Bronze i Ona Batlle mantenen les fotos de Wikimedia Commons. Les anteriors són a stickers-anterior/.
