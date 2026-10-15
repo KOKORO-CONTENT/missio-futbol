@@ -1,5 +1,5 @@
-// Nivells de "La ruleta" (ordre fix: les ruletes estan trucades). Jugadors de Transfermarkt (pàgines gastarbeiterDetails)
-// i, a l'últim nivell, la llista de catalans a la Premier que va passar el programa.
+// Nivells de "La ruleta" (l'ordre es barreja a cada partida). cal = quants jugadors s'han de dir.
+// Jugadors de Transfermarkt (gastarbeiterDetails) i, a la Premier, les llistes de catalans/es que va passar el programa.
 window.NIVELLS = [
  {
   "club": "Barça",
@@ -31,7 +31,8 @@ window.NIVELLS = [
    "Pedro Pascual",
    "Mariano Bori",
    "Santiago Ramos Mingo"
-  ]
+  ],
+  "cal": 5
  },
  {
   "club": "Bayern",
@@ -57,7 +58,8 @@ window.NIVELLS = [
    "Alou Diarra",
    "Bixente Lizarazu",
    "Jean-Pierre Papin"
-  ]
+  ],
+  "cal": 5
  },
  {
   "club": "Girona",
@@ -72,7 +74,8 @@ window.NIVELLS = [
    "Vladyslav Krapyvtsov",
    "Artem Dovbyk",
    "Viktor Tsygankov"
-  ]
+  ],
+  "cal": 3
  },
  {
   "club": "Liverpool",
@@ -90,7 +93,8 @@ window.NIVELLS = [
    "Andrea Dossena",
    "Daniele Padelli",
    "Gabriel Paletta"
-  ]
+  ],
+  "cal": 2
  },
  {
   "club": "PSG",
@@ -119,7 +123,8 @@ window.NIVELLS = [
    "Fernando Cruz",
    "Louis Mouquet",
    "Serif Nhaga"
-  ]
+  ],
+  "cal": 4
  },
  {
   "club": "Manchester City",
@@ -138,7 +143,8 @@ window.NIVELLS = [
    "Geert De Vlieger",
    "Daniel Van Buyten",
    "Roméo Lavia"
-  ]
+  ],
+  "cal": 2
  },
  {
   "club": "Reial Madrid",
@@ -159,7 +165,8 @@ window.NIVELLS = [
    "Paul Breitner",
    "Günter Netzer",
    "Walter Rositzky"
-  ]
+  ],
+  "cal": 4
  },
  {
   "club": "Premier League",
@@ -198,7 +205,18 @@ window.NIVELLS = [
    "Àlex Geijo",
    "Kiko Casilla",
    "Sergi Canós",
-   "Marc Guiu",
+   "Marc Guiu"
+  ],
+  "cal": 5
+ },
+ {
+  "club": "Premier League",
+  "escut": "premier",
+  "pais": "Catalunya",
+  "bandera": "catalunya",
+  "gent": "catalanes",
+  "font": "Llista del programa (Women's Super League)",
+  "jugadors": [
    "Ona Batlle",
    "Laia Codina",
    "Vicky Losada",
@@ -207,8 +225,8 @@ window.NIVELLS = [
    "Laia Aleixandri",
    "Júlia Bartel",
    "Jana Fernández"
-  ]
+  ],
+  "cal": 5
  }
 ];
-// Àlies que també compten quan es diuen de veu
 window.ALIES = {"Lionel Messi": ["leo", "pulga"], "Sergio Agüero": ["kun"], "Javier Mascherano": ["masche"], "Kevin De Bruyne": ["kdb"], "Juan Román Riquelme": ["roman"], "Diego Maradona": ["diego armando"], "Cesc Fàbregas": ["cesc"], "Alèxia Putellas": ["alexia"], "Franck Ribéry": ["ribery"], "Bixente Lizarazu": ["lizarazu"]};
