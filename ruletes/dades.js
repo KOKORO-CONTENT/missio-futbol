@@ -2,6 +2,38 @@
 // Jugadors de Transfermarkt (gastarbeiterDetails) i, a la Premier, les llistes de catalans/es que va passar el programa.
 window.NIVELLS = [
  {
+  "club": "Espanyol",
+  "escut": "espanyol",
+  "pais": "Brasil",
+  "bandera": "brasil",
+  "gent": "brasilers",
+  "font": "https://www.transfermarkt.es/rcd-espanyol/gastarbeiterDetails/verein/714/land_id/26",
+  "jugadors": [
+   "Philippe Coutinho",
+   "Gabriel Moscardo",
+   "Vini Souza",
+   "Léo Baptistão",
+   "Sidnei",
+   "Nené",
+   "Naldo",
+   "Ramon",
+   "Felipe Mattioni",
+   "Wellington",
+   "Ewerthon",
+   "Jônatas",
+   "Eduardo Costa",
+   "André Luiz",
+   "Fredson",
+   "Mauricinho",
+   "Bio",
+   "Jeremias",
+   "Brandãozinho",
+   "Indio",
+   "Recaman"
+  ],
+  "cal": 4
+ },
+ {
   "club": "Barça",
   "escut": "barcelona",
   "pais": "Argentina",
@@ -218,4 +250,4 @@ window.NIVELLS = [
   "cal": 5
  }
 ];
-window.ALIES = {"Lionel Messi": ["leo", "pulga"], "Sergio Agüero": ["kun"], "Javier Mascherano": ["masche"], "Kevin De Bruyne": ["kdb"], "Juan Román Riquelme": ["roman"], "Diego Maradona": ["diego armando"], "Cesc Fàbregas": ["cesc"], "Alèxia Putellas": ["alexia"], "Franck Ribéry": ["ribery"], "Bixente Lizarazu": ["lizarazu"]};
+window.ALIES = {"Philippe Coutinho": ["coutinho"], "Sidnei": ["sydney", "sidney"], "Léo Baptistão": ["baptistao", "batistao"], "Gabriel Moscardo": ["moscardo"], "Vini Souza": ["vinicius souza"], "Lionel Messi": ["leo", "pulga"], "Sergio Agüero": ["kun"], "Javier Mascherano": ["masche"], "Kevin De Bruyne": ["kdb"], "Juan Román Riquelme": ["roman"], "Diego Maradona": ["diego armando"], "Cesc Fàbregas": ["cesc"], "Alèxia Putellas": ["alexia"], "Franck Ribéry": ["ribery"], "Bixente Lizarazu": ["lizarazu"]};
