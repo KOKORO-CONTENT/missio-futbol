@@ -28,6 +28,6 @@ window.JUGADORS = [
 window.RONDES = 0;   // 0 = tots els de la llista: es juga fins que s'acaben els km
 // Crèdit de km per fallar en tota la partida: cada ronda resta la distància entre el pin i l'estadi.
 // Si s'acaba abans del darrer jugador, es perd.
-window.KM_LIMIT = 5000;
+window.KM_LIMIT = 3000;
 // Si ORDRE té ids, surten en aquest ordre (en lloc de l'atzar).
 window.ORDRE = [];
