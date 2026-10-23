@@ -64,5 +64,5 @@ window.EQUIPS = [
   {"id": "dinamo", "nom": "Dinamo de Zagreb", "noms": ["dinamo zagreb", "dinamo"], "escut": "dinamo.png", "estadi": "Maksimir", "ll": [16.0182, 45.8188]},
   {"id": "basel", "nom": "Basilea", "noms": ["basel", "basilea", "fc basel"], "escut": "basel.png", "estadi": "St. Jakob-Park", "ll": [7.6201, 47.5415]}
 ];
-window.RONDES = ["valencia", "juventus", "benfica", "arsenal", "galatasaray", "athletic", "lazio", "sevilla", "liverpool", "celta"];   // només escuts amb forma (els rodons, com el Bayern o el City, només fan un cercle)
+window.RONDES = ["valencia", "juventus", "benfica", "ajax", "arsenal", "galatasaray", "dortmund", "celtic", "athletic", "marseille"];
 window.INTENTS = 6;
