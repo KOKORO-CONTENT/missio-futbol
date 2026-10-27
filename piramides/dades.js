@@ -1,8 +1,8 @@
-// "Piràmides": 4 escuts, 40 segons cadascun. Cada piràmide té 5 nivells (5 → 1 respostes), que es fan en aquest ordre.
+// "Piràmides": 4 escuts, 1 minut i mig cadascun. Cada piràmide té 5 nivells (5 → 1 respostes), que es fan en aquest ordre.
 // Cada nivell: [numero de caselles, enunciat, [respostes vàlides]]. Cada resposta: [nom, paraules que es donen per bones...].
 // Es dóna per bona qualsevol de la llista (no només les primeres). Al final es revelen les primeres que no s'hagin fet servir.
 // REVISAR amb Transfermarkt: les llistes estan fetes de memòria (octubre 2026). Afegir-hi respostes aquí no costa res.
-window.TEMPS = 40;
+window.TEMPS = 90;
 window.ESCUTS = [
   { nom: "FC Barcelona", escut: "img/escuts/barcelona.png", nivells: [
     [5, "Entrenadors del Barça", [
