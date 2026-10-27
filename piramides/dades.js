@@ -1,88 +1,128 @@
 // "Piràmides": 4 escuts, 1 minut i mig cadascun. Cada piràmide té 5 nivells (5 → 1 respostes), que es fan en aquest ordre.
-// Cada nivell: [numero de caselles, enunciat, [respostes vàlides]]. Cada resposta: [nom, paraules que es donen per bones...].
-// Es dóna per bona qualsevol de la llista (no només les primeres). Al final es revelen les primeres que no s'hagin fet servir.
-// REVISAR amb Transfermarkt: les llistes estan fetes de memòria (octubre 2026). Afegir-hi respostes aquí no costa res.
+// Cada nivell: [numero de caselles, enunciat, [respostes vàlides]]. Cada resposta: [nom, paraules que es donen per bones...]
+// (a més, es dóna per bo l'últim cognom si no el comparteix cap altre jugador del mateix escut).
+// Es dóna per bona QUALSEVOL de la llista. Al final es revelen les primeres que no s'hagin fet servir: per això l'ordre és
+// la proposta de solució (primer els més recents i els més històrics/coneguts).
+// Fonts (octubre 2026): Transfermarkt (dorsals del Barça, porters, màxim de partits, màxims golejadors de l'Atlètic i de l'Espanyol,
+// argentins i noruecs, plantilles 2026 i 2022/23 del City, entrenadors), fcbarcelona.es (entrenadors), Mundo Deportivo (campions del món),
+// DAZN (Madrid + Atlètic), AS (Barça + Espanyol), ceroacero (campions de la Champions a l'Atlètic) i el lloc de naixement a Transfermarkt.
 window.TEMPS = 90;
 window.ESCUTS = [
   { nom: "FC Barcelona", escut: "img/escuts/barcelona.png", nivells: [
     [5, "Entrenadors del Barça", [
-      ["Pep Guardiola", "guardiola", "pep"], ["Johan Cruyff", "cruyff", "cruijff", "johan"], ["Frank Rijkaard", "rijkaard", "rijkard"],
-      ["Luis Enrique", "lucho", "enrique"], ["Xavi Hernández", "xavi"], ["Ronald Koeman", "koeman"], ["Ernesto Valverde", "valverde", "txingurri"],
-      ["Quique Setién", "setien"], ["Louis van Gaal", "van gaal", "vangaal"], ["Bobby Robson", "robson"], ["Tito Vilanova", "vilanova", "tito"],
-      ["Gerardo Martino", "martino", "tata"], ["Hansi Flick", "flick", "hansi"], ["Rinus Michels", "michels"], ["Terry Venables", "venables"],
-      ["Radomir Antić", "antic"], ["Carles Rexach", "rexach"], ["Helenio Herrera", "herrera"], ["Luis Aragonés", "aragones"], ["Lucien Müller", "muller"]]],
+      ["Hansi Flick", "flick", "hansi"], ["Pep Guardiola", "guardiola", "pep", "josep guardiola"], ["Johan Cruyff", "cruyff", "cruijff", "johan"],
+      ["Luis Enrique", "lucho", "enrique", "luis enrique martinez"], ["Frank Rijkaard", "rijkaard", "rijkard"],
+      ["Xavi Hernández", "xavi"], ["Louis van Gaal", "van gaal", "vangaal"], ["Ronald Koeman", "koeman"], ["Ernesto Valverde", "valverde", "txingurri"],
+      ["Quique Setién", "setien"], ["Tito Vilanova", "vilanova", "tito"], ["Tata Martino", "martino", "tata", "gerardo martino"],
+      ["Bobby Robson", "robson"], ["Terry Venables", "venables"], ["Luis Aragonés", "aragones"], ["Carles Rexach", "rexach"],
+      ["Radomir Antić", "antic"], ["Llorenç Serra Ferrer", "serra ferrer"], ["Udo Lattek", "lattek"], ["César Luis Menotti", "menotti"],
+      ["Hennes Weisweiler", "weisweiler"], ["Rinus Michels", "michels"], ["Helenio Herrera", "herrera"], ["Ferdinand Daucik", "daucik"],
+      ["Josep Samitier", "samitier"], ["Vic Buckingham", "buckingham"], ["Lucien Müller", "muller"]]],
     [4, "Dorsals 9 del Barça", [
-      ["Ronaldo Nazário", "ronaldo", "ronaldo nazario", "fenomeno"], ["Romário", "romario"], ["Patrick Kluivert", "kluivert"], ["Samuel Eto'o", "etoo", "eto o"],
-      ["Zlatan Ibrahimović", "zlatan", "ibrahimovic", "ibra"], ["Alexis Sánchez", "alexis"], ["Luis Suárez", "suarez", "pistolero"],
-      ["Robert Lewandowski", "lewandowski", "lewa"], ["Memphis Depay", "memphis", "depay"], ["Julio Salinas", "salinas"]]],
+      ["Gabriel Jesus", "jesus", "gabriel jesus"], ["Robert Lewandowski", "lewandowski", "lewa"], ["Luis Suárez", "suarez", "pistolero"],
+      ["Ronaldo Nazário", "ronaldo", "ronaldo nazario", "fenomeno"], ["Memphis Depay", "memphis", "depay"], ["Martin Braithwaite", "braithwaite"],
+      ["Zlatan Ibrahimović", "zlatan", "ibrahimovic", "ibra"], ["Samuel Eto'o", "etoo", "eto o", "eto"], ["Alexis Sánchez", "alexis"],
+      ["Bojan Krkić", "bojan", "krkic"], ["Patrick Kluivert", "kluivert"], ["Sonny Anderson", "anderson", "sonny"], ["Romário", "romario"],
+      ["Hristo Stoichkov", "stoichkov", "stoitchkov"], ["Michael Laudrup", "laudrup"], ["Gary Lineker", "lineker"], ["Meho Kodro", "kodro"],
+      ["Óscar García", "oscar garcia"], ["Julio Salinas", "salinas"], ["Jordi Cruyff", "jordi cruyff", "jordi"], ["Guillermo Amor", "amor"],
+      ["Toni Velamazán", "velamazan"], ["Xavi Escaich", "escaich", "xavier escaich"], ["Miguel Ángel Nadal", "nadal"], ["Mark Hughes", "hughes"],
+      ["Pichi Alonso", "pichi", "alonso"], ["Johan Cruyff", "cruyff", "cruijff"], ["Hans Krankl", "krankl"], ["Sándor Kocsis", "kocsis"],
+      ["László Kubala", "kubala"], ["Josep Samitier", "samitier"], ["Quini", "quini"]]],
     [3, "Defenses del Barça campions del món", [
-      ["Carles Puyol", "puyol"], ["Gerard Piqué", "pique"], ["Jordi Alba", "alba"], ["Lilian Thuram", "thuram"], ["Samuel Umtiti", "umtiti"],
-      ["Gianluca Zambrotta", "zambrotta"], ["Edmílson", "edmilson"], ["Juliano Belletti", "belletti"]]],
+      ["Gerard Piqué", "pique"], ["Carles Puyol", "puyol"], ["Samuel Umtiti", "umtiti"], ["Ona Batlle", "batlle"], ["Irene Paredes", "paredes"], ["Laia Codina", "codina"]]],
     [2, "Porters suplents del Barça", [
-      ["Jordi Masip", "masip"], ["Antonio Adán", "adan"], ["José Manuel Pinto", "pinto"], ["Neto", "neto", "norberto murara"], ["Iñaki Peña", "pena", "inaki"],
-      ["Jasper Cillessen", "cillessen"], ["Oier Olazábal", "olazabal", "oier"], ["Arnau Tenas", "tenas"], ["Albano Bizzarri", "bizzarri"],
-      ["Wojciech Szczęsny", "szczesny", "sczesny"]]],
+      ["Wojciech Szczęsny", "szczesny", "sczesny"], ["Iñaki Peña", "pena", "inaki"], ["Neto", "neto", "norberto murara"], ["Jasper Cillessen", "cillessen"],
+      ["Claudio Bravo", "bravo"], ["Marc-André ter Stegen", "ter stegen", "terstegen", "stegen"], ["Jordi Masip", "masip"], ["José Manuel Pinto", "pinto"],
+      ["Oier Olazábal", "olazabal", "oier"], ["Dominik Livaković", "livakovic"], ["Albert Jorquera", "jorquera"], ["Rüştü Reçber", "rustu", "recber"],
+      ["Robert Enke", "enke"], ["Francesc Arnau", "arnau"], ["Vítor Baía", "baia"], ["Carles Busquets", "carles busquets"], ["Julen Lopetegui", "lopetegui"],
+      ["Jesús Angoy", "angoy"], ["Juan Carlos Unzué", "unzue"], ["Pepe Reina", "reina"], ["Richard Dutruel", "dutruel"], ["Víctor Valdés", "valdes"]]],
     [1, "Jugador amb més partits de la història del Barça", [
-      ["Xavi Hernández", "xavi"]]]
+      ["Lionel Messi", "messi", "leo"]]]
   ] },
   { nom: "Atlético de Madrid", escut: "img/escuts/atletico.png", nivells: [
     [5, "Jugadors amb més de 25 gols a l'Atlètic", [
       ["Antoine Griezmann", "griezmann", "grizman"], ["Fernando Torres", "torres", "nino"], ["Sergio Agüero", "aguero", "kun"], ["Radamel Falcao", "falcao"],
-      ["Diego Forlán", "forlan"], ["Diego Costa", "costa"], ["Luis Aragonés", "aragones"], ["Adelardo", "adelardo"], ["Koke", "koke"],
-      ["Saúl Ñíguez", "saul"], ["Ángel Correa", "correa"], ["Yannick Carrasco", "carrasco"], ["Álvaro Morata", "morata"], ["Raúl García", "raul garcia"],
-      ["Gárate", "garate"], ["Collar", "collar"]]],
+      ["Luis Aragonés", "aragones"], ["Diego Costa", "costa"], ["Diego Forlán", "forlan"], ["Ángel Correa", "correa"], ["Hugo Sánchez", "hugo sanchez", "hugo"],
+      ["José Eulogio Gárate", "garate"], ["Adelardo", "adelardo"], ["Enrique Collar", "collar"], ["Adrián Escudero", "escudero"], ["Paco Campos", "campos"],
+      ["Joaquín Peiró", "peiro"], ["Manolo", "manolo"], ["Rubén Cano", "ruben cano", "cano"], ["José Juncosa", "juncosa"], ["Jorge Mendonça", "mendonca"],
+      ["Miguel González", "miguel gonzalez"], ["Kiko Narváez", "kiko", "narvaez"], ["Javier Irureta", "irureta"], ["Baltazar", "baltazar"],
+      ["Larbi Ben Barek", "ben barek"], ["Roberto Marina", "marina"]]],
     [4, "Argentins de l'Atlètic", [
-      ["Diego Simeone", "simeone", "cholo"], ["Giuliano Simeone", "giuliano"], ["Sergio Agüero", "aguero", "kun"], ["Ángel Correa", "correa"],
-      ["Rodrigo De Paul", "de paul", "depaul"], ["Julián Álvarez", "julian alvarez", "alvarez", "arana"], ["Nahuel Molina", "molina", "nahuel"],
-      ["Nicolás Gaitán", "gaitan"], ["Luciano Vietto", "vietto"], ["Matías Kranevitter", "kranevitter"], ["Nico González", "nico gonzalez"]]],
+      ["Julián Álvarez", "julian alvarez", "alvarez", "arana"], ["Cristian Romero", "romero", "cuti romero", "cuti"], ["Giuliano Simeone", "giuliano", "giuliano simeone"],
+      ["Sergio Agüero", "aguero", "kun"], ["Diego Simeone", "simeone", "cholo", "diego simeone"], ["Rodrigo De Paul", "de paul", "depaul"], ["Ángel Correa", "correa"],
+      ["Nahuel Molina", "molina", "nahuel"], ["Thiago Almada", "almada"], ["Nico González", "nico gonzalez"], ["Juan Musso", "musso"],
+      ["Nico Gaitán", "gaitan"], ["Luciano Vietto", "vietto"], ["Matías Kranevitter", "kranevitter"], ["Augusto Fernández", "augusto fernandez"],
+      ["Cristian Ansaldi", "ansaldi"], ["José Sosa", "sosa"], ["Martín Demichelis", "demichelis"], ["Cata Díaz", "cata diaz"], ["Emiliano Insúa", "insua"],
+      ["Éver Banega", "banega"], ["Eduardo Salvio", "salvio"], ["Luciano Galletti", "galletti"], ["Nehuén Pérez", "nehuen perez"], ["José Eulogio Gárate", "garate"]]],
     [3, "Jugadors que han estat a l'Atlètic i al Madrid", [
-      ["Thibaut Courtois", "courtois"], ["Álvaro Morata", "morata"], ["Paulo Futre", "futre"], ["Hugo Sánchez", "hugo sanchez", "hugo"],
-      ["Bernd Schuster", "schuster"], ["Santiago Solari", "solari"], ["Antonio Adán", "adan"], ["Quique Sánchez Flores", "quique flores", "quique sanchez flores"]]],
+      ["Thibaut Courtois", "courtois"], ["Álvaro Morata", "morata"], ["Hugo Sánchez", "hugo sanchez", "hugo"], ["Marcos Llorente", "llorente", "marcos llorente"],
+      ["Sergio Reguilón", "reguilon"], ["Santiago Solari", "solari"], ["Bernd Schuster", "schuster"], ["Raúl González", "raul", "raul gonzalez"],
+      ["José Antonio Reyes", "reyes"], ["Juanfran Torres", "juanfran"], ["José Manuel Jurado", "jurado"], ["Juan Eduardo Esnáider", "esnaider"],
+      ["José Luis Pérez Caminero", "caminero", "perez caminero"], ["Paco Llorente", "paco llorente"], ["Ramón Grosso", "grosso"]]],
     [2, "Campions de la Champions que són a l'Atlètic", [
-      ["Julián Álvarez", "julian alvarez", "alvarez", "arana"]]],
+      ["Julián Álvarez", "julian alvarez", "alvarez", "arana"], ["Kang-in Lee", "lee", "kang in lee", "kang-in", "kangin"]]],
     [1, "Català que juga a l'Atlètic", [
-      ["Marc Pubill", "pubill"]]]
+      ["Marc Pubill", "pubill"], ["Sergi Barjuán", "barjuan", "sergi"]]]
   ] },
   { nom: "RCD Espanyol", escut: "img/escuts/espanyol.png", nivells: [
     [5, "Jugadors del Barça i de l'Espanyol", [
-      ["Sergio García", "sergio garcia"], ["Luis García", "luis garcia"], ["Iván de la Peña", "de la pena", "ivan de la pena", "pelat"],
-      ["Jordi Cruyff", "jordi cruyff", "jordi"], ["Ricardo Zamora", "zamora"], ["Pichi Alonso", "pichi", "alonso"], ["Nayim", "nayim"],
-      ["Albert Celades", "celades"], ["Joan García", "joan garcia"]]],
+      ["Joan García", "joan garcia"], ["Martin Braithwaite", "braithwaite"], ["Sergio García", "sergio garcia"], ["Iván de la Peña", "de la pena", "ivan de la pena", "pelat"],
+      ["László Kubala", "kubala"], ["Ricardo Zamora", "zamora"], ["Coutinho", "coutinho"], ["Víctor Sánchez", "victor sanchez"], ["Jordi Cruyff", "jordi cruyff"],
+      ["Óscar García", "oscar garcia"], ["Roger García", "roger"], ["Aleix Vidal", "vidal"], ["Abraham González", "abraham"], ["Simão", "simao"], ["Rufete", "rufete"],
+      ["Toni Velamazán", "velamazan"], ["Jofre Mateu", "jofre mateu", "jofre"], ["Dani García Lara", "dani garcia"], ["Nando", "nando"], ["Cristóbal Parralo", "parralo"],
+      ["Xavi Escaich", "escaich"], ["Igor Korneyev", "korneyev"], ["Miquel Soler", "soler"], ["Ernesto Valverde", "valverde"], ["Urbano Ortega", "urbano"],
+      ["Pichi Alonso", "pichi", "alonso"], ["Canito", "canito"], ["Urruti", "urruti", "urruticoechea"], ["Marcial", "marcial"], ["Corominas", "corominas"],
+      ["Cayetano Ré", "cayetano re", "re"], ["Zoltan Czibor", "czibor"], ["Justo Tejada", "tejada"]]],
     [4, "Jugadors catalans de l'Espanyol", [
-      ["Raúl Tamudo", "tamudo"], ["Sergio García", "sergio garcia"], ["Joan Capdevila", "capdevila"], ["Joan García", "joan garcia"],
-      ["Marc Roca", "roca"], ["Javi Puado", "puado"], ["Jofre Carreras", "carreras"], ["Pol Lozano", "lozano"], ["Dani Jarque", "jarque"],
-      ["Víctor Sánchez", "victor sanchez"], ["Albert Lopo", "lopo"], ["Adrià Pedrosa", "pedrosa"], ["Carlos Romero", "romero"]]],
+      ["Javi Puado", "puado"], ["Sergio García", "sergio garcia"], ["Joan Capdevila", "capdevila"], ["Víctor Sánchez", "victor sanchez"], ["Joan García", "joan garcia"],
+      ["Edu Expósito", "exposito", "edu exposito"], ["Pere Milla", "milla"], ["Jofre Carreras", "carreras"], ["Gerard Moreno", "gerard moreno", "moreno"],
+      ["Marc Roca", "roca"], ["Javi Hernández", "javi hernandez"], ["Álex Calatrava", "calatrava"], ["Ángel Fortuño", "fortuno"], ["Roger Hinojo", "hinojo"],
+      ["Marcos Fernández", "marcos fernandez"], ["David López", "david lopez"], ["David García", "david garcia"], ["Toni Jiménez", "toni jimenez"],
+      ["Jordi Lardín", "lardin"], ["Antonio Argilés", "argiles"], ["Javier Marcet", "marcet"], ["José Parra", "parra"], ["José Prat", "prat"],
+      ["José Egea", "egea"], ["Raúl Tamudo", "tamudo"]]],
     [3, "Porters mítics de l'Espanyol", [
-      ["Thomas N'Kono", "nkono", "n kono"], ["Ricardo Zamora", "zamora"], ["Carlos Kameni", "kameni"], ["Diego López", "diego lopez"],
-      ["Francisco Pacheco", "pacheco"], ["Pau López", "pau lopez"], ["Joan García", "joan garcia"]]],
+      ["Thomas N'Kono", "nkono", "n kono"], ["Carlos Kameni", "kameni"], ["Toni Jiménez", "toni jimenez"], ["Ricardo Zamora", "zamora"], ["Diego López", "diego lopez"],
+      ["Kiko Casilla", "casilla"], ["Joan García", "joan garcia"], ["Marko Dmitrović", "dmitrovic"], ["Pau López", "pau lopez"], ["Cristian Álvarez", "cristian alvarez"],
+      ["Fernando Pacheco", "pacheco"], ["Gorka Iraizoz", "iraizoz"]]],
     [2, "Entrenadors de l'Espanyol", [
-      ["Mauricio Pochettino", "pochettino", "poche"], ["Quique Sánchez Flores", "quique", "sanchez flores", "quique flores"], ["Ernesto Valverde", "valverde"],
-      ["Javier Aguirre", "aguirre", "vasco aguirre"], ["Joaquín Caparrós", "caparros"], ["Vicente Moreno", "moreno"], ["Manolo González", "manolo gonzalez"],
-      ["Rubi", "rubi"], ["Juande Ramos", "juande"], ["Miguel Ángel Lotina", "lotina"], ["Abelardo", "abelardo"], ["Pablo Machín", "machin"], ["Luis Fernández", "luis fernandez"]]],
+      ["Manolo González", "manolo gonzalez"], ["Mauricio Pochettino", "pochettino", "poche"], ["Quique Sánchez Flores", "quique", "sanchez flores", "quique flores"],
+      ["Marcelo Bielsa", "bielsa", "loco"], ["Ernesto Valverde", "valverde"], ["Luis Aragonés", "aragones"], ["Javier Aguirre", "aguirre", "vasco aguirre"],
+      ["Juande Ramos", "juande"], ["Vicente Moreno", "vicente moreno"], ["Rubi", "rubi"], ["Abelardo", "abelardo"], ["Pablo Machín", "machin"],
+      ["Diego Martínez", "diego martinez"], ["Luis García Plaza", "luis garcia", "garcia plaza"], ["Luis Blanco", "blanco"], ["Francisco Rufete", "rufete"],
+      ["David Gallego", "gallego"], ["Constantin Gâlcă", "galca"], ["Sergio González", "sergio gonzalez"], ["Raúl Longhi", "longhi"], ["Mané", "mane"],
+      ["Tintín Márquez", "tintin", "marquez"], ["Miguel Ángel Lotina", "lotina"], ["Luis Fernández", "luis fernandez"], ["Javier Clemente", "clemente"],
+      ["José Antonio Camacho", "camacho"], ["Luis Miguel Ramis", "ramis"], ["László Kubala", "kubala"], ["Ricardo Zamora", "zamora"]]],
     [1, "Màxim golejador de l'Espanyol a la Lliga", [
       ["Raúl Tamudo", "tamudo"]]]
   ] },
   { nom: "Manchester City", escut: "img/escuts/man-city.png", nivells: [
     [5, "Campions de la Champions amb el City", [
-      ["Erling Haaland", "haaland"], ["Rodri", "rodri", "rodrigo hernandez"], ["Phil Foden", "foden"], ["Bernardo Silva", "bernardo"], ["John Stones", "stones"],
-      ["Manuel Akanji", "akanji"], ["Rúben Dias", "ruben dias", "dias"], ["Joško Gvardiol", "gvardiol"], ["Nathan Aké", "ake"], ["Ederson", "ederson"],
-      ["Kyle Walker", "walker"], ["Kevin De Bruyne", "de bruyne", "debruyne", "kdb"], ["İlkay Gündoğan", "gundogan"], ["Jack Grealish", "grealish"],
-      ["Julián Álvarez", "julian alvarez", "alvarez", "arana"], ["Mateo Kovačić", "kovacic"]]],
+      ["Rodri", "rodri", "rodrigo hernandez"], ["Phil Foden", "foden"], ["Bernardo Silva", "bernardo"], ["Kevin De Bruyne", "de bruyne", "debruyne", "kdb"],
+      ["John Stones", "stones"], ["Rúben Dias", "ruben dias", "dias"], ["Manuel Akanji", "akanji"], ["Kyle Walker", "walker"], ["Ederson", "ederson"],
+      ["İlkay Gündoğan", "gundogan"], ["Jack Grealish", "grealish"], ["Julián Álvarez", "julian alvarez", "alvarez", "arana"], ["Riyad Mahrez", "mahrez"],
+      ["Nathan Aké", "ake"], ["Aymeric Laporte", "laporte"], ["Rico Lewis", "rico lewis"], ["Stefan Ortega", "ortega"], ["Sergio Gómez", "sergio gomez"],
+      ["Erling Haaland", "haaland"]]],
     [4, "Jugadors no anglesos del City", [
-      ["Erling Haaland", "haaland"], ["Rodri", "rodri"], ["Bernardo Silva", "bernardo"], ["Joško Gvardiol", "gvardiol"], ["Rúben Dias", "ruben dias", "dias"],
-      ["Jérémy Doku", "doku"], ["Gianluigi Donnarumma", "donnarumma", "gigio"], ["Tijjani Reijnders", "reijnders"], ["Rayan Cherki", "cherki"],
-      ["Rayan Aït-Nouri", "ait nouri", "aitnouri"], ["Omar Marmoush", "marmoush"], ["Matheus Nunes", "nunes"], ["Savinho", "savinho", "savio"],
-      ["Mateo Kovačić", "kovacic"], ["Nathan Aké", "ake"], ["Manuel Akanji", "akanji"], ["Ederson", "ederson"], ["Sergio Agüero", "aguero", "kun"],
-      ["Vincent Kompany", "kompany"], ["David Silva", "david silva"], ["Yaya Touré", "yaya toure", "toure"], ["Kevin De Bruyne", "de bruyne", "debruyne"]]],
+      ["Joško Gvardiol", "gvardiol"], ["Gianluigi Donnarumma", "donnarumma", "gigio"], ["Jérémy Doku", "doku"], ["Rayan Cherki", "cherki"],
+      ["Rayan Aït-Nouri", "ait nouri", "aitnouri"], ["Matheus Nunes", "nunes"], ["Enzo Fernández", "enzo fernandez", "enzo"], ["Mateo Kovačić", "kovacic"],
+      ["Abdukodir Khusanov", "khusanov"], ["Iliman Ndiaye", "ndiaye"], ["Ayyoub Bouaddi", "bouaddi"], ["Gerónimo Rulli", "rulli"], ["Vitor Reis", "vitor reis"],
+      ["Allan", "allan"], ["Antoine Semenyo", "semenyo"], ["Rodri", "rodri"], ["Bernardo Silva", "bernardo"], ["Rúben Dias", "ruben dias", "dias"],
+      ["Kevin De Bruyne", "de bruyne", "debruyne"], ["Vincent Kompany", "kompany"], ["Sergio Agüero", "aguero", "kun"], ["David Silva", "david silva"],
+      ["Yaya Touré", "yaya toure", "toure"], ["Ederson", "ederson"], ["Manuel Akanji", "akanji"], ["Julián Álvarez", "julian alvarez", "alvarez"],
+      ["İlkay Gündoğan", "gundogan"], ["Riyad Mahrez", "mahrez"], ["Erling Haaland", "haaland"]]],
     [3, "Entrenadors del City", [
-      ["Pep Guardiola", "guardiola", "pep"], ["Roberto Mancini", "mancini"], ["Manuel Pellegrini", "pellegrini"], ["Mark Hughes", "hughes"],
-      ["Kevin Keegan", "keegan"], ["Joe Mercer", "mercer"], ["Malcolm Allison", "allison"], ["Sven-Göran Eriksson", "eriksson"], ["Stuart Pearce", "pearce"],
-      ["Peter Reid", "reid"], ["Brian Horton", "horton"]]],
+      ["Enzo Maresca", "maresca"], ["Pep Guardiola", "guardiola", "pep"], ["Roberto Mancini", "mancini"], ["Manuel Pellegrini", "pellegrini"], ["Mark Hughes", "hughes"],
+      ["Sven-Göran Eriksson", "eriksson"], ["Kevin Keegan", "keegan"], ["Stuart Pearce", "pearce"], ["Joe Royle", "royle"], ["Frank Clark", "frank clark"],
+      ["Joe Mercer", "mercer"], ["Malcolm Allison", "allison"], ["Peter Reid", "reid"], ["Howard Kendall", "kendall"], ["Brian Kidd", "kidd"], ["Tony Book", "tony book"],
+      ["Alan Ball", "alan ball"], ["Steve Coppell", "coppell"], ["Brian Horton", "horton"]]],
     [2, "Porters del City", [
-      ["Ederson", "ederson"], ["Gianluigi Donnarumma", "donnarumma", "gigio"], ["Joe Hart", "hart"], ["Claudio Bravo", "bravo"], ["Willy Caballero", "caballero"],
-      ["Bert Trautmann", "trautmann"], ["Shay Given", "given"], ["Stefan Ortega", "ortega"], ["James Trafford", "trafford"], ["Scott Carson", "carson"],
-      ["Costel Pantilimon", "pantilimon"], ["Joe Corrigan", "corrigan"]]],
+      ["Gianluigi Donnarumma", "donnarumma", "gigio"], ["Ederson", "ederson"], ["Joe Hart", "hart"], ["Claudio Bravo", "bravo"], ["Willy Caballero", "caballero"],
+      ["Stefan Ortega", "ortega"], ["James Trafford", "trafford"], ["Zack Steffen", "steffen"], ["Scott Carson", "carson"], ["Costel Pantilimon", "pantilimon"],
+      ["Kasper Schmeichel", "kasper schmeichel"], ["Shay Given", "given"], ["David James", "david james"], ["Nicky Weaver", "weaver"], ["Bert Trautmann", "trautmann"],
+      ["Joe Corrigan", "corrigan"], ["Peter Schmeichel", "peter schmeichel"], ["David Seaman", "seaman"], ["Frank Swift", "swift"], ["Márton Fülöp", "fulop"],
+      ["Andreas Isaksson", "isaksson"], ["Gerónimo Rulli", "rulli"], ["Marcus Bettinelli", "bettinelli"]]],
     [1, "Noruec del City", [
-      ["Erling Haaland", "haaland"], ["Oscar Bobb", "bobb"]]]
+      ["Erling Haaland", "haaland"], ["Oscar Bobb", "bobb"], ["Sverre Nypan", "nypan"], ["Alf-Inge Haaland", "alf inge haaland", "alf-inge", "alf inge"],
+      ["Egil Østenstad", "ostenstad"], ["Åge Hareide", "hareide"]]]
   ] }
 ];
