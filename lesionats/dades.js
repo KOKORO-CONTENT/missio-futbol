@@ -3,8 +3,8 @@
 // club/escut: club ACTUAL o l'últim en què ha jugat (revisat a Transfermarkt el 28/10/2026).
 // curt/fet/dl: titular de la lesió més llarga (que es mostra en resoldre): "<curt> <fet> i va estar <dl> dies lesionat".
 window.JUGADORS = [
-  { nom: "Ansu Fati",           club: "AS Monaco",       escut: "monaco",     foto: "ansu-fati",           dies: 749,  curt: "Ansu Fati",   fet: "es va trencar el menisc el 2020", dl: "306" },
-  { nom: "Andreas Christensen", club: "FC Barcelona",    escut: "barca",      foto: "andreas-christensen", dies: 861,  curt: "Christensen", fet: "va patir una irritació del tendó d'Aquil·les el 2024", dl: "149" },
+  { nom: "Ansu Fati",           club: "AS Monaco",       escut: "monaco",     foto: "ansu-fati",           dies: 835,  curt: "Ansu Fati",   fet: "es va trencar el menisc el 2020", dl: "306" },
+  { nom: "Andreas Christensen", club: "FC Barcelona",    escut: "barca",      foto: "andreas-christensen", dies: 739,  curt: "Christensen", fet: "va patir una irritació del tendó d'Aquil·les el 2024", dl: "149" },
   { nom: "Dembélé",             club: "PSG",             escut: "psg",        foto: "ousmane-dembele",     dies: 1006, curt: "Dembélé",     fet: "es va lesionar la cuixa el 2020", dl: "192" },
   { nom: "Raphinha",            club: "FC Barcelona",    escut: "barca",      foto: "raphinha",            dies: 355,  curt: "Raphinha",    fet: "es va lesionar la cuixa el 2025", dl: "58" },
   { nom: "Frenkie de Jong",     club: "FC Barcelona",    escut: "barca",      foto: "frenkie-de-jong",     dies: 899,  curt: "De Jong",     fet: "es va lesionar el turmell el 2024", dl: "163" },
@@ -17,7 +17,7 @@ window.JUGADORS = [
   { nom: "Javi Puado",          club: "Espanyol",        escut: "espanyol",   foto: "javi-puado",          dies: 460,  curt: "Puado",       fet: "es va trencar els creuats el 2026", dl: "264" },
   { nom: "Modrić",              club: "AC Milan",        escut: "acmilan",    foto: "luka-modric",         dies: 564,  curt: "Modrić",      fet: "es va lesionar la cuixa el 2014", dl: "113" },
   { nom: "Mbappé",              club: "Reial Madrid",    escut: "madrid",     foto: "kylian-mbappe",       dies: 312,  curt: "Mbappé",      fet: "va patir un traumatisme cranial el 2016", dl: "36" },
-  { nom: "Courtois",            club: "Reial Madrid",    escut: "madrid",     foto: "thibaut-courtois",    dies: 600,  curt: "Courtois",    fet: "es va trencar els creuats el 2023", dl: "235" },
+  { nom: "Courtois",            club: "Reial Madrid",    escut: "madrid",     foto: "thibaut-courtois",    dies: 727,  curt: "Courtois",    fet: "es va trencar els creuats el 2023", dl: "235" },
   { nom: "Bale",                club: "Los Angeles FC",  escut: "lafc",       foto: "gareth-bale",         dies: 1122, curt: "Bale",        fet: "es va trencar un lligament del turmell el 2007", dl: "212" },
   { nom: "Hazard",              club: "Reial Madrid",    escut: "madrid",     foto: "eden-hazard",         dies: 731,  curt: "Hazard",      fet: "es va operar del turmell el 2017", dl: "81" },
   { nom: "Rüdiger",             club: "Reial Madrid",    escut: "madrid",     foto: "antonio-rudiger",     dies: 860,  curt: "Rüdiger",     fet: "es va trencar els creuats el 2016", dl: "138" },
