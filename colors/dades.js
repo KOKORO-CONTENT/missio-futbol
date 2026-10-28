@@ -1,5 +1,5 @@
 // "De quin equip són els colors?": surt un gràfic circular amb els colors de l'escut (proporcions calculades de l'escut)
-// i hi ha 6 intents. Cada intent dona pistes: país, any de fundació i capacitat de l'estadi (més o menys que el bo).
+// i hi ha 4 intents. Cada intent dona pistes: país, any de fundació i capacitat de l'estadi (més o menys que el bo).
 // EQUIPS: tots els que es poden dir. RONDES: els que surten, en aquest ordre. colors: [color, proporció] (es poden retocar a mà).
 window.EQUIPS = [
   {"id": "barca", "nom": "Barça", "noms": ["barcelona", "fc barcelona", "barsa"], "escut": "barca.png", "pais": "ESP", "fundat": 1899, "estadi": "Spotify Camp Nou", "capacitat": 105000, "colors": [["#edbb00", 0.383], ["#c40139", 0.261], ["#150e10", 0.157], ["#3a606e", 0.143], ["#f9e250", 0.056]]},
@@ -65,5 +65,5 @@ window.EQUIPS = [
   {"id": "basel", "nom": "Basilea", "noms": ["basel", "basilea", "fc basel"], "escut": "basel.png", "pais": "SUI", "fundat": 1893, "estadi": "St. Jakob-Park", "capacitat": 38512, "colors": [["#fcd401", 0.395], ["#133477", 0.292], ["#e40428", 0.205], ["#9e1120", 0.061], ["#ad851e", 0.046]]}
 ];
 window.RONDES = ["valencia", "milan", "chelsea", "dortmund", "fenerbahce", "sporting", "athletic", "roma", "psv", "celta"];
-window.INTENTS = 6;
+window.INTENTS = 4;
 window.PAISOS = {"ESP": "Espanya", "ENG": "Anglaterra", "ITA": "Itàlia", "ALE": "Alemanya", "FRA": "França", "MON": "Mònaco", "POR": "Portugal", "NED": "Països Baixos", "ESC": "Escòcia", "TUR": "Turquia", "GRE": "Grècia", "RUS": "Rússia", "SRB": "Sèrbia", "CRO": "Croàcia", "SUI": "Suïssa"};
