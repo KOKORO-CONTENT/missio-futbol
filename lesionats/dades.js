@@ -11,7 +11,7 @@ window.JUGADORS = [
   { nom: "Rodri",               club: "Manchester City", escut: "mancity", foto: "rodri",               dies: 452 },
   { nom: "Messi",               club: "FC Barcelona",   escut: "barca",    foto: "lionel-messi",        dies: 865 },
   { nom: "Aitana Bonmatí",      club: "FC Barcelona",   escut: "barca",    foto: "aitana-bonmati",      dies: 192, rol: "Jugadora" },
-  { nom: "Alèxia Putellas",     club: "FC Barcelona",   escut: "barca",    foto: "alexia-putellas",     dies: 360, rol: "Jugadora" },
+  { nom: "Alèxia Putellas",     club: "London City",    escut: "london-city", foto: "alexia-putellas",     dies: 360, rol: "Jugadora" },
   { nom: "Gavi",                club: "FC Barcelona",   escut: "barca",    foto: "gavi",                dies: 580 },
   { nom: "Javi Puado",          club: "Espanyol",       escut: "espanyol", foto: "javi-puado",          dies: 460 },
   { nom: "Modrić",              club: "Reial Madrid",   escut: "madrid",   foto: "luka-modric",         dies: 564 },
