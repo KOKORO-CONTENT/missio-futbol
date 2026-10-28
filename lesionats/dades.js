@@ -22,3 +22,15 @@ window.JUGADORS = [
   { nom: "Rüdiger",             club: "Reial Madrid",   escut: "madrid",   foto: "antonio-rudiger",     dies: 860 },
   { nom: "David López",         club: "Girona",         escut: "girona",   foto: "david-lopez",         dies: 432 }
 ];
+
+// Parelles fixes (id de la foto). Els jugadors que no hi surten s'aparellen a l'atzar a cada partida.
+window.PARELLES = [
+  ["frenkie-de-jong", "gareth-bale"],
+  ["luka-modric", "alexia-putellas"],
+  ["eden-hazard", "lionel-messi"],
+  ["javi-puado", "rodri"],
+  ["thibaut-courtois", "ansu-fati"],
+  ["antonio-rudiger", "andreas-christensen"],
+  ["samuel-umtiti", "ousmane-dembele"],
+  ["kylian-mbappe", "raphinha"]
+];
