@@ -64,6 +64,6 @@ window.EQUIPS = [
   {"id": "dinamo", "nom": "Dinamo de Zagreb", "noms": ["dinamo zagreb", "dinamo"], "escut": "dinamo.png", "pais": "CRO", "fundat": 1945, "estadi": "Maksimir", "capacitat": 35123, "colors": [["#a99660", 0.303], ["#00509f", 0.28], ["#fefefd", 0.258], ["#ee352a", 0.158]]},
   {"id": "basel", "nom": "Basilea", "noms": ["basel", "basilea", "fc basel"], "escut": "basel.png", "pais": "SUI", "fundat": 1893, "estadi": "St. Jakob-Park", "capacitat": 38512, "colors": [["#fcd401", 0.395], ["#133477", 0.292], ["#e40428", 0.205], ["#9e1120", 0.061], ["#ad851e", 0.046]]}
 ];
-window.RONDES = ["valencia", "milan", "chelsea", "dortmund", "fenerbahce", "sporting", "athletic", "roma", "psv", "celta"];
+window.RONDES = ["valencia", "milan", "chelsea", "dortmund", "barca", "sporting", "atletico", "celta", "madrid", "psg"];
 window.INTENTS = 4;
 window.PAISOS = {"ESP": "Espanya", "ENG": "Anglaterra", "ITA": "Itàlia", "ALE": "Alemanya", "FRA": "França", "MON": "Mònaco", "POR": "Portugal", "NED": "Països Baixos", "ESC": "Escòcia", "TUR": "Turquia", "GRE": "Grècia", "RUS": "Rússia", "SRB": "Sèrbia", "CRO": "Croàcia", "SUI": "Suïssa"};
