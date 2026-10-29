@@ -17,7 +17,7 @@ window.ESCUTS = [
       ["Bobby Robson", "robson"], ["Terry Venables", "venables"], ["Luis Aragonés", "aragones"], ["Carles Rexach", "rexach"],
       ["Radomir Antić", "antic"], ["Llorenç Serra Ferrer", "serra ferrer"], ["Udo Lattek", "lattek"], ["César Luis Menotti", "menotti"],
       ["Hennes Weisweiler", "weisweiler"], ["Rinus Michels", "michels"], ["Helenio Herrera", "herrera"], ["Ferdinand Daucik", "daucik"],
-      ["Josep Samitier", "samitier"], ["Vic Buckingham", "buckingham"], ["Lucien Müller", "muller"]]],
+      ["Josep Samitier", "samitier"], ["Vic Buckingham", "buckingham"], ["Lucien Müller", "muller"], ["Pere Romeu", "romeu"], ["Jonatan Giráldez", "giraldez", "jonatan"], ["Lluís Cortés", "cortes", "lluis cortes"], ["Xavi Llorens", "llorens"]]],
     [4, "Dorsals 9 del Barça", [
       ["Gabriel Jesus", "jesus", "gabriel jesus"], ["Robert Lewandowski", "lewandowski", "lewa"], ["Luis Suárez", "suarez", "pistolero"],
       ["Ronaldo Nazário", "ronaldo", "ronaldo nazario", "fenomeno"], ["Memphis Depay", "memphis", "depay"], ["Martin Braithwaite", "braithwaite"],
@@ -37,7 +37,7 @@ window.ESCUTS = [
       ["Claudio Bravo", "bravo"], ["Marc-André ter Stegen", "ter stegen", "terstegen", "stegen"], ["Jordi Masip", "masip"], ["José Manuel Pinto", "pinto"],
       ["Oier Olazábal", "olazabal", "oier"], ["Dominik Livaković", "livakovic"], ["Albert Jorquera", "jorquera"], ["Rüştü Reçber", "rustu", "recber"],
       ["Robert Enke", "enke"], ["Francesc Arnau", "arnau"], ["Vítor Baía", "baia"], ["Carles Busquets", "carles busquets"], ["Julen Lopetegui", "lopetegui"],
-      ["Jesús Angoy", "angoy"], ["Juan Carlos Unzué", "unzue"], ["Pepe Reina", "reina"], ["Richard Dutruel", "dutruel"], ["Víctor Valdés", "valdes"]]],
+      ["Jesús Angoy", "angoy"], ["Juan Carlos Unzué", "unzue"], ["Pepe Reina", "reina"], ["Richard Dutruel", "dutruel"], ["Víctor Valdés", "valdes"], ["Cata Coll", "coll", "cata coll", "cata"], ["Sandra Paños", "panos", "sandra panos"], ["Gemma Font", "gemma font", "font"], ["Pamela Tajonar", "tajonar"], ["Tyler McCamey", "mccamey"]]],
     [1, "Jugador amb més partits de la història del Barça", [
       ["Lionel Messi", "messi", "leo"]]]
   ] },
@@ -80,7 +80,7 @@ window.ESCUTS = [
       ["Carlos Bianchi", "bianchi"], ["Alfio Basile", "basile"], ["Francisco Maturana", "maturana"], ["Javier Clemente", "clemente"],
       ["Ron Atkinson", "atkinson"], ["César Luis Menotti", "menotti", "cesar menotti"], ["Tomislav Ivić", "ivic"], ["Marcos Alonso", "marcos alonso"],
       ["Joaquín Peiró", "peiro"], ["Juan Carlos Lorenzo", "lorenzo"], ["Max Merkel", "merkel"], ["Helenio Herrera", "herrera"],
-      ["Ricardo Zamora", "zamora"], ["Josep Samitier", "samitier"], ["Fernando Zambrano", "zambrano"], ["Pepe Murcia", "murcia"], ["Vicente Miera", "miera"]]],
+      ["Ricardo Zamora", "zamora"], ["Josep Samitier", "samitier"], ["Fernando Zambrano", "zambrano"], ["Pepe Murcia", "murcia"], ["Vicente Miera", "miera"], ["David González", "david gonzalez"]]],
     [1, "Català que juga a l'Atlètic", [
       ["Marc Pubill", "pubill"], ["Sergi Barjuán", "barjuan", "sergi"]]]
   ] },
@@ -129,18 +129,18 @@ window.ESCUTS = [
       ["Allan", "allan"], ["Antoine Semenyo", "semenyo"], ["Rodri", "rodri"], ["Bernardo Silva", "bernardo"], ["Rúben Dias", "ruben dias", "dias"],
       ["Kevin De Bruyne", "de bruyne", "debruyne"], ["Vincent Kompany", "kompany"], ["Sergio Agüero", "aguero", "kun"], ["David Silva", "david silva"],
       ["Yaya Touré", "yaya toure", "toure"], ["Ederson", "ederson"], ["Manuel Akanji", "akanji"], ["Julián Álvarez", "julian alvarez", "julian", "alvarez"],
-      ["İlkay Gündoğan", "gundogan"], ["Riyad Mahrez", "mahrez"], ["Erling Haaland", "haaland"]]],
+      ["İlkay Gündoğan", "gundogan"], ["Riyad Mahrez", "mahrez"], ["Erling Haaland", "haaland"], ["Khadija Shaw", "shaw", "bunny shaw"], ["Vivianne Miedema", "miedema"], ["Yui Hasegawa", "hasegawa"], ["Kerstin Casparij", "casparij"], ["Jill Roord", "roord"]]],
     [3, "Entrenadors del City", [
       ["Enzo Maresca", "maresca"], ["Pep Guardiola", "guardiola", "pep"], ["Roberto Mancini", "mancini"], ["Manuel Pellegrini", "pellegrini"], ["Mark Hughes", "hughes"],
       ["Sven-Göran Eriksson", "eriksson"], ["Kevin Keegan", "keegan"], ["Stuart Pearce", "pearce"], ["Joe Royle", "royle"], ["Frank Clark", "frank clark"],
       ["Joe Mercer", "mercer"], ["Malcolm Allison", "allison"], ["Peter Reid", "reid"], ["Howard Kendall", "kendall"], ["Brian Kidd", "kidd"], ["Tony Book", "tony book"],
-      ["Alan Ball", "alan ball"], ["Steve Coppell", "coppell"], ["Brian Horton", "horton"]]],
+      ["Alan Ball", "alan ball"], ["Steve Coppell", "coppell"], ["Brian Horton", "horton"], ["Gareth Taylor", "gareth taylor", "taylor"], ["Nick Cushing", "cushing"], ["Andy Spence", "spence"]]],
     [2, "Porters del City", [
       ["Gianluigi Donnarumma", "donnarumma", "gigio"], ["Ederson", "ederson"], ["Joe Hart", "hart"], ["Claudio Bravo", "bravo"], ["Willy Caballero", "caballero"],
       ["Stefan Ortega", "ortega"], ["James Trafford", "trafford"], ["Zack Steffen", "steffen"], ["Scott Carson", "carson"], ["Costel Pantilimon", "pantilimon"],
       ["Kasper Schmeichel", "kasper schmeichel"], ["Shay Given", "given"], ["David James", "david james"], ["Nicky Weaver", "weaver"], ["Bert Trautmann", "trautmann"],
       ["Joe Corrigan", "corrigan"], ["Peter Schmeichel", "peter schmeichel"], ["David Seaman", "seaman"], ["Frank Swift", "swift"], ["Márton Fülöp", "fulop"],
-      ["Andreas Isaksson", "isaksson"], ["Gerónimo Rulli", "rulli"], ["Marcus Bettinelli", "bettinelli"]]],
+      ["Andreas Isaksson", "isaksson"], ["Gerónimo Rulli", "rulli"], ["Marcus Bettinelli", "bettinelli"], ["Ellie Roebuck", "roebuck"], ["Karen Bardsley", "bardsley"], ["Khiara Keating", "keating"]]],
     [1, "Noruec del City", [
       ["Erling Haaland", "haaland"], ["Oscar Bobb", "bobb"], ["Sverre Nypan", "nypan"], ["Alf-Inge Haaland", "alf inge haaland", "alf-inge", "alf inge", "haaland pare", "haaland padre", "pare haaland", "pare de haaland", "alf haaland", "haaland senior", "haaland sr"],
       ["Egil Østenstad", "ostenstad"], ["Åge Hareide", "hareide"]]]
