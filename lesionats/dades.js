@@ -22,7 +22,7 @@ window.JUGADORS = [
   { nom: "Hazard", club: "Retirat", escut: "", foto: "eden-hazard", dies: 731, r: "En la seva època al Madrid va patir 18 lesions." },
   { nom: "Rüdiger", club: "Reial Madrid", escut: "madrid", foto: "antonio-rudiger", dies: 860, r: "Ell és més de lesionar que de patir lesions." },
   { nom: "David López", club: "Girona", escut: "girona", foto: "david-lopez", dies: 432, r: "201 dies lesionat per un lligament creuat." },
-  { nom: "Julián Álvarez", club: "Atlètic de Madrid", escut: "atletico", foto: "julian-alvarez", dies: 50, r: "Amb 26 anys només ha tingut 3 lesions." }
+  { nom: "Julián Alvarez", club: "Atlètic de Madrid", escut: "atletico", foto: "julian-alvarez", dies: 50, r: "Amb 26 anys només ha tingut 3 lesions." }
 ];
 
 // Parelles fixes, en aquest ordre (id de la foto). La resta de jugadors s'aparellen a l'atzar entre els que tenen dies semblants.
