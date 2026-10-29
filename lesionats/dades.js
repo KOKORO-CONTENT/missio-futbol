@@ -19,7 +19,7 @@ window.JUGADORS = [
   { nom: "Mbappé", club: "Reial Madrid", escut: "madrid", foto: "kylian-mbappe", dies: 312, r: "Amb el Reial Madrid ha patit 7 lesions." },
   { nom: "Courtois", club: "Reial Madrid", escut: "madrid", foto: "thibaut-courtois", dies: 727, r: "El Madrid va fitxar Lunin per culpa d'una lesió llarga del belga." },
   { nom: "Bale", club: "Los Angeles FC", escut: "lafc", foto: "gareth-bale", dies: 1122, r: "Wales. Golf. Madrid. In that order." },
-  { nom: "Hazard", club: "Retirat · ex-Madrid", escut: "madrid", foto: "eden-hazard", dies: 731, r: "En la seva època al Madrid va patir 18 lesions." },
+  { nom: "Hazard", club: "Retirat", escut: "", foto: "eden-hazard", dies: 731, r: "En la seva època al Madrid va patir 18 lesions." },
   { nom: "Rüdiger", club: "Reial Madrid", escut: "madrid", foto: "antonio-rudiger", dies: 860, r: "Ell és més de lesionar que de patir lesions." },
   { nom: "David López", club: "Girona", escut: "girona", foto: "david-lopez", dies: 432, r: "201 dies lesionat per un lligament creuat." },
   { nom: "Julián Álvarez", club: "Atlètic de Madrid", escut: "atletico", foto: "julian-alvarez", dies: 50, r: "Amb 26 anys només ha tingut 3 lesions." }
