@@ -29,11 +29,11 @@ window.ESCUTS = [
       ["Pichi Alonso", "pichi", "alonso"], ["Johan Cruyff", "cruyff", "cruijff"], ["Hans Krankl", "krankl"], ["Sándor Kocsis", "kocsis"],
       ["László Kubala", "kubala"], ["Josep Samitier", "samitier"], ["Quini", "quini"]]],
     [3, "Defenses del Barça campions del món", [
-      ["Gerard Piqué", "pique"], ["Carles Puyol", "puyol"], ["Pau Cubarsí", "cubarsi"], ["Eric García", "eric garcia", "eric"], ["Samuel Umtiti", "umtiti"],
+      ["Jordi Alba", "alba", "jordi alba"], ["Gerard Piqué", "pique"], ["Carles Puyol", "puyol"], ["Pau Cubarsí", "cubarsi"], ["Eric García", "eric garcia", "eric"], ["Samuel Umtiti", "umtiti"],
       ["Lilian Thuram", "thuram"], ["Gianluca Zambrotta", "zambrotta"], ["Edmílson", "edmilson"], ["Juliano Belletti", "belletti"], ["Laurent Blanc", "blanc"],
       ["Ona Batlle", "batlle"], ["Irene Paredes", "paredes"], ["Laia Codina", "codina"]]],
     [2, "Porters suplents del Barça", [
-      ["Wojciech Szczęsny", "szczesny", "sczesny"], ["Iñaki Peña", "pena", "inaki"], ["Neto", "neto", "norberto murara"], ["Jasper Cillessen", "cillessen"],
+      ["Wojciech Szczęsny", "szczesny", "szesny", "szescny", "chesny", "szczensy", "wojciech", "wojtek", "sczesny"], ["Iñaki Peña", "pena", "inaki"], ["Neto", "neto", "norberto murara"], ["Jasper Cillessen", "cillessen"],
       ["Claudio Bravo", "bravo"], ["Marc-André ter Stegen", "ter stegen", "terstegen", "stegen"], ["Jordi Masip", "masip"], ["José Manuel Pinto", "pinto"],
       ["Oier Olazábal", "olazabal", "oier"], ["Dominik Livaković", "livakovic"], ["Albert Jorquera", "jorquera"], ["Rüştü Reçber", "rustu", "recber"],
       ["Robert Enke", "enke"], ["Francesc Arnau", "arnau"], ["Vítor Baía", "baia"], ["Carles Busquets", "carles busquets"], ["Julen Lopetegui", "lopetegui"],
