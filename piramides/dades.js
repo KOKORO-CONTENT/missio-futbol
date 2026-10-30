@@ -60,7 +60,7 @@ window.ESCUTS = [
       ["José Luis Pérez-Payá", "perez paya", "paya"], ["Jesús Landaburu", "landaburu"], ["Gabriel Taltavull", "taltavull"], ["José Cardona", "cardona"],
       ["Rafael Mújica", "mujica"], ["Manuel Jorge", "manuel jorge"], ["Luis Marín", "luis marin"], ["Jorge da Silva", "jorge da silva"], ["Juan Vázquez", "juan vazquez"],
       ["Eugenio Leal", "eugenio leal"], ["José Ufarte", "ufarte"], ["Ignacio Salcedo", "salcedo"], ["Rafa Delgado", "rafa delgado"], ["Adrián López", "adrian lopez"],
-      ["Juan Carlos Arteche", "arteche"]]],
+      ["Juan Carlos Arteche", "arteche"], ["Julián Álvarez", "julian alvarez", "julian", "alvarez", "arana"]]],
     [4, "Argentins de l'Atlètic", [
       ["Julián Álvarez", "julian alvarez", "julian", "alvarez", "arana"], ["Cristian Romero", "romero", "cuti romero", "cuti"], ["Giuliano Simeone", "giuliano", "giuliano simeone"],
       ["Sergio Agüero", "aguero", "kun"], ["Diego Simeone", "simeone", "cholo", "diego simeone"], ["Rodrigo De Paul", "de paul", "depaul"], ["Ángel Correa", "correa"],
@@ -105,7 +105,7 @@ window.ESCUTS = [
       ["Kiko Casilla", "casilla"], ["Joan García", "joan garcia"], ["Marko Dmitrović", "dmitrovic"], ["Pau López", "pau lopez"], ["Cristian Álvarez", "cristian alvarez"],
       ["Fernando Pacheco", "pacheco"], ["Gorka Iraizoz", "iraizoz"]]],
     [2, "Entrenadors de l'Espanyol", [
-      ["Manolo González", "manolo gonzalez"], ["Mauricio Pochettino", "pochettino", "poche"], ["Quique Sánchez Flores", "quique", "sanchez flores", "quique flores"],
+      ["Eder Sarabia", "sarabia", "eder sarabia"], ["Manolo González", "manolo gonzalez"], ["Mauricio Pochettino", "pochettino", "poche"], ["Quique Sánchez Flores", "quique", "sanchez flores", "quique flores"],
       ["Marcelo Bielsa", "bielsa", "loco"], ["Ernesto Valverde", "valverde"], ["Luis Aragonés", "aragones"], ["Javier Aguirre", "aguirre", "vasco aguirre"],
       ["Juande Ramos", "juande"], ["Vicente Moreno", "vicente moreno"], ["Rubi", "rubi"], ["Abelardo", "abelardo"], ["Pablo Machín", "machin"],
       ["Diego Martínez", "diego martinez"], ["Luis García Plaza", "luis garcia plaza", "garcia plaza"], ["Luis Blanco", "blanco"], ["Francisco Rufete", "rufete"],
@@ -117,7 +117,7 @@ window.ESCUTS = [
   ] },
   { nom: "Manchester City", escut: "img/escuts/man-city.png", nivells: [
     [5, "Campions de la Champions amb el City", [
-      ["Rodri", "rodri", "rodrigo hernandez"], ["Phil Foden", "foden"], ["Bernardo Silva", "bernardo"], ["Kevin De Bruyne", "de bruyne", "debruyne", "kdb"],
+      ["Rodri", "rodri", "rodrigo hernandez"], ["Phil Foden", "foden"], ["Bernardo Silva", "bernardo", "silva"], ["Kevin De Bruyne", "de bruyne", "debruyne", "kdb"],
       ["John Stones", "stones"], ["Rúben Dias", "ruben dias", "dias"], ["Manuel Akanji", "akanji"], ["Kyle Walker", "walker"], ["Ederson", "ederson"],
       ["İlkay Gündoğan", "gundogan"], ["Jack Grealish", "grealish"], ["Julián Álvarez", "julian alvarez", "julian", "alvarez", "arana"], ["Riyad Mahrez", "mahrez"],
       ["Nathan Aké", "ake"], ["Aymeric Laporte", "laporte"], ["Rico Lewis", "rico lewis"], ["Stefan Ortega", "ortega"], ["Sergio Gómez", "sergio gomez"],
@@ -126,10 +126,10 @@ window.ESCUTS = [
       ["Joško Gvardiol", "gvardiol"], ["Gianluigi Donnarumma", "donnarumma", "gigio"], ["Jérémy Doku", "doku"], ["Rayan Cherki", "cherki"],
       ["Rayan Aït-Nouri", "ait nouri", "aitnouri"], ["Matheus Nunes", "nunes"], ["Enzo Fernández", "enzo fernandez", "enzo"], ["Mateo Kovačić", "kovacic"],
       ["Abdukodir Khusanov", "khusanov"], ["Iliman Ndiaye", "ndiaye"], ["Ayyoub Bouaddi", "bouaddi"], ["Gerónimo Rulli", "rulli"], ["Vitor Reis", "vitor reis"],
-      ["Allan", "allan"], ["Antoine Semenyo", "semenyo"], ["Rodri", "rodri"], ["Bernardo Silva", "bernardo"], ["Rúben Dias", "ruben dias", "dias"],
+      ["Allan", "allan"], ["Antoine Semenyo", "semenyo"], ["Rodri", "rodri"], ["Bernardo Silva", "bernardo", "silva"], ["Rúben Dias", "ruben dias", "dias"],
       ["Kevin De Bruyne", "de bruyne", "debruyne"], ["Vincent Kompany", "kompany"], ["Sergio Agüero", "aguero", "kun"], ["David Silva", "david silva"],
       ["Yaya Touré", "yaya toure", "toure"], ["Ederson", "ederson"], ["Manuel Akanji", "akanji"], ["Julián Álvarez", "julian alvarez", "julian", "alvarez"],
-      ["İlkay Gündoğan", "gundogan"], ["Riyad Mahrez", "mahrez"], ["Erling Haaland", "haaland"], ["Khadija Shaw", "shaw", "bunny shaw"], ["Vivianne Miedema", "miedema"], ["Yui Hasegawa", "hasegawa"], ["Kerstin Casparij", "casparij"], ["Jill Roord", "roord"]]],
+      ["İlkay Gündoğan", "gundogan"], ["Riyad Mahrez", "mahrez"], ["Jesús Navas", "navas", "jesus navas"], ["Erling Haaland", "haaland"], ["Khadija Shaw", "shaw", "bunny shaw"], ["Vivianne Miedema", "miedema"], ["Yui Hasegawa", "hasegawa"], ["Kerstin Casparij", "casparij"], ["Jill Roord", "roord"]]],
     [3, "Entrenadors del City", [
       ["Enzo Maresca", "maresca"], ["Pep Guardiola", "guardiola", "pep"], ["Roberto Mancini", "mancini"], ["Manuel Pellegrini", "pellegrini"], ["Mark Hughes", "hughes"],
       ["Sven-Göran Eriksson", "eriksson"], ["Kevin Keegan", "keegan"], ["Stuart Pearce", "pearce"], ["Joe Royle", "royle"], ["Frank Clark", "frank clark"],
