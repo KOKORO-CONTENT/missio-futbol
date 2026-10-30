@@ -3,7 +3,7 @@
 // club/escut: club ACTUAL o l'últim en què ha jugat (revisat a Transfermarkt el 28/10/2026).
 // r: frase que surt sota cada jugador en resoldre (dades de Transfermarkt, redactades per l'usuari).
 window.JUGADORS = [
-  { nom: "Ansu Fati", club: "AS Monaco", escut: "monaco", foto: "ansu-fati", dies: 835, r: "Des del 2021 ha sofert un calvari de lesions." },
+  { nom: "Ansu Fati", club: "AS Mònaco", escut: "monaco", foto: "ansu-fati", dies: 835, r: "Des del 2021 ha sofert un calvari de lesions." },
   { nom: "Andreas Christensen", club: "FC Barcelona", escut: "barca", foto: "andreas-christensen", dies: 739, r: "Ha tingut més de 30 lesions, la més llarga al tendó d'Aquil·les." },
   { nom: "Dembélé", club: "PSG", escut: "psg", foto: "ousmane-dembele", dies: 1006, r: "12 lesions amb el Barça. 2 Pilotes d'Or amb el PSG." },
   { nom: "Raphinha", club: "FC Barcelona", escut: "barca", foto: "raphinha", dies: 355, r: "Especialista en lesionar-se quan juga amb la selecció brasilera." },
