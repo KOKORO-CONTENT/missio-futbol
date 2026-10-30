@@ -10,7 +10,7 @@ window.JUGADORS = [
   { nom: "Frenkie de Jong", club: "FC Barcelona", escut: "barca", foto: "frenkie-de-jong", dies: 899, r: "El turmell dret és el seu punt dèbil." },
   { nom: "Umtiti", club: "Lilla", escut: "lille", foto: "samuel-umtiti", dies: 1113, r: "376 dies per una lesió de genoll." },
   { nom: "Rodri", club: "FC Barcelona", escut: "barca", foto: "rodri", dies: 452, r: "Va recollir la Pilota d'Or lesionat, portant crosses." },
-  { nom: "Messi", club: "Inter Miami", escut: "intermiami", foto: "lionel-messi", dies: 865, r: "La pitjor lesió va ser el 2006, un total de 90 dies fora del terreny de joc." },
+  { nom: "Messi", club: "Inter de Miami", escut: "intermiami", foto: "lionel-messi", dies: 865, r: "La pitjor lesió va ser el 2006, un total de 90 dies fora del terreny de joc." },
   { nom: "Aitana Bonmatí", club: "FC Barcelona", escut: "barca", foto: "aitana-bonmati", dies: 192, r: "La més important ha estat una fractura de peroné la temporada 25/26." },
   { nom: "Alèxia Putellas", club: "London City", escut: "london-city", foto: "alexia-putellas", dies: 360, r: "Va marcar a la final de Bilbao després de tornar d'un calvari de 2 anys." },
   { nom: "Gavi", club: "FC Barcelona", escut: "barca", foto: "gavi", dies: 580, r: "El lligament creuat li va fer perdre 58 partits." },
