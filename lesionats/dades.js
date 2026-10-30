@@ -5,7 +5,7 @@
 window.JUGADORS = [
   { nom: "Ansu Fati", club: "AS Mònaco", escut: "monaco", foto: "ansu-fati", dies: 835, r: "Des del 2021 ha sofert un calvari de lesions." },
   { nom: "Andreas Christensen", club: "FC Barcelona", escut: "barca", foto: "andreas-christensen", dies: 739, r: "Ha tingut més de 30 lesions, la més llarga al tendó d'Aquil·les." },
-  { nom: "Dembélé", club: "PSG", escut: "psg", foto: "ousmane-dembele", dies: 1006, r: "12 lesions amb el Barça. 2 Pilotes d'Or amb el PSG." },
+  { nom: "Dembélé", club: "PSG", escut: "psg", foto: "ousmane-dembele", dies: 1006, r: "12 lesions amb el Barça. 1 Pilota d'Or amb el PSG." },
   { nom: "Raphinha", club: "FC Barcelona", escut: "barca", foto: "raphinha", dies: 355, r: "Especialista en lesionar-se quan juga amb la selecció brasilera." },
   { nom: "Frenkie de Jong", club: "FC Barcelona", escut: "barca", foto: "frenkie-de-jong", dies: 899, r: "El turmell dret és el seu punt dèbil." },
   { nom: "Umtiti", club: "Lilla", escut: "lille", foto: "samuel-umtiti", dies: 1113, r: "376 dies per una lesió de genoll." },
