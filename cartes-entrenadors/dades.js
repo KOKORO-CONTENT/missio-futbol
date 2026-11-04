@@ -1,7 +1,8 @@
 // "Cartes entrenadors" (2 jugadors). Cartes: clubs i seleccions; a la taula en surten 5 alhora, sempre amb com a mínim una resposta.
 // El jugador amb torn (A = jugador 1, L = jugador 2) pre-selecciona 3, 4 o 5 cartes i escriu un entrenador que hagi dirigit TOTS els equips triats.
 // Cada carta val 1 punt; amb un ple (5 cartes) són 5 + 3 punts extra.
-// El Barça surt a la taula a les primeres rondes (BARCA_RONDES); després, a l'atzar. L'Espanyol surt en una ronda final (RONDA_ESPANYOL).
+// El Barça surt a la taula a la primera ronda (BARCA_RONDES); després, a l'atzar. L'Espanyol surt en una ronda final (RONDA_ESPANYOL).
+// Les rondes combinen taules on l'entrenador pot lligar 3, 4 o 5 cartes, i no es repeteixen entrenadors.
 // Entrenadors de classe mundial (llista de l'equip) que hagin treballat entre el 2005 i l'actualitat (el joc ho comprova amb la trajectòria).
 // Trajectòries: Viquipèdia (infobox), generat amb eines/construeix_dades.py. Els filials (Barça B...) no compten com a l'equip.
 // Pistes (botó "Pista"): 1r clic = nacionalitat de l'entrenador (la senyera si és català); 2n clic = les cartes lligades.
@@ -9,7 +10,7 @@ window.TITOL = ["Entrenadors", "Quin entrenador?"];
 window.MIN = 3;
 window.MAX = 5;
 window.PLE_EXTRA = 3;
-window.BARCA_RONDES = 3;           // el Barça surt sempre a la taula durant les 3 primeres rondes; després és aleatori
+window.BARCA_RONDES = 1;           // el Barça surt a la taula només a la primera ronda; després és aleatori
 window.TACTIL = false;             // false: sense seguiment de la mà (càmera) ni tocs a la pantalla; només ratolí
 window.RONDA_ESPANYOL = 7;         // ronda final en què surt l'Espanyol (la 1a és la primera taula; cada resposta bona passa a la següent)
 window.SVG = ["sel-catalunya"];    // escuts en SVG (la resta, PNG)
