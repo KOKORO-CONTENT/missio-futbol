@@ -3,8 +3,10 @@
 // Cada carta val 1 punt; amb un ple (5 cartes) són 5 + 3 punts extra.
 // 10 rondes en total entre els dos jugadors (RONDES). El Barça surt a la taula a la primera ronda; després, a l'atzar. L'Espanyol surt en una de les rondes finals.
 // A cada ronda l'entrenador pot lligar 3, 4 o 5 cartes (a l'atzar) i no es repeteixen entrenadors.
-// Ordre d'una ronda: torn (A o L) -> tria cartes -> escriu l'entrenador -> encert (cartell, es tanca amb un clic o l'espai)
-// o error (torn automàtic de l'altre; quan els dos han fallat, 1a pista; un error més, 2a pista). Passats ERRORS_MAX errors es revela.
+// Ordre d'una ronda: es demana torn (A o L; el primer que el demana) -> tria cartes -> escriu l'entrenador -> encert (cartell, es tanca amb un clic o l'espai).
+// Error: surt la 1a pista (es clica i es revela la nacionalitat); han de tornar a demanar torn (qui ha fallat no pot fins que falli l'altre).
+// Quan els dos han fallat, surt la 2a pista (les cartes lligades). Passats ERRORS_MAX torns fallats entre els dos es revela l'entrenador.
+// A la pantalla no hi ha pistes fins que algú falla.
 // Entrenadors de classe mundial (llista de l'equip) que hagin treballat entre el 2005 i l'actualitat (el joc ho comprova amb la trajectòria).
 // Trajectòries: Viquipèdia (infobox), generat amb eines/construeix_dades.py. Els filials (Barça B...) no compten com a l'equip.
 // Pistes (botó "Pista"): 1r clic = nacionalitat de l'entrenador (la senyera si és català); 2n clic = les cartes lligades.
@@ -16,7 +18,7 @@ window.BARCA_RONDES = 1;           // el Barça surt a la taula només a la prim
 window.TACTIL = false;             // false: sense seguiment de la mà (càmera) ni tocs a la pantalla; només ratolí
 window.RONDES = 10;               // rondes en total entre els dos jugadors
 window.RONDES_ESPANYOL = [8, 9, 10]; // l'Espanyol surt en una d'aquestes rondes finals (a l'atzar)
-window.ERRORS_MAX = 6;            // errors (entre els dos) en una ronda abans que es reveli l'entrenador sense punts
+window.ERRORS_MAX = 6;            // torns fallats (entre els dos) en una ronda abans que es reveli l'entrenador sense punts
 window.SVG = ["sel-catalunya"];    // escuts en SVG (la resta, PNG)
 // [id (img/escuts/<id>.png), nom]; sel-* = seleccions (bandera)
 window.EQUIPS = [
