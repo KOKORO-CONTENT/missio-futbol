@@ -1,7 +1,7 @@
 // "Cartes entrenadors" (2 jugadors). Cartes: clubs i seleccions; a la taula en surten 5 alhora, sempre amb com a mínim una resposta.
 // El jugador amb torn (A = jugador 1, L = jugador 2) pre-selecciona 3, 4 o 5 cartes i escriu un entrenador que hagi dirigit TOTS els equips triats.
 // Cada carta val 1 punt; amb un ple (5 cartes) són 5 + 3 punts extra.
-// El Barça surt sempre a la taula; l'Espanyol surt en una ronda final (RONDA_ESPANYOL: la ronda en què es reparteix).
+// El Barça surt a la taula a les primeres rondes (BARCA_RONDES); després, a l'atzar. L'Espanyol surt en una ronda final (RONDA_ESPANYOL).
 // Entrenadors de classe mundial (llista de l'equip) que hagin treballat entre el 2005 i l'actualitat (el joc ho comprova amb la trajectòria).
 // Trajectòries: Viquipèdia (infobox), generat amb eines/construeix_dades.py. Els filials (Barça B...) no compten com a l'equip.
 // Pistes (botó "Pista"): 1r clic = nacionalitat de l'entrenador (la senyera si és català); 2n clic = les cartes lligades.
@@ -9,7 +9,8 @@ window.TITOL = ["Entrenadors", "Quin entrenador?"];
 window.MIN = 3;
 window.MAX = 5;
 window.PLE_EXTRA = 3;
-window.SEMPRE = ["barcelona"];     // cartes que sempre són a la taula
+window.BARCA_RONDES = 3;           // el Barça surt sempre a la taula durant les 3 primeres rondes; després és aleatori
+window.TACTIL = false;             // false: sense seguiment de la mà (càmera) ni tocs a la pantalla; només ratolí
 window.RONDA_ESPANYOL = 7;         // ronda final en què surt l'Espanyol (la 1a és la primera taula; cada resposta bona passa a la següent)
 window.SVG = ["sel-catalunya"];    // escuts en SVG (la resta, PNG)
 // [id (img/escuts/<id>.png), nom]; sel-* = seleccions (bandera)
@@ -73,7 +74,7 @@ window.ENTRENADORS = [
   ["Jupp Heynckes", ["athletic", "bayern", "benfica", "leverkusen", "madrid"], ["heynckes", "jupp"], "jupp-heynckes", [["1979–87", "Borussia Mönchengladbach"], ["1987–91", "Bayern", "bayern"], ["1992–94", "Athletic", "athletic"], ["1994–95", "Eintracht Frankfurt"], ["1995–97", "CD Tenerife"], ["1997–98", "Reial Madrid", "madrid"], ["1999–00", "Benfica", "benfica"], ["2001–03", "Athletic", "athletic"], ["2009", "Bayern", "bayern"], ["2009–11", "Leverkusen", "leverkusen"], ["2011–13", "Bayern", "bayern"], ["2017–18", "Bayern", "bayern"]], "de"],
   ["Luis Enrique", ["barcelona", "celta", "psg", "roma", "sel-espanya"], ["luis enrique", "lucho", "enrique"], "luis-enrique", [["2008–11", "Barcelona Atlètic"], ["2011–12", "Roma", "roma"], ["2013–14", "Celta", "celta"], ["2014–17", "Barça", "barcelona"], ["2018–19", "Espanya", "sel-espanya"], ["2019–22", "Espanya", "sel-espanya"], ["2023–", "PSG", "psg"]], "es"],
   ["Louis van Gaal", ["ajax", "barcelona", "bayern", "manutd", "sel-paisos-baixos"], ["van gaal", "vangaal", "gaal"], "louis-van-gaal", [["1991–97", "Ajax", "ajax"], ["1997–00", "Barça", "barcelona"], ["2000–01", "Països Baixos", "sel-paisos-baixos"], ["2001", "Netherlands national under-19 football team"], ["2002–03", "Barça", "barcelona"], ["2005–09", "AZ Alkmaar"], ["2009–11", "Bayern", "bayern"], ["2012–14", "Països Baixos", "sel-paisos-baixos"], ["2014–16", "Manchester United", "manutd"], ["2021–22", "Països Baixos", "sel-paisos-baixos"]], "nl"],
-  ["Ernesto Valverde", ["athletic", "barcelona", "espanyol", "valencia", "villarreal"], ["valverde", "txingurri", "ernesto"], "ernesto-valverde", [["2001–02", "Athletic", "athletic"], ["2002–03", "Bilbao Athletic"], ["2003–05", "Athletic", "athletic"], ["2006–08", "Espanyol", "espanyol"], ["2008–09", "Olympiacos"], ["2009–10", "Villarreal", "villarreal"], ["2010–12", "Olympiacos"], ["2012–13", "València", "valencia"], ["2013–17", "Athletic", "athletic"], ["2017–20", "Barça", "barcelona"], ["2022–26", "Athletic", "athletic"]], "es"],
+  ["Ernesto Valverde", ["athletic", "barcelona", "espanyol", "valencia", "villarreal"], ["valverde", "txingurri", "ernesto"], "ernesto-valverde", [["2001–02", "Athletic Bilbao (assistant)"], ["2002–03", "Bilbao Athletic"], ["2003–05", "Athletic", "athletic"], ["2006–08", "Espanyol", "espanyol"], ["2008–09", "Olympiacos"], ["2009–10", "Villarreal", "villarreal"], ["2010–12", "Olympiacos"], ["2012–13", "València", "valencia"], ["2013–17", "Athletic", "athletic"], ["2017–20", "Barça", "barcelona"], ["2022–26", "Athletic", "athletic"]], "es"],
   ["Jürgen Klopp", ["dortmund", "liverpool", "mainz", "sel-alemanya"], ["klopp", "jurgen"], "jurgen-klopp", [["2001–08", "Mainz", "mainz"], ["2008–15", "Dortmund", "dortmund"], ["2015–24", "Liverpool", "liverpool"], ["2026–", "Alemanya", "sel-alemanya"]], "de"],
   ["Hansi Flick", ["barcelona", "bayern", "hoffenheim", "sel-alemanya"], ["flick", "hansi"], "hansi-flick", [["1996–00", "Victoria Bammental"], ["2000–05", "Hoffenheim", "hoffenheim"], ["2019–21", "Bayern", "bayern"], ["2021–23", "Alemanya", "sel-alemanya"], ["2024–", "Barça", "barcelona"]], "de"],
   ["Julian Nagelsmann", ["bayern", "hoffenheim", "leipzig", "sel-alemanya"], ["nagelsmann", "julian"], "julian-nagelsmann", [["2016–19", "Hoffenheim", "hoffenheim"], ["2019–21", "RB Leipzig", "leipzig"], ["2021–23", "Bayern", "bayern"], ["2023–26", "Alemanya", "sel-alemanya"]], "de"],
