@@ -34,3 +34,18 @@ window.JOC = {
       no: ["Hegerberg", "Sam Kerr", "Rapinoe", "Alex Morgan", "Mary Earps", "Alessia Russo", "Chloe Kelly", "Beth Mead", "Lauren James", "Wendie Renard", "Marta", "Linda Caicedo", "Athenea del Castillo", "Misa Rodríguez", "Olga Carmona", "Teresa Abelleira", "Leah Williamson", "Ellen White"] }
   ]
 };
+
+// Cares (stickers/<fitxer>.png) per nom. Només surten a la partida els noms que tenen cara; una categoria
+// només es juga si en té prou (6 encerts i 5 intrusos amb cara). Per ampliar-ne: afegeix el sticker i el nom aquí.
+window.JOC.cares = {
+  "Messi": "lionel-messi", "Xavi": "xavi-hernandez", "Iniesta": "andres-iniesta", "Ronaldinho": "ronaldinho", "Neymar": "neymar",
+  "Piqué": "gerard-pique", "Busquets": "sergio-busquets", "Ronaldo Nazário": "ronaldo-nazario", "Lewandowski": "robert-lewandowski",
+  "Dembélé": "ousmane-dembele", "Coutinho": "philippe-coutinho", "Ibrahimović": "zlatan-ibrahimovic", "Griezmann": "antoine-griezmann",
+  "Cristiano Ronaldo": "cristiano-ronaldo", "Benzema": "karim-benzema", "Sergio Ramos": "sergio-ramos", "Mbappé": "kylian-mbappe",
+  "Bellingham": "jude-bellingham", "Courtois": "thibaut-courtois", "Vinícius": "vinicius-junior", "Haaland": "erling-haaland",
+  "Salah": "mohamed-salah", "Buffon": "gianluigi-buffon", "Totti": "francesco-totti", "Kane": "harry-kane", "Rodri": "rodri",
+  "Raphinha": "raphinha", "Ferran Torres": "ferran-torres", "Lamine Yamal": "lamine-yamal", "Aitana Bonmatí": "aitana-bonmati",
+  "Alexia Putellas": "alexia-putellas", "Aitana": "aitana-bonmati", "Alexia": "alexia-putellas", "Mariona": "mariona-caldentey",
+  "Salma Paralluelo": "salma-paralluelo", "Ona Batlle": "ona-batlle", "Clàudia Pina": "claudia-pina", "Cata Coll": "cata-coll",
+  "Ewa Pajor": "ewa-pajor", "Lucy Bronze": "lucy-bronze", "Misa Rodríguez": "misa-rodriguez", "Rapinoe": "megan-rapinoe", "Sam Kerr": "sam-kerr"
+};
