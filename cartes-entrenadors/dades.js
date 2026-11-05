@@ -16,6 +16,7 @@ window.MAX = 5;
 window.PLE_EXTRA = 3;
 window.BARCA_RONDES = 1;           // el Barça surt a la taula només a la primera ronda; després és aleatori
 window.TACTIL = false;             // false: sense seguiment de la mà (càmera) ni tocs a la pantalla; només ratolí
+window.NOMES = ["Pep Guardiola", "José Mourinho", "Xabi Alonso", "Hansi Flick", "Ronald Koeman", "Ernesto Valverde", "Mauricio Pochettino", "Luis Enrique", "Rafa Benítez", "Míchel Sánchez"];   // només aquests entrenadors (decisió de l'equip)
 window.RONDES = 10;               // rondes en total entre els dos jugadors
 window.RONDES_ESPANYOL = [8, 9, 10]; // l'Espanyol surt en una d'aquestes rondes finals (a l'atzar)
 window.ERRORS_MAX = 6;            // torns fallats (entre els dos) en una ronda abans que es reveli l'entrenador sense punts
@@ -67,12 +68,18 @@ window.EQUIPS = [
   ["sel-anglaterra", "Anglaterra"],
   ["sel-escocia", "Escòcia"],
   ["sel-eua", "Estats Units"],
-  ["sel-catalunya", "Catalunya"]
+  ["sel-catalunya", "Catalunya"],
+  ["girona", "Girona"],
+  ["rayo", "Rayo Vallecano"],
+  ["huesca", "Osca"]
 ];
 // codi (img/banderes/<codi>.png; "es-ct" = senyera, .svg) -> nom del país
 window.PAISOS = { "es": "Espanya", "es-ct": "Catalunya", "it": "Itàlia", "pt": "Portugal", "ar": "Argentina", "de": "Alemanya", "cl": "Xile", "gb-eng": "Anglaterra", "gb-sct": "Escòcia", "fr": "França", "nl": "Països Baixos", "br": "Brasil" };
 // [nom, equips de la baralla que ha dirigit, paraules que es donen per bones, foto (img/cares), trajectòria [[anys, equip, id escut (si és a la baralla)]], nacionalitat (codi de PAISOS)]
 window.ENTRENADORS = [
+  ["Ronald Koeman", ["ajax", "benfica", "valencia", "everton", "barcelona", "sel-paisos-baixos"], ["koeman", "ronald", "ronald koeman"], "ronald-koeman", [["2001–05", "Ajax", "ajax"], ["2005–06", "Benfica", "benfica"], ["2006–07", "PSV"], ["2007–08", "València", "valencia"], ["2011–14", "Feyenoord"], ["2014–16", "Southampton"], ["2016–17", "Everton", "everton"], ["2018–20", "Països Baixos", "sel-paisos-baixos"], ["2020–21", "Barça", "barcelona"], ["2023–26", "Països Baixos", "sel-paisos-baixos"]], "nl"],
+  ["Rafa Benítez", ["valencia", "liverpool", "everton", "celta", "inter", "chelsea", "napoli", "madrid"], ["benitez", "rafa benitez", "rafa"], "rafa-benitez", [["2001–04", "València", "valencia"], ["2004–10", "Liverpool", "liverpool"], ["2010", "Inter", "inter"], ["2012–13", "Chelsea", "chelsea"], ["2013–15", "Nàpols", "napoli"], ["2015–16", "Reial Madrid", "madrid"], ["2016–19", "Newcastle"], ["2019–21", "Dalian Pro"], ["2021–22", "Everton", "everton"], ["2023–24", "Celta", "celta"]], "es"],
+  ["Míchel Sánchez", ["rayo", "huesca", "girona", "ajax"], ["michel", "míchel", "michel sanchez", "miguel angel sanchez"], "michel", [["2017–19", "Rayo Vallecano", "rayo"], ["2019–21", "Osca", "huesca"], ["2021–26", "Girona", "girona"], ["2026–", "Ajax", "ajax"]], "es"],
   ["Carlo Ancelotti", ["bayern", "chelsea", "everton", "juventus", "madrid", "milan", "napoli", "psg", "sel-brasil"], ["ancelotti", "carletto", "carlo"], "carlo-ancelotti", [["1992–95", "Italy National Football Team"], ["1995–96", "AC Reggiana 1919"], ["1999–01", "Juventus", "juventus"], ["2001–09", "Milan", "milan"], ["2009–11", "Chelsea", "chelsea"], ["2011–13", "PSG", "psg"], ["2013–15", "Reial Madrid", "madrid"], ["2016–17", "Bayern", "bayern"], ["2018–19", "Nàpols", "napoli"], ["2019–21", "Everton", "everton"], ["2021–25", "Reial Madrid", "madrid"], ["2025–", "Brasil", "sel-brasil"]], "it"],
   ["José Mourinho", ["benfica", "chelsea", "inter", "madrid", "manutd", "porto", "roma", "tottenham"], ["mourinho", "mou", "jose mourinho"], "jose-mourinho", [["2000", "Benfica", "benfica"], ["2001–02", "U.D. Leiria"], ["2002–04", "Porto", "porto"], ["2004–07", "Chelsea", "chelsea"], ["2008–10", "Inter", "inter"], ["2010–13", "Reial Madrid", "madrid"], ["2013–15", "Chelsea", "chelsea"], ["2016–18", "Manchester United", "manutd"], ["2019–21", "Tottenham", "tottenham"], ["2021–24", "Roma", "roma"], ["2025–26", "Benfica", "benfica"], ["2026–", "Reial Madrid", "madrid"]], "pt"],
   ["Unai Emery", ["arsenal", "psg", "sevilla", "valencia", "villa", "villarreal"], ["emery", "unai"], "unai-emery", [["2004–06", "Lorca Deportiva"], ["2006–08", "UD Almería"], ["2008–12", "València", "valencia"], ["2012", "Spartak Moscow"], ["2013–16", "Sevilla", "sevilla"], ["2016–18", "PSG", "psg"], ["2018–19", "Arsenal", "arsenal"], ["2020–22", "Villarreal", "villarreal"], ["2022–", "Aston Villa", "villa"]], "es"],
