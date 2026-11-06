@@ -1,0 +1,41 @@
+- img/estadis/allianz-arena.jpg: Allianz Arena · Allianz_Arena_2008-02-09.jpg · 2015 Michael 2015 · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Allianz_Arena_2008-02-09.jpg
+- img/escuts/allianz-arena.png: FC Bayern Munich · Bayern München Logo (1901-1906).svg · Nägele (a painter, possibly Otto Ludwig Naegele)(Vectorized by: Nick-4711 / Template:https://fcbayern.com/shop/de/t-shirt-logo-historie/24179/) · Public domain · https://en.wikipedia.org/wiki/File:Bayern%20M%C3%BCnchen%20Logo%20(1901-1906).svg
+- img/estadis/anfield.jpg: Anfield · Liverpool_anfield_road_stadium.jpg · Arne Müseler · CC BY-SA 3.0 de · https://en.wikipedia.org/wiki/File:Liverpool_anfield_road_stadium.jpg
+- img/estadis/old-trafford.jpg: Old Trafford · 2023_07_31_arne_mueseler_00060-Verbessert-RR_(53106651455).jpg · Arne Müseler from Salzburg, AT · CC BY-SA 2.0 · https://en.wikipedia.org/wiki/File:2023_07_31_arne_mueseler_00060-Verbessert-RR_(53106651455).jpg
+- img/estadis/calderon.jpg: Vicente Calderón Stadium · Aprobado_el_nuevo_ámbito_Mahou-Calderón_(01).jpg · Diario de Madrid · CC BY 4.0 · https://en.wikipedia.org/wiki/File:Aprobado_el_nuevo_%C3%A1mbito_Mahou-Calder%C3%B3n_(01).jpg
+- img/escuts/calderon.png: Atlético Madrid · Atletico Madrid Logo 2024.svg ·  · Fair use · https://en.wikipedia.org/wiki/File:Atletico%20Madrid%20Logo%202024.svg
+- img/estadis/etihad.jpg: Etihad Stadium (Manchester) · City_of_Manchester_Stadium_2023_cropped.jpg · Arne Müseler, cropped by Blackcat · CC BY-SA 3.0 de · https://en.wikipedia.org/wiki/File:City_of_Manchester_Stadium_2023_cropped.jpg
+- img/estadis/el-sadar.jpg: Estadio El Sadar · Estadio_El_Sadar.jpg · Visma17 · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Estadio_El_Sadar.jpg
+- img/escuts/el-sadar.png: CA Osasuna · CA Osasuna 2024 crest.svg ·  · Fair use · https://en.wikipedia.org/wiki/File:CA%20Osasuna%202024%20crest.svg
+- img/estadis/montilivi.jpg: Estadi Montilivi · Estadio_montilivi_02-12-2018.jpg · Jmsolerb · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Estadio_montilivi_02-12-2018.jpg
+- img/escuts/montilivi.png: Girona FC · Girona FC Logo.svg ·  · Fair use · https://en.wikipedia.org/wiki/File:Girona%20FC%20Logo.svg
+- img/estadis/la-cartuja.jpg: Estadio de La Cartuja · Estadio_de_La_Cartuja_logo.png ·  · PD · https://en.wikipedia.org/wiki/File:Estadio_de_La_Cartuja_logo.png
+- img/escuts/la-cartuja.png: Royal Spanish Football Federation · Royal Spanish Football Federation logo.svg · Real Federación Española de Fútbol (RFEF) · Public domain · https://en.wikipedia.org/wiki/File:Royal%20Spanish%20Football%20Federation%20logo.svg
+- img/estadis/la-romareda.jpg: La Romareda · La_Romareda_60_años.jpg · Campeones 2008 · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:La_Romareda_60_a%C3%B1os.jpg
+- img/escuts/la-romareda.png: Real Zaragoza · Real Zaragoza logo.svg ·  · Fair use · https://en.wikipedia.org/wiki/File:Real%20Zaragoza%20logo.svg
+- img/estadis/da-luz.jpg: Estádio da Luz · Estadio_da_Luz_2012.jpg · Florent Dusonchet · CC BY 2.0 · https://en.wikipedia.org/wiki/File:Estadio_da_Luz_2012.jpg
+- img/escuts/da-luz.png: S.L. Benfica · Emblema Benfica 1908 (Sem fundo).png · José Rosa Rodrigues (died in 1937) · Public domain · https://en.wikipedia.org/wiki/File:Emblema%20Benfica%201908%20(Sem%20fundo).png
+- img/estadis/villamarin.jpg: Estadio Benito Villamarín · Estadio_Benito_Villamarín_2018001.jpg · Anual · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Estadio_Benito_Villamar%C3%ADn_2018001.jpg
+- img/escuts/villamarin.png: Real Betis · Real Betis 2022 logo.svg ·  · Fair use · https://en.wikipedia.org/wiki/File:Real%20Betis%202022%20logo.svg
+- img/estadis/rcde.jpg: RCDE Stadium · Stage_Front_Stadium.jpg · RCD Espanyol de Barcelona · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Stage_Front_Stadium.jpg
+- img/escuts/rcde.png: RCD Espanyol · RCD Espanyol crest.svg ·  · Fair use · https://en.wikipedia.org/wiki/File:RCD%20Espanyol%20crest.svg
+- img/estadis/coliseum.jpg: Coliseum Alfonso Pérez · Getafe0-0Lega2018.jpg · Miguelazo84 · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Getafe0-0Lega2018.jpg
+- img/escuts/coliseum.png: Getafe CF · Getafe logo.svg ·  · Fair use · https://en.wikipedia.org/wiki/File:Getafe%20logo.svg
+- img/estadis/stamford-bridge.jpg: Stamford Bridge (stadium) · London_Stamford_Bridge.jpg · Arne Müseler · CC BY-SA 3.0 de · https://en.wikipedia.org/wiki/File:London_Stamford_Bridge.jpg
+- img/estadis/parc-ol.jpg: Groupama Stadium · Olympique_lyonnais_-_Stade_rennais,_demi-finale_de_Coupe_de_France_2019.jpg · Sebleouf · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Olympique_lyonnais_-_Stade_rennais%2C_demi-finale_de_Coupe_de_France_2019.jpg
+- img/escuts/parc-ol.png: Olympique Lyonnais · Olympique Lyonnais logo.svg ·  · Fair use · https://en.wikipedia.org/wiki/File:Olympique%20Lyonnais%20logo.svg
+- img/estadis/principality.jpg: Millennium Stadium · Principality_Stadium_May_3,_2016.jpg · Clint Budd from About 15 miles North of Swansea, Wales · CC BY 2.0 · https://en.wikipedia.org/wiki/File:Principality_Stadium_May_3%2C_2016.jpg
+- img/escuts/principality.png: Football Association of Wales · Football Association of Wales logo (2011).svg ·  · Fair use · https://en.wikipedia.org/wiki/File:Football%20Association%20of%20Wales%20logo%20(2011).svg
+- img/estadis/luzhniki.jpg: Luzhniki Stadium · LuzhnikiStadium.jpg · Government of Moscow Press centre · CC BY 4.0 · https://en.wikipedia.org/wiki/File:LuzhnikiStadium.jpg
+- img/estadis/olimpiyskiy.jpg: NSC Olimpiyskiy · Olimpiysky_Stadium,_Kiev_-_panoramio.jpg · goto42
+ · CC-BY-3.0 · https://en.wikipedia.org/wiki/File:Olimpiysky_Stadium%2C_Kiev_-_panoramio.jpg
+- img/escuts/olimpiyskiy.png: FC Dynamo Kyiv · Dynamo-Kyiv logo (1989-1996).png · Unknown authorUnknown author · Public domain · https://en.wikipedia.org/wiki/File:Dynamo-Kyiv%20logo%20(1989-1996).png
+- img/estadis/olimpico.jpg: Stadio Olimpico · Stadio_Olimpico_2024.jpg · Messapi, cropped by Blackcat · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Stadio_Olimpico_2024.jpg
+- img/estadis/lusail.jpg: Lusail Stadium · 17_11_2021_-_Visita_ao_Estádio_Lusail_(51688270420).jpg · Palácio do Planalto from Brasilia, Brasil
+ · CC-BY-2.0 · https://en.wikipedia.org/wiki/File:17_11_2021_-_Visita_ao_Est%C3%A1dio_Lusail_(51688270420).jpg
+- img/estadis/maracana.jpg: Maracanã Stadium · Maracana_2022.jpg · Arne Müseler · CC BY-SA 3.0 de · https://en.wikipedia.org/wiki/File:Maracana_2022.jpg
+- img/escuts/milan.png: AC Milan · AC Milan logo (1986-1998).png · A.C. MILAN S.P.A. · Public domain · https://en.wikipedia.org/wiki/File:AC%20Milan%20logo%20(1986-1998).png
+- img/escuts/inter.png: Inter Milan · FC Inter Milan first logo (1908-1928).png · Giorgio Muggiani · Public domain · https://en.wikipedia.org/wiki/File:FC%20Inter%20Milan%20first%20logo%20(1908-1928).png
+- img/escuts/roma.png: AS Roma · AS ROMA Text Logo 2020 - 2021 .svg · Associazione Sportiva Roma S.p.A. · Public domain · https://en.wikipedia.org/wiki/File:AS%20ROMA%20Text%20Logo%202020%20-%202021%20.svg
+- img/escuts/lazio.png: SS Lazio · S.S. Lazio badge.svg ·  · Fair use · https://en.wikipedia.org/wiki/File:S.S.%20Lazio%20badge.svg
+- img/estadis/la-cartuja.jpg: Estadio Olímpico de La Cartuja, Sevilla.jpg · CC BY-SA 4.0 · https://commons.wikimedia.org/wiki/File:Estadio_Ol%C3%ADmpico_de_La_Cartuja,_Sevilla.jpg
