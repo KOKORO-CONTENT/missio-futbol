@@ -2,6 +2,7 @@
 // k = nombre de respostes que ha de dir el jugador. a = solucions vàlides:
 //   nom (el que es mostra), img (retrat o escut; null = només s'accepta, no es mostra), alias (altres maneres d'escriure-ho).
 // En cas d'error o de buit, surten les solucions amb imatge. Les marcades amb "verificar" convé comprovar-les.
+(function () {   // dins d'una funció: la pàgina xifrada de la web ja té variables globals X i u8
 const J = x => "img/jug/" + x, E = x => "img/esc/" + x + ".png";
 const A = (nom, img, alias = []) => ({ nom, img, alias });
 window.CASELLES = [
@@ -69,3 +70,4 @@ X(10, [["Boca Juniors", ["boca"]], ["Nàpols SSC", []]]);
 X(13, [["Casilla", ["francisco casilla"]]]);
 X(16, [["Cubarsí", ["pau cubarsi", "cubarsi"]]]);
 X(21, [["Brescia"], ["Inter", ["inter de milan", "internazionale"]]]);
+})();
