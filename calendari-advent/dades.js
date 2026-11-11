@@ -14,7 +14,7 @@ window.CASELLES = [
   { n: 2,  k: 1, q: "Digues un equip que tingui 2 Champions", a: [ // verificar: l'esborrany deia Man. United i Inter, però en tenen 3
       A("Chelsea", E("chelsea"), ["chelsea fc"]), A("Juventus", E("juventus"), ["juve"]), A("Benfica", E("benfica"), ["sl benfica"]), A("Porto", E("porto"), ["fc porto", "oporto"]),
       A("Nottingham Forest", E("forest"), ["forest", "nottingham"])] },
-  { n: 3,  k: 3, q: "Digues 3 estadis de la lliga espanyola on s'hagi jugat un Mundial", a: [ // Mundial 1982; verificar
+  { n: 3,  k: 3, noms: true, q: "Digues 3 estadis de la lliga espanyola on s'hagi jugat un Mundial", a: [ // Mundial 1982; verificar
       A("Camp Nou", E("barca"), ["nou camp", "spotify camp nou", "camp nou barcelona"]), A("Santiago Bernabéu", E("real-madrid"), ["bernabeu", "santiago bernabeu"]),
       A("Vicente Calderón", E("atletico"), ["calderon", "vicente calderon"]), A("Sarrià", E("espanyol"), ["sarria", "estadi de sarria"]),
       A("Mestalla", E("valencia"), ["luis casanova", "estadi mestalla"]), A("Balaídos", E("celta"), ["balaidos"]), A("La Rosaleda", E("malaga"), ["rosaleda"]),
@@ -42,7 +42,7 @@ window.CASELLES = [
   { n: 14, k: 1, q: "Digues un neerlandès amb el dorsal 14", a: [A("Johan Cruyff", Y("netherlands", "CRUYFF", 14), ["cruyff", "cruijff", "johan cruijff", "johan"])] },
   { n: 15, k: 1, q: "Digues l'equip amb 15 Champions", a: [A("Reial Madrid", E("real-madrid"), ["real madrid", "madrid", "reial madrid", "real madrid cf"])] }, // verificar el recompte actual
   { n: 16, k: 1, q: "Digues un jugador que va debutar amb 16 anys al Mònaco", a: [A("Mbappé (33)", Y("monaco", "MBAPPÉ", 33), ["mbappe", "kylian mbappe", "kylian"])] },
-  { n: 17, k: 2, q: "Digues 2 títols que va aixecar el Barça la temporada 16-17", tots: true, a: [
+  { n: 17, k: 2, noms: true, q: "Digues 2 títols que va aixecar el Barça la temporada 16-17", tots: true, a: [
       A("Copa del Rei", "cup:copa", ["copa", "copa del rey"]), A("Supercopa d'Espanya", "cup:supercopa", ["supercopa", "supercopa de espana", "supercopa despanya", "supercopa d espanya"])] },
   { n: 18, k: 1, q: "Digues l'equip que va acabar 18è a la Lliga 2025/26", a: [A("Mallorca", E("mallorca"), ["rcd mallorca"])] }, // verificar
   { n: 19, k: 1, q: "Digues un davanter que hagi portat el 19 i el 10", tots: true, a: [
