@@ -3,7 +3,7 @@
 // c = Champions · l = lligues nacionals de 1a divisió (inclou les finals de playoff de MLS/NWSL/WPS) · p = Pilotes d'Or
 // m = Mundials · a = ascensos de categoria · cc = Copa Catalunya
 // foto: dins de img/ (cara + espatlles sense fons, retrats de Transfermarkt o de la web oficial del club).
-window.OBJECTIU = { c: 17, l: 63, p: 10, m: 7, a: 6, cc: 1 };
+window.OBJECTIU = { c: 17, l: 70, p: 10, m: 7, a: 6, cc: 1 };
 window.JUGADORS = [
   { id: "busquets", nom: "Sergi Busquets", foto: "sergio-busquets.png", c: 3, l: 10, p: 0, m: 1, a: 1, cc: 0 },       // l: 9 Lliga + MLS Cup 2025 · a: Barça B 2007-08
   { id: "stuani", nom: "Stuani", foto: "cristhian-stuani.png", c: 0, l: 1, p: 0, m: 0, a: 2, cc: 0 },                  // l: Uruguai 2004 · a: Middlesbrough 2016, Girona 2022
@@ -15,9 +15,9 @@ window.JUGADORS = [
   { id: "ronaldinho", nom: "Ronaldinho", foto: "ronaldinho.png", c: 1, l: 3, p: 1, m: 1, a: 0, cc: 0 },               // l: 2 Lliga + Serie A 2010-11
   { id: "aitana", nom: "Aitana Bonmatí", foto: "aitana-bonmati.png", c: 4, l: 7, p: 3, m: 1, a: 0, cc: 4 },           // cc: 2016-2019
   { id: "iniesta", nom: "Andrés Iniesta", foto: "andres-iniesta.png", c: 4, l: 10, p: 0, m: 1, a: 0, cc: 0 },         // l: 9 Lliga + J1 2023
-  { id: "kane", nom: "Harry Kane", foto: "harry-kane.png", c: 0, l: 2, p: 0, m: 0, a: 0, cc: 0 },
+  { id: "kane", nom: "Harry Kane", foto: "harry-kane.png", c: 0, l: 2, p: 1, m: 0, a: 0, cc: 0 },   // p: 1 (a petició)
   { id: "mbappe", nom: "Kylian Mbappé", foto: "kylian-mbappe.png", c: 0, l: 7, p: 0, m: 1, a: 0, cc: 0 },
-  { id: "morgan", nom: "Alex Morgan", foto: "alex-morgan.png", c: 1, l: 3, p: 0, m: 2, a: 0, cc: 0 },                 // l: WPS 2011, NWSL 2013, D1 Féminine 2016-17
+  { id: "patri", nom: "Patri Guijarro", foto: "patri-guijarro.png", c: 4, l: 7, p: 0, m: 0, a: 0, cc: 5 },        // cc: 2015-2019
   { id: "cristiano", nom: "Cristiano Ronaldo", foto: "cristiano-ronaldo.png", c: 5, l: 8, p: 5, m: 0, a: 0, cc: 0 },
   { id: "pedri", nom: "Pedri", foto: "pedri.png", c: 0, l: 3, p: 0, m: 1, a: 0, cc: 0 },
   { id: "raphinha", nom: "Raphinha", foto: "raphinha.png", c: 0, l: 3, p: 0, m: 0, a: 0, cc: 0 },
