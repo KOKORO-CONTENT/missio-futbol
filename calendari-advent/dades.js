@@ -6,7 +6,7 @@
 // Les marcades amb "verificar" són dades de l'esborrany que convé comprovar abans de gravar.
 const J = x => "img/jug/" + x, E = x => "img/esc/" + x + ".png";
 const Y = (kit, nom, num) => "jersey:" + kit + "|" + nom + "|" + num;
-const A = (nom, img, alias = []) => ({ nom, img, alias });
+const A = (nom, img, alias = [], grup) => ({ nom, img, alias, grup });
 window.CASELLES = [
   { n: 1,  k: 1, q: "Digues un porter que no porti el dorsal 1", a: [
       A("Buffon (77)", Y("parma", "BUFFON", 77), ["buffon", "gigi buffon", "gianluigi buffon"]), A("Donnarumma (99)", Y("milan", "DONNARUMMA", 99), ["donnarumma", "gigio donnarumma"]),
@@ -42,12 +42,13 @@ window.CASELLES = [
   { n: 14, k: 1, q: "Digues un neerlandès amb el dorsal 14", a: [A("Johan Cruyff", Y("netherlands", "CRUYFF", 14), ["cruyff", "cruijff", "johan cruijff", "johan"])] },
   { n: 15, k: 1, q: "Digues l'equip amb 15 Champions", a: [A("Reial Madrid", E("real-madrid"), ["real madrid", "madrid", "reial madrid", "real madrid cf"])] }, // verificar el recompte actual
   { n: 16, k: 1, q: "Digues un jugador que va debutar amb 16 anys al Mònaco", a: [A("Mbappé (33)", Y("monaco", "MBAPPÉ", 33), ["mbappe", "kylian mbappe", "kylian"])] },
-  { n: 17, k: 2, noms: true, q: "Digues 2 títols que va aixecar el Barça la temporada 16-17", tots: true, a: [
-      A("Copa del Rei", "cup:copa", ["copa", "copa del rey"]), A("Supercopa d'Espanya", "cup:supercopa", ["supercopa", "supercopa de espana", "supercopa despanya", "supercopa d espanya"])] },
+  { n: 17, k: 2, noms: true, tots: true, q: "Digues 2 títols que va aixecar el Barça la temporada 16-17", a: [   // masculí i femení
+      A("Copa del Rei · masculí", "cup:copa", ["copa del rei masculi", "copa", "copa del rey"]), A("Supercopa d'Espanya · masculí", "cup:supercopa", ["supercopa", "supercopa de espana", "supercopa despanya", "supercopa d espanya"]),
+      A("Copa de la Reina · femení", "cup:reina", ["copa reina", "copa de la reina", "copa de la reina femeni", "copa femenina"])] },
   { n: 18, k: 1, q: "Digues l'equip que va acabar 18è a la Lliga 2025/26", a: [A("Mallorca", E("mallorca"), ["rcd mallorca"])] }, // verificar
   { n: 19, k: 1, q: "Digues un davanter que hagi portat el 19 i el 10", tots: true, a: [
-      A("Lamine Yamal · 19", Y("barca", "LAMINE YAMAL", 19), ["yamal", "lamine yamal", "lamine"]), A("Lamine Yamal · 10", Y("barca", "LAMINE YAMAL", 10), ["yamal", "lamine yamal", "lamine"]),
-      A("Leo Messi", null, ["messi", "leo messi", "lionel messi", "lionel", "leo"])] },
+      A("Lamine Yamal · 19", Y("barca", "LAMINE YAMAL", 19), ["yamal", "lamine yamal", "lamine"], "y"), A("Lamine Yamal · 10", Y("barca", "LAMINE YAMAL", 10), ["yamal", "lamine yamal", "lamine"], "y"),
+      A("Leo Messi · 19", Y("barca", "MESSI", 19), ["messi", "leo messi", "lionel messi", "lionel", "leo"], "m"), A("Leo Messi · 10", Y("barca", "MESSI", 10), ["messi", "leo messi", "lionel messi", "lionel", "leo"], "m")] },
   { n: 20, k: 1, q: "Digues un capità del Barça que hagi portat el 20", a: [A("Sergi Roberto", Y("barca", "S. ROBERTO", 20), ["sergi", "roberto", "sergio roberto"])] },
   { n: 21, k: 4, noms: true, q: "Digues 4 equips on Pirlo va portar el 21", tots: true, a: [
       A("AC Milan", Y("milan", "PIRLO", 21), ["milan", "milà", "ac milà", "ac milan"]), A("Juventus", Y("juve", "PIRLO", 21), ["juve"]), A("New York City", Y("nyc", "PIRLO", 21), ["nyc", "nycfc", "new york", "new york city fc"]),
@@ -66,6 +67,9 @@ X(1, [["Gazzaniga", ["paulo gazzaniga"]], ["Iñaki Peña", ["inaki pena", "pena"
   ["Diego López", ["diego lopez"]], ["Kiko Casilla", ["casilla"]], ["Areola", ["alphonse areola"]], ["Carnesecchi"], ["Mamardashvili"], ["Sels", ["matz sels"]], ["Pope", ["nick pope"]], ["Arnau Tenas", ["tenas"]],
   ["Vicente Guaita", ["guaita"]], ["Vaclík", ["vaclik", "tomas vaclik"]], ["Dmitrovic", ["marko dmitrovic"]], ["Joan García", ["joan garcia"]]]);
 X(6, [["Khedira", ["sami khedira"]], ["Oriol Romeu", ["romeu"]], ["Marcelo", []], ["Thiago Silva", ["thiago silva"]]]);
+X(1, [["Neto", ["neto murara"]], ["Jordi Masip", ["masip"]], ["Lee Grant", ["grant"]], ["Adrián", ["adrian", "adrian san miguel"]], ["Fraser Forster", ["forster"]], ["Kepa", ["kepa arrizabalaga"]],
+  ["Kameni", ["carlos kameni"]], ["Vicente Guaita", ["guaita"]]]);
+X(6, [["Franco Baresi", ["baresi"]], ["Bobby Moore", ["moore"]], ["Marc Guéhi", ["guehi", "marc guehi"]]]);
 X(3, [["Estadio de Atocha", ["atocha", "anoeta"]], ["Estadio Hércules", ["hercules"]]]);
 X(4, [["Toledo"], ["Eldense"], ["Lugo"]]);
 X(5, [["QPR", ["queens park rangers"]], ["Millwall"], ["Charlton", ["charlton athletic"]], ["Wimbledon", ["afc wimbledon"]], ["Barnet"], ["Watford"], ["Orient"], ["Brentford FC"], ["Bromley"], ["Sutton"]]);
