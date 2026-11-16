@@ -13,7 +13,7 @@ window.CASELLES = [
       A("Oblak (13)", Y("atletico", "OBLAK", 13), ["oblak"])] },
   { n: 2,  k: 1, q: "Digues un equip que tingui 2 Champions", a: [ // verificar: l'esborrany deia Man. United i Inter, però en tenen 3
       A("Chelsea", E("chelsea"), ["chelsea fc"]), A("Juventus", E("juventus"), ["juve"]), A("Benfica", E("benfica"), ["sl benfica"]), A("Porto", E("porto"), ["fc porto", "oporto"]),
-      A("Nottingham Forest", E("forest"), ["forest", "nottingham"])] },
+      A("Nottingham Forest", E("forest"), ["forest", "nottingham"]), A("PSG", E("psg"), ["paris saint germain", "paris sg", "paris", "psg"])] },
   { n: 3,  k: 3, noms: true, q: "Digues 3 estadis de la lliga espanyola on s'hagi jugat un Mundial", a: [ // Mundial 1982; verificar
       A("Camp Nou", E("barca"), ["nou camp", "spotify camp nou", "camp nou barcelona"]), A("Santiago Bernabéu", E("real-madrid"), ["bernabeu", "santiago bernabeu"]),
       A("Vicente Calderón", E("atletico"), ["calderon", "vicente calderon"]), A("Sarrià", E("espanyol"), ["sarria", "estadi de sarria"]),
@@ -21,7 +21,7 @@ window.CASELLES = [
       A("Sánchez-Pizjuán", E("sevilla"), ["sanchez pizjuan", "pizjuan", "ramon sanchez pizjuan"]), A("Riazor", E("depor"), ["estadio riazor"]),
       A("Martínez Valero", E("elche"), ["martinez valero"]), A("Carlos Tartiere", E("oviedo"), ["tartiere"]), A("San Mamés", E("athletic"), ["san mames"]),
       A("La Romareda", null, ["romareda"]), A("José Zorrilla", null, ["zorrilla", "jose zorrilla"]), A("El Molinón", null, ["molinon"]), A("José Rico Pérez", null, ["rico perez", "jose rico perez"])] },
-  { n: 4,  k: 1, q: "Digues un equip que hagi passat per la Lliga sense la lletra A", a: [
+  { n: 4,  k: 4, q: "Digues 4 equips que hagin passat per la Lliga sense la lletra A", a: [
       A("Elx", E("elche"), ["elche", "elx cf"]), A("Betis", E("betis"), ["real betis"]), A("Tenerife", E("x-tenerife"), ["cd tenerife"]), A("Oviedo", E("oviedo"), ["real oviedo"]),
       A("Sporting", null, ["sporting gijon", "sporting de gijon"]), A("Hèrcules", null, ["hercules"]), A("Xerez", null, ["xerez cd"]), A("Burgos", null, [])] },
   { n: 5,  k: 5, q: "Digues 5 equips que comparteixin ciutat", nota: "La ciutat és Londres", a: [
@@ -32,7 +32,7 @@ window.CASELLES = [
       A("Koke", Y("atletico", "KOKE", 6), []), A("Roberto Carlos", Y("brazil", "R. CARLOS", 6), ["carlos"]), A("Camavinga", Y("madrid", "CAMAVINGA", 6), ["eduardo camavinga"])] },
   { n: 7,  k: 1, q: "Digues el 7 més golejador de la història del Barça", a: [A("Pedrito", Y("barca", "PEDRITO", 7), ["pedro", "pedro rodriguez", "pedrito"])] }, // verificar
   { n: 8,  k: 1, q: "Digues el jugador amb 8 Pilotes d'Or", a: [A("Leo Messi", J("messi-balon-or.png"), ["messi", "lionel messi", "lionel", "leo"])] },
-  { n: 9,  k: 1, q: "Digues qui porta el 9 del Girona", a: [A("Stuani", Y("girona", "STUANI", 9), ["cristhian stuani", "stuani"])] }, // verificar
+  { n: 9,  k: 1, q: "Qui és el dorsal 9 del Barça femení?", a: [A("Claudia Pina", Y("barca", "PINA", 9), ["claudia pina", "clàudia pina", "pina", "claudia"])] },
   { n: 10, k: 1, q: "Digues un equip sense dorsal 10", a: [A("Roma (Totti)", Y("roma", "TOTTI", 10), ["roma", "as roma", "totti"]), A("Nàpols", null, ["napoli", "ssc napoli", "napols"])] },
   { n: 11, k: 1, q: "Digues l'equip amb 11 Lligues espanyoles", a: [A("Atlètic de Madrid", E("atletico"), ["atletic", "atletico", "atletico madrid", "atletic madrid", "atletico de madrid", "atleti", "at madrid"])] },
   { n: 12, k: 1, q: "Quin jugador portava el 12 amb França?", a: [ // verificar
@@ -46,13 +46,13 @@ window.CASELLES = [
       A("Copa del Rei", "cup:copa", ["copa", "copa del rey"]), A("Supercopa d'Espanya", "cup:supercopa", ["supercopa", "supercopa de espana", "supercopa despanya", "supercopa d espanya"])] },
   { n: 18, k: 1, q: "Digues l'equip que va acabar 18è a la Lliga 2025/26", a: [A("Mallorca", E("mallorca"), ["rcd mallorca"])] }, // verificar
   { n: 19, k: 1, q: "Digues un davanter que hagi portat el 19 i el 10", tots: true, a: [
-      A("Lamine Yamal · 19", Y("barca", "YAMAL", 19), ["yamal", "lamine yamal", "lamine"]), A("Lamine Yamal · 10", Y("barca", "YAMAL", 10), ["yamal", "lamine yamal", "lamine"]),
+      A("Lamine Yamal · 19", Y("barca", "LAMINE YAMAL", 19), ["yamal", "lamine yamal", "lamine"]), A("Lamine Yamal · 10", Y("barca", "LAMINE YAMAL", 10), ["yamal", "lamine yamal", "lamine"]),
       A("Leo Messi", null, ["messi", "leo messi", "lionel messi", "lionel", "leo"])] },
   { n: 20, k: 1, q: "Digues un capità del Barça que hagi portat el 20", a: [A("Sergi Roberto", Y("barca", "S. ROBERTO", 20), ["sergi", "roberto", "sergio roberto"])] },
-  { n: 21, k: 4, q: "Digues 4 equips on Pirlo va portar el 21", tots: true, a: [
+  { n: 21, k: 4, noms: true, q: "Digues 4 equips on Pirlo va portar el 21", tots: true, a: [
       A("AC Milan", Y("milan", "PIRLO", 21), ["milan", "milà", "ac milà", "ac milan"]), A("Juventus", Y("juve", "PIRLO", 21), ["juve"]), A("New York City", Y("nyc", "PIRLO", 21), ["nyc", "nycfc", "new york", "new york city fc"]),
       A("Itàlia", Y("italia", "PIRLO", 21), ["italia", "seleccio italiana", "selecció italiana", "italy"])] },
-  { n: 22, k: 1, q: "Digues l'entrenador que ha guanyat 22 títols", a: [A("Luis Enrique", J("luis-enrique.png"), ["luis enrique", "lucho", "enrique"])] }, // verificar
+  { n: 22, k: 1, q: "Digues l'entrenador que ha guanyat 22 títols", a: [A("Luis Enrique", J("luis-enrique-foto.jpg"), ["luis enrique", "lucho", "enrique"])] }, // verificar
   { n: 23, k: 1, q: "Digues un jugador anglès amb el dorsal 23", a: [A("David Beckham", Y("madrid", "BECKHAM", 23), ["beckham", "david"])] },
   { n: 24, k: 1, q: "Digues l'equip amb 24 Copes del Rei", a: [A("Athletic Club", E("athletic"), ["athletic", "athletic de bilbao", "athletic bilbao", "athletic club bilbao", "bilbao"])] }
 ];
@@ -61,13 +61,16 @@ window.CASELLES = [
 const X = (n, llista) => window.CASELLES[n - 1].a.push(...llista.map(([nom, alias]) => A(nom, null, alias || [])));
 X(1, [["Szczęsny (25)", ["szczesny", "szczesney", "wojciech szczesny"]], ["Kepa (13)", ["kepa"]], ["Lunin (13)", ["lunin"]], ["Ederson (31)", ["ederson"]],
   ["Courtois (13)", ["courtois", "thibaut courtois"]], ["Raya"], ["Maignan"], ["Bono (13)", ["bono", "yassine bounou"]], ["Dibu Martínez", ["dibu", "emiliano martinez", "martinez"]], ["Mendy", ["edouard mendy"]],
-  ["Vicario"], ["Reina", ["pepe reina"]], ["Claudio Bravo", ["bravo"]], ["Pinto", ["jose manuel pinto"]], ["Unai Simón", ["unai simon", "simon"]], ["Sirigu"], ["Meret"], ["Casteels"]]);
+  ["Vicario"], ["Reina", ["pepe reina"]], ["Claudio Bravo", ["bravo"]], ["Pinto", ["jose manuel pinto"]], ["Unai Simón", ["unai simon", "simon"]], ["Sirigu"]]);
+X(1, [["Gazzaniga", ["paulo gazzaniga"]], ["Iñaki Peña", ["inaki pena", "pena"]], ["Pau López", ["pau lopez"]], ["Cillessen", ["jasper cillessen"]], ["Asenjo", ["sergio asenjo"]], ["Adán", ["adan", "antonio adan"]],
+  ["Diego López", ["diego lopez"]], ["Kiko Casilla", ["casilla"]], ["Areola", ["alphonse areola"]], ["Carnesecchi"], ["Mamardashvili"], ["Sels", ["matz sels"]], ["Pope", ["nick pope"]], ["Arnau Tenas", ["tenas"]],
+  ["Vicente Guaita", ["guaita"]], ["Vaclík", ["vaclik", "tomas vaclik"]], ["Dmitrovic", ["marko dmitrovic"]], ["Joan García", ["joan garcia"]]]);
+X(6, [["Khedira", ["sami khedira"]], ["Oriol Romeu", ["romeu"]], ["Marcelo", []], ["Thiago Silva", ["thiago silva"]]]);
 X(3, [["Estadio de Atocha", ["atocha", "anoeta"]], ["Estadio Hércules", ["hercules"]]]);
 X(4, [["Toledo"], ["Eldense"], ["Lugo"]]);
 X(5, [["QPR", ["queens park rangers"]], ["Millwall"], ["Charlton", ["charlton athletic"]], ["Wimbledon", ["afc wimbledon"]], ["Barnet"], ["Watford"], ["Orient"], ["Brentford FC"], ["Bromley"], ["Sutton"]]);
 X(6, [["Pogba", ["paul pogba"]], ["Kimmich", ["joshua kimmich"]], ["Verratti", ["marco verratti"]], ["Thiago", ["thiago alcantara"]], ["Nacho", ["nacho fernandez"]], ["Gabriel", ["gabriel magalhaes"]], ["Thiago Silva", []], ["Aké", ["ake", "nathan ake"]],
-  ["Lisandro Martínez", ["lisandro martinez", "lisandro"]], ["Ramsey"], ["Mascherano", ["javier mascherano"]], ["Dani Parejo", ["parejo"]], ["Marcelo Brozović", ["brozovic"]], ["Fernandinho"], ["Rakitić", ["rakitic"]]]);
-X(9, [["Abel Ruiz", ["abel", "ruiz"]], ["Dovbyk", ["artem dovbyk"]]]);
+  ["Lisandro Martínez", ["lisandro martinez", "lisandro"]]]);
 X(10, [["Boca Juniors", ["boca"]]]);
 X(13, [["Casilla", ["francisco casilla"]]]);
 X(21, [["Brescia"], ["Inter", ["inter de milan", "internazionale"]]]);
