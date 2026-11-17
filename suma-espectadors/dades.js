@@ -33,8 +33,8 @@ window.ESTADIS = {
 // Rondes: obj = suma d'espectadors a assolir, op = estadis que es poden triar (la solució és única).
 window.RONDES = [
   { obj: 178711, op: ["san-siro", "parc-princeps", "stamford-bridge", "montilivi", "vallecas"] },
-  { obj: 151192, op: ["vallecas", "coliseum", "luzhniki", "da-luz", "olimpiyskiy", "rcde", "stamford-bridge"] },
-  { obj: 161407, op: ["metropolitano", "da-luz", "etihad", "calderon", "wembley", "coliseum"] },
-  { obj: 241726, op: ["parc-ol", "camp-nou", "rcde", "wembley", "bernabeu", "principality"] },
-  { obj: 230510, op: ["el-sadar", "da-luz", "stamford-bridge", "allianz-arena", "rcde", "anfield", "olimpico"] }
+  { obj: 136350, op: ["vallecas", "coliseum", "luzhniki", "da-luz", "rcde"] },
+  { obj: 269695, op: ["parc-ol", "olimpiyskiy", "san-siro", "metropolitano", "da-luz"] },
+  { obj: 277207, op: ["la-cartuja", "da-luz", "olimpico", "principality", "parc-ol"] },
+  { obj: 219486, op: ["bernabeu", "allianz-arena", "anfield", "parc-ol"] }
 ];
