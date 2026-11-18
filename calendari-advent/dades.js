@@ -42,7 +42,7 @@ window.CASELLES = [
   { n: 14, k: 1, q: "Digues un neerlandès amb el dorsal 14", a: [A("Johan Cruyff", Y("netherlands", "CRUYFF", 14), ["cruyff", "cruijff", "johan cruijff", "johan"])] },
   { n: 15, k: 1, q: "Digues l'equip amb 15 Champions", a: [A("Reial Madrid", E("real-madrid"), ["real madrid", "madrid", "reial madrid", "real madrid cf"])] }, // verificar el recompte actual
   { n: 16, k: 1, q: "Digues un jugador que va debutar amb 16 anys al Mònaco", a: [A("Mbappé (33)", Y("monaco", "MBAPPÉ", 33), ["mbappe", "kylian mbappe", "kylian"])] },
-  { n: 17, k: 2, noms: true, tots: true, q: "Digues 2 títols que va aixecar el Barça la temporada 16-17", a: [   // masculí i femení
+  { n: 17, k: 2, noms: true, q: "Digues 2 títols que va aixecar el Barça la temporada 16-17", a: [   // masculí i femení
       A("Copa del Rei · masculí", "cup:copa", ["copa del rei masculi", "copa", "copa del rey"]), A("Supercopa d'Espanya · masculí", "cup:supercopa", ["supercopa", "supercopa de espana", "supercopa despanya", "supercopa d espanya"]),
       A("Copa de la Reina · femení", "cup:reina", ["copa reina", "copa de la reina", "copa de la reina femeni", "copa femenina"])] },
   { n: 18, k: 1, q: "Digues l'equip que va acabar 18è a la Lliga 2025/26", a: [A("Mallorca", E("mallorca"), ["rcd mallorca"])] }, // verificar
