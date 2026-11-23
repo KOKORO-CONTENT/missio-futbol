@@ -1,7 +1,6 @@
 // "El camí dels fitxatges": un camí de clubs. Parteix d'un escut i s'obren dos clubs nous; el concursant tria a quin dels dos
 // i ha de dir un jugador que hagi jugat als dos clubs (el de dalt i el triat). El triat és el punt de partida de la ronda següent.
 // Document de la proposta: Barça · Arsenal/Bayern · City/PSG · Chelsea/Atlètic · Vila-real/Betis · Barça/Madrid.
-// Ampliat (a petició del Jordi) amb més equips espanyols: · Sevilla/València · Athletic/Reial Societat.
 
 // [id (fitxer d'img/escuts), nom que es veu]
 window.CLUBS = {
@@ -10,15 +9,37 @@ window.CLUBS = {
   "sevilla": "Sevilla", "valencia": "València", "athletic": "Athletic", "real-sociedad": "Reial Societat"
 };
 
-// El camí: club de sortida i, a cada ronda, les dues opcions. (Es poden afegir més camins a RUTES i canviar-ne l'ordre.)
-window.RUTES = [
-  { sortida: "barcelona", rondes: [["arsenal", "bayern"], ["man-city", "psg"], ["chelsea", "atletico"], ["villarreal", "betis"], ["barcelona", "real-madrid"], ["sevilla", "valencia"], ["athletic", "real-sociedad"]] }
-];
+// El camí és un graf: a cada club s'obren dues opcions (o una de sola al final). L'objectiu és TORNAR AL BARÇA amb el mínim de fitxatges:
+// l'opció "Barça" només apareix en alguns clubs, així que triar bé el camí fa que la tornada sigui més curta. (Un sol jugador.)
+window.GRAF = {
+  inici: "barcelona", meta: "barcelona",
+  opcions: {
+    "barcelona": ["chelsea", "psg"],
+    "chelsea": ["atletico", "barcelona"],
+    "psg": ["atletico", "real-madrid"],
+    "atletico": ["sevilla", "barcelona"],
+    "real-madrid": ["barcelona", "valencia"],
+    "sevilla": ["valencia", "barcelona"],
+    "valencia": ["barcelona", "athletic"],
+    "athletic": ["real-sociedad", "barcelona"],
+    "real-sociedad": ["barcelona"]
+  }
+};
 
 // Jugadors/es que han jugat als dos clubs (primer equip). Clau: els dos ids ordenats alfabèticament i separats per "|".
 // Surt al quadre de controls i serveix per validar sol el nom que s'escriu; si cal, el presentador pot donar-ho per bo o per fals.
 // Revisat amb Wikidata (jugadors amb els dos clubs a la trajectòria) + coneixement propi per als fitxatges recents que Wikidata no té; si en falta algun, afegeix-lo aquí o dóna-ho per bo des del panell.
 window.PARELLES = {
+  "barcelona|chelsea": ["Samuel Eto'o", "Cesc Fàbregas", "Deco", "Ricardo Quaresma", "João Félix", "Pedro", "Andreas Christensen", "Eiður Guðjohnsen", "Juliano Belletti", "Oriol Romeu", "Boudewijn Zenden", "Pierre-Emerick Aubameyang", "Marcos Alonso"],
+  "barcelona|psg": ["Zlatan Ibrahimović", "Ronaldinho", "Dani Alves", "Neymar", "Lionel Messi", "Ousmane Dembélé", "Lucas Digne", "Thiago Motta", "Rafinha", "Ludovic Giuly", "Maxwell", "Juan Pablo Sorín", "Frédéric Déhu"],
+  "atletico|chelsea": ["Fernando Torres", "Diego Costa", "César Azpilicueta", "João Félix", "Filipe Luís", "Tiago", "Mateja Kežman", "Jimmy Floyd Hasselbaink", "Maniche", "Jesper Grønkjær", "Thibaut Courtois", "Saúl Ñíguez", "Álvaro Morata"],
+  "psg|real-madrid": ["Nicolas Anelka", "Claude Makélélé", "Pablo Sarabia", "Gabriel Heinze", "Lassana Diarra", "Ángel Di María", "Keylor Navas", "Sergio Ramos", "Achraf Hakimi", "Kylian Mbappé", "Marco Asensio"],
+  "atletico|barcelona": ["Sergio Agüero", "David Villa", "Arda Turan", "João Félix", "Thiago Motta", "Julio Salinas", "Bernd Schuster", "Simão Sabrosa", "Luis García", "Sergi Barjuan", "Eusebio Sacristán", "Antoine Griezmann", "Luis Suárez"],
+  "atletico|sevilla": ["Diego Simeone", "César Azpilicueta", "Éver Banega", "José Antonio Reyes", "Moacir", "Kévin Gameiro", "Luciano Vietto", "Geoffrey Kondogbia", "Vitolo", "Matías Kranevitter", "Salva Ballesta", "Miquel Soler"],
+  "sevilla|valencia": ["Denis Cheryshev", "Adil Rami", "Éver Banega", "Álvaro Negredo", "Seydou Keita", "Andrés Palop", "Kévin Gameiro", "Geoffrey Kondogbia", "Rafa Mir"],
+  "athletic|barcelona": ["Ernesto Valverde", "Julio Salinas", "Jon Andoni Goikoetxea", "Andoni Zubizarreta", "Santi Ezquerro", "José Ramón Alexanko", "Robert Navarro", "Iñigo Martínez"],
+  "athletic|real-sociedad": ["Álex Remiro", "Yuri Berchiche", "Iñigo Martínez"],
+  "barcelona|real-sociedad": ["Claudio Bravo", "Txiki Begiristain", "José Mari Bakero", "Periko Alonso", "Meho Kodro", "Luis López Rekarte", "Antoine Griezmann"],
   "athletic|sevilla": ["Fernando Llorente", "Aitor Ocio", "Luis de la Fuente", "Patxi Ferreira"],
   "athletic|valencia": ["Aritz Aduriz", "Andoni Zubizarreta", "Asier del Horno", "Unai Núñez", "Iago Herrerín"],
   "barcelona|sevilla": ["Dani Alves", "Ivan Rakitić", "Javier Saviola", "Seydou Keita", "Luuk de Jong", "Nolito", "Adriano", "Gerard Deulofeu", "Aleix Vidal", "Martín Cáceres", "Diego Maradona", "Sandro Ramírez", "Luis Alberto"],
