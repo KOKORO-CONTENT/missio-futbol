@@ -1,90 +1,143 @@
-// "El camí dels fitxatges": un camí de clubs. Parteix d'un escut i s'obren dos clubs nous; el concursant tria a quin dels dos
-// i ha de dir un jugador que hagi jugat als dos clubs (el de dalt i el triat). El triat és el punt de partida de la ronda següent.
-// Document de la proposta: Barça · Arsenal/Bayern · City/PSG · Chelsea/Atlètic · Vila-real/Betis · Barça/Madrid.
+// "El camí dels fitxatges" (un sol jugador): tornar al Barça amb el mínim de fitxatges.
+// A cada club s'obren dues opcions i cal dir un jugador/a (masculí o femení) que hagi estat als dos clubs.
+// El Barça no es pot trobar abans de la ronda 5. Espanyol, Girona i Sabadell surten com a opcions impossibles (sense cap jugador vàlid).
 
 // [id (fitxer d'img/escuts), nom que es veu]
 window.CLUBS = {
-  "barcelona": "Barça", "arsenal": "Arsenal", "bayern": "Bayern", "man-city": "Man. City", "psg": "PSG",
-  "chelsea": "Chelsea", "atletico": "Atlètic", "villarreal": "Vila-real", "betis": "Betis", "real-madrid": "Madrid",
-  "sevilla": "Sevilla", "valencia": "València", "athletic": "Athletic", "real-sociedad": "Reial Societat"
+  "barcelona": "Barça", "chelsea": "Chelsea", "psg": "PSG", "atletico": "Atlètic", "real-madrid": "Madrid", "sevilla": "Sevilla",
+  "valencia": "València", "athletic": "Athletic", "real-sociedad": "Reial Societat", "villarreal": "Vila-real",
+  "espanyol": "Espanyol", "girona": "Girona", "sabadell": "Sabadell"
 };
 
-// El camí és un graf: a cada club s'obren dues opcions (o una de sola al final). L'objectiu és TORNAR AL BARÇA amb el mínim de fitxatges:
-// l'opció "Barça" només apareix en alguns clubs, així que triar bé el camí fa que la tornada sigui més curta. (Un sol jugador.)
+// El camí és un graf: a cada club s'obren dues opcions. Mínim de camí: 5 fitxatges (p. ex. Barça > Chelsea > Atlètic > Sevilla > Athletic > Barça).
 window.GRAF = {
   inici: "barcelona", meta: "barcelona",
   opcions: {
     "barcelona": ["chelsea", "psg"],
-    "chelsea": ["atletico", "barcelona"],
-    "psg": ["atletico", "real-madrid"],
-    "atletico": ["sevilla", "barcelona"],
-    "real-madrid": ["barcelona", "valencia"],
-    "sevilla": ["valencia", "barcelona"],
-    "valencia": ["barcelona", "athletic"],
-    "athletic": ["real-sociedad", "barcelona"],
-    "real-sociedad": ["barcelona"]
+    "chelsea": ["atletico", "espanyol"],
+    "psg": ["real-madrid", "atletico"],
+    "atletico": ["sevilla", "girona"],
+    "real-madrid": ["valencia", "sevilla"],
+    "sevilla": ["athletic", "real-sociedad"],
+    "valencia": ["real-sociedad", "athletic"],
+    "athletic": ["sabadell", "barcelona"],
+    "real-sociedad": ["barcelona", "villarreal"],
+    "villarreal": ["girona", "barcelona"]
   }
 };
 
-// Jugadors/es que han jugat als dos clubs (primer equip). Clau: els dos ids ordenats alfabèticament i separats per "|".
-// Surt al quadre de controls i serveix per validar sol el nom que s'escriu; si cal, el presentador pot donar-ho per bo o per fals.
-// Revisat amb Wikidata (jugadors amb els dos clubs a la trajectòria) + coneixement propi per als fitxatges recents que Wikidata no té; si en falta algun, afegeix-lo aquí o dóna-ho per bo des del panell.
+// Jugadors/es que han jugat als dos clubs (primer equip, masculí i femení). Clau: els dos ids ordenats alfabèticament i separats per "|".
+// El primer de cada llista és el de la pista. Fet amb Wikidata + coneixement propi; si en falta algun, afegeix-lo aquí o dóna-ho per bo des del panell.
 window.PARELLES = {
-  "barcelona|chelsea": ["Samuel Eto'o", "Cesc Fàbregas", "Deco", "Ricardo Quaresma", "João Félix", "Pedro", "Andreas Christensen", "Eiður Guðjohnsen", "Juliano Belletti", "Oriol Romeu", "Boudewijn Zenden", "Pierre-Emerick Aubameyang", "Marcos Alonso"],
-  "barcelona|psg": ["Zlatan Ibrahimović", "Ronaldinho", "Dani Alves", "Neymar", "Lionel Messi", "Ousmane Dembélé", "Lucas Digne", "Thiago Motta", "Rafinha", "Ludovic Giuly", "Maxwell", "Juan Pablo Sorín", "Frédéric Déhu"],
-  "atletico|chelsea": ["Fernando Torres", "Diego Costa", "César Azpilicueta", "João Félix", "Filipe Luís", "Tiago", "Mateja Kežman", "Jimmy Floyd Hasselbaink", "Maniche", "Jesper Grønkjær", "Thibaut Courtois", "Saúl Ñíguez", "Álvaro Morata"],
-  "psg|real-madrid": ["Nicolas Anelka", "Claude Makélélé", "Pablo Sarabia", "Gabriel Heinze", "Lassana Diarra", "Ángel Di María", "Keylor Navas", "Sergio Ramos", "Achraf Hakimi", "Kylian Mbappé", "Marco Asensio"],
-  "atletico|barcelona": ["Sergio Agüero", "David Villa", "Arda Turan", "João Félix", "Thiago Motta", "Julio Salinas", "Bernd Schuster", "Simão Sabrosa", "Luis García", "Sergi Barjuan", "Eusebio Sacristán", "Antoine Griezmann", "Luis Suárez"],
-  "atletico|sevilla": ["Diego Simeone", "César Azpilicueta", "Éver Banega", "José Antonio Reyes", "Moacir", "Kévin Gameiro", "Luciano Vietto", "Geoffrey Kondogbia", "Vitolo", "Matías Kranevitter", "Salva Ballesta", "Miquel Soler"],
-  "sevilla|valencia": ["Denis Cheryshev", "Adil Rami", "Éver Banega", "Álvaro Negredo", "Seydou Keita", "Andrés Palop", "Kévin Gameiro", "Geoffrey Kondogbia", "Rafa Mir"],
-  "athletic|barcelona": ["Ernesto Valverde", "Julio Salinas", "Jon Andoni Goikoetxea", "Andoni Zubizarreta", "Santi Ezquerro", "José Ramón Alexanko", "Robert Navarro", "Iñigo Martínez"],
-  "athletic|real-sociedad": ["Álex Remiro", "Yuri Berchiche", "Iñigo Martínez"],
-  "barcelona|real-sociedad": ["Claudio Bravo", "Txiki Begiristain", "José Mari Bakero", "Periko Alonso", "Meho Kodro", "Luis López Rekarte", "Antoine Griezmann"],
-  "athletic|sevilla": ["Fernando Llorente", "Aitor Ocio", "Luis de la Fuente", "Patxi Ferreira"],
-  "athletic|valencia": ["Aritz Aduriz", "Andoni Zubizarreta", "Asier del Horno", "Unai Núñez", "Iago Herrerín"],
-  "barcelona|sevilla": ["Dani Alves", "Ivan Rakitić", "Javier Saviola", "Seydou Keita", "Luuk de Jong", "Nolito", "Adriano", "Gerard Deulofeu", "Aleix Vidal", "Martín Cáceres", "Diego Maradona", "Sandro Ramírez", "Luis Alberto"],
-  "barcelona|valencia": ["David Villa", "Romário", "Jordi Alba", "Patrick Kluivert", "Paco Alcácer", "Seydou Keita", "Gaizka Mendieta", "Andoni Zubizarreta", "Oriol Romeu", "Martín Montoya", "Jérémy Mathieu", "Mauricio Pellegrino", "Ilaix Moriba", "Rafa Mir"],
-  "real-madrid|sevilla": ["Javier Hernández", "Davor Šuker", "Denis Cheryshev", "Javier Saviola", "José Antonio Reyes", "Álvaro Negredo", "Pablo Sarabia", "Iván Zamorano", "Júlio Baptista", "Diego López", "Paco Buyo", "Dejan Petković"],
-  "real-madrid|valencia": ["Denis Cheryshev", "Fernando Gago", "Ezequiel Garay", "Álvaro Negredo", "Roberto Soldado", "Fernando Morientes", "Santiago Cañizares", "Rodrigo Moreno", "Dani Parejo", "Predrag Mijatović", "Iván Helguera", "Iván Campo", "Raúl Albiol"],
-  "real-sociedad|sevilla": ["Adnan Januzaj", "Jonathas", "Raúl Navas", "Jon Guridi"],
-  "real-sociedad|valencia": ["David Silva", "Andoni Zubizarreta", "Valeri Karpin", "Mathew Ryan", "Miguel Ángel Moyá"],
-  "arsenal|barcelona": ["Thierry Henry", "Cesc Fàbregas", "Thomas Vermaelen", "Giovanni van Bronckhorst", "Emmanuel Petit", "Alexander Hleb", "Alex Song", "Marc Overmars", "Sylvinho", "Alexis Sánchez", "Pierre-Emerick Aubameyang", "Héctor Bellerín", "Denis Suárez"],
-  "barcelona|bayern": ["Robert Lewandowski", "Thiago Alcântara", "Philippe Coutinho", "Arturo Vidal", "Mark van Bommel", "João Cancelo", "Pepe Reina", "Patrik Andersson", "Mark Hughes"],
-  "arsenal|man-city": ["Raheem Sterling", "Patrick Vieira", "Emmanuel Adebayor", "Nicolas Anelka", "Samir Nasri", "Bacary Sagna", "Kolo Touré", "Gaël Clichy", "Oleksandr Zinchenko", "Gabriel Jesus", "David Seaman", "Andy Cole", "Sylvinho"],
-  "arsenal|psg": ["Nicolas Anelka", "Mikel Arteta", "Lassana Diarra"],
-  "bayern|man-city": ["Jérôme Boateng", "Martín Demichelis", "Owen Hargreaves", "Daniel Van Buyten", "Dietmar Hamann", "Leroy Sané", "João Cancelo", "Michael Tarnat"],
-  "bayern|psg": ["Kingsley Coman", "Juan Bernat", "Eric Maxim Choupo-Moting", "Bixente Lizarazu", "Renato Sanches"],
-  "chelsea|man-city": ["Kevin De Bruyne", "Frank Lampard", "Nicolas Anelka", "Raheem Sterling", "Cole Palmer", "Mateo Kovačić", "Wayne Bridge", "Shaun Wright-Phillips", "Willy Caballero", "Nathan Aké", "Daniel Sturridge", "George Weah", "Tal Ben Haim", "Scott Sinclair"],
-  "atletico|man-city": ["Sergio Agüero", "Julián Álvarez", "Rodri", "Martín Demichelis", "Martin Petrov", "Kiki Musampa"],
-  "chelsea|psg": ["Thiago Silva", "David Luiz", "Nicolas Anelka", "Claude Makélélé", "Christopher Nkunku", "George Weah", "Lassana Diarra", "Mateja Kežman"],
-  "atletico|psg": ["Thiago Motta", "Kang-in Lee", "Kevin Gameiro", "Lucas Hernández", "Mateja Kežman", "Cristian Rodríguez", "Grégory Coupet", "Peter Luccin"],
-  "chelsea|villarreal": ["Nicolas Jackson", "Alexandre Pato", "Juliano Belletti", "Bertrand Traoré"],
-  "betis|chelsea": ["Gustavo Poyet", "Charly Musonda"],
-  "atletico|villarreal": ["Diego Forlán", "Diego Godín", "Rodri", "Joan Capdevila", "Fabricio Coloccini", "Sergio Asenjo", "Luciano Vietto", "Adrián López", "Oliver Torres", "Ariel Ibagaza", "Léo Baptistão", "Rafael Santos Borré"],
-  "atletico|betis": ["Antonio Adán", "Joel Robles", "Dani Pacheco", "Léo Baptistão", "Rubén Pérez"],
-  "barcelona|villarreal": ["Pepe Reina", "Juan Román Riquelme", "Giovani dos Santos", "Jonathan dos Santos", "Martín Cáceres", "Paco Alcácer", "Manu Trigueros", "Edmílson", "Juliano Belletti", "Juan Pablo Sorín", "Sonny Anderson", "Guillermo Amor"],
-  "barcelona|betis": ["Claudio Bravo", "Marc Bartra", "José Manuel Pinto", "Martín Montoya", "Cristian Tello", "Carles Aleña", "Joan Verdú", "Héctor Bellerín", "Emerson Royal", "Junior Firpo", "Juan Miranda", "Alfonso Pérez"],
-  "barcelona|real-madrid": ["Luis Figo", "Ronaldo Nazário", "Michael Laudrup", "Bernd Schuster", "Luis Enrique", "Gheorghe Hagi", "Javier Saviola", "Julen Lopetegui", "Robert Prosinečki", "Samuel Eto'o", "Albert Celades", "Alfonso Pérez", "Ricardo Zamora", "José Samitier"],
-  "betis|real-madrid": ["Isco", "Dani Ceballos", "Sergio Canales", "Antonio Adán", "Rafael van der Vaart", "Javi García", "Robert Jarni", "Willian José", "Rafael Gordillo", "Alfonso Pérez"],
-  "real-madrid|villarreal": ["Denis Cheryshev", "Roberto Soldado", "Diego López", "Dani Parejo", "Raúl Albiol", "Borja Valero", "Cicinho"]
+  "barcelona|chelsea": ["Samuel Eto'o", "Cesc Fàbregas", "Deco", "Ricardo Quaresma", "João Félix", "Pedro", "Andreas Christensen", "Eiður Guðjohnsen", "Emmanuel Petit", "Mark Hughes", "Juliano Belletti", "Oriol Romeu", "Boudewijn Zenden", "Albert Ferrer", "Winston Bogarde", "Pierre-Emerick Aubameyang", "Marcos Alonso", "Keira Walsh", "Adriana Martín"],
+  "barcelona|psg": ["Zlatan Ibrahimović", "Ronaldinho", "Dani Alves", "Thiago Motta", "Rafinha", "Ludovic Giuly", "Maxwell", "Juan Pablo Sorín", "Frédéric Déhu", "Richard Dutruel", "Neymar", "Lionel Messi", "Ousmane Dembélé", "Lucas Digne", "Lieke Martens", "Irene Paredes", "Élise Bussaglia", "Nataša Andonova", "Kheira Hamraoui"],
+  "atletico|chelsea": ["Fernando Torres", "Diego Costa", "César Azpilicueta", "João Félix", "Filipe Luís", "Tiago", "Mateja Kežman", "Jimmy Floyd Hasselbaink", "Maniche", "Jesper Grønkjær", "Thibaut Courtois", "Saúl Ñíguez", "Álvaro Morata", "Hedvig Lindahl", "Ana Borges", "Adriana Martín"],
+  "psg|real-madrid": ["Nicolas Anelka", "David Beckham", "Claude Makélélé", "Pablo Sarabia", "Gabriel Heinze", "Lassana Diarra", "Nenê", "Ángel Di María", "Keylor Navas", "Sergio Ramos", "Achraf Hakimi", "Kylian Mbappé", "Marco Asensio", "Aurélie Kaci"],
+  "atletico|psg": ["Thiago Motta", "Mateja Kežman", "Cristian Rodríguez", "Kévin Gameiro", "Grégory Coupet", "Souleymane Bamba", "Ramón Heredia", "Peter Luccin", "Kang-in Lee", "Lucas Hernández", "Aminata Diallo"],
+  "atletico|sevilla": ["Diego Simeone", "César Azpilicueta", "Éver Banega", "José Antonio Reyes", "Moacir", "Kévin Gameiro", "Luciano Vietto", "Geoffrey Kondogbia", "Vitolo", "Matías Kranevitter", "Manu del Moral", "José María Romero Poyón", "Salva Ballesta", "Miquel Soler", "Juan Velasco Damas", "Sebastián Losada", "Esteban Suárez", "Antonio López Habas", "Pablo Alfaro", "Lola Gallardo", "Alexandra López", "Grace Kazadi"],
+  "real-madrid|valencia": ["Denis Cheryshev", "Fernando Gago", "Ezequiel Garay", "Álvaro Negredo", "Roberto Soldado", "Fernando Morientes", "Santiago Cañizares", "Rodrigo Moreno", "Dani Parejo", "Predrag Mijatović", "Iván Helguera", "Quique Sánchez Flores", "Iván Campo", "César Sánchez Domínguez", "Luis Milla", "José Manuel Ochotorena", "Rubén Sobrinas", "Juan Marrero Pérez", "Miguel Tendillo", "Simón Lecue", "Juan Cruz Sol", "Gerardo", "Raúl Albiol", "Claudia Zornoza"],
+  "real-madrid|sevilla": ["Sergio Ramos", "Javier Hernández", "Davor Šuker", "Denis Cheryshev", "Javier Saviola", "José Antonio Reyes", "Álvaro Negredo", "Pablo Sarabia", "Iván Zamorano", "Robert Prosinečki", "Aleix Vidal", "Diego López", "Júlio Baptista", "Jesús Pereda", "Paco Buyo", "Dejan Petković", "David Soria", "Juan Agüero", "Sergio Sánchez", "Miquel Soler", "Enrique Mateos", "Bryan Rabello", "Sebastián Losada", "Nando Muñoz", "David Cobeño", "Federico Magallanes", "Olga Carmona"],
+  "athletic|sevilla": ["Fernando Llorente", "Luis de la Fuente", "Aitor Ocio", "Patxi Ferreira", "Vanesa Gimbert"],
+  "real-sociedad|sevilla": ["Adnan Januzaj", "Jonathas", "Carlos Fernández", "José Luis Martí", "Raúl Navas", "Jon Guridi", "Gema Gili"],
+  "real-sociedad|valencia": ["David Silva", "Valeri Karpin", "Mathew Ryan", "Miguel Ángel Moyá", "Gerardo", "Gema Gili", "Manuela Lareo"],
+  "athletic|valencia": ["Aritz Aduriz", "Andoni Zubizarreta", "Asier del Horno", "Iago Herrerín", "Unai Núñez", "Julen Agirrezabala", "Manuela Lareo"],
+  "athletic|barcelona": ["Ernesto Valverde", "Julio Salinas", "Jon Andoni Goikoetxea", "Andoni Zubizarreta", "Santi Ezquerro", "José Ramón Alexanko", "Iñigo Martínez", "Irene Paredes", "Marta Unzué", "Leire Landa"],
+  "barcelona|real-sociedad": ["Claudio Bravo", "Txiki Begiristain", "Rafinha", "José Mari Bakero", "Periko Alonso", "Meho Kodro", "Franck Songo'o", "Luis López Rekarte", "Antoine Griezmann", "Irene Paredes", "Bárbara Latorre", "Gema Gili", "Leire Landa", "Nuria Rábano Blanco", "Elixabete Sarasola"],
+  "real-sociedad|villarreal": ["Nihat Kahveci", "José Ángel Valdés", "Javi Gracia", "Joseba Llorente", "Imanol Alguacil", "Gerardo", "Paola Soldevila"],
+  "barcelona|villarreal": ["Pepe Reina", "Juan Román Riquelme", "Giovani dos Santos", "Martín Cáceres", "Paco Alcácer", "Manu Trigueros", "Edmílson", "Juliano Belletti", "Juan Pablo Sorín", "Jonathan dos Santos", "Juan Antonio Pizzi", "Sonny Anderson", "Javier Aquino", "Guillermo Amor", "Thomas Christiansen", "Roberto Fernández Bonillo", "Ilias Akhomach", "Matías Nahuel Leiva", "Joan Ángel Román", "Roger Garcia Junyent", "Quique Álvarez", "Salma Paralluelo", "Virginia Torrecilla"],
+  "chelsea|espanyol": [], "atletico|girona": [], "athletic|sabadell": [], "girona|villarreal": []
 };
 
-// Pistes: per a cada pas, la posició i la nacionalitat d'un dels jugadors possibles (el primer de la llista). Primer es dóna la posició i, si es torna a prémer, la nacionalitat.
+// Pistes: posició i nacionalitat del primer jugador de la llista (primer es dóna la posició i, si es torna a prémer, la nacionalitat).
 window.PISTES = {
-  "athletic|barcelona": { pos: "Davanter", nac: "Espanya" },
-  "athletic|real-sociedad": { pos: "Porter", nac: "Espanya" },
-  "athletic|valencia": { pos: "Davanter", nac: "Espanya" },
-  "atletico|barcelona": { pos: "Davanter", nac: "Argentina" },
-  "atletico|chelsea": { pos: "Davanter", nac: "Espanya" },
-  "atletico|psg": { pos: "Migcampista", nac: "Itàlia" },
-  "atletico|sevilla": { pos: "Migcampista", nac: "Argentina" },
   "barcelona|chelsea": { pos: "Davanter", nac: "Camerun" },
   "barcelona|psg": { pos: "Davanter", nac: "Suècia" },
-  "barcelona|real-madrid": { pos: "Extrem", nac: "Portugal" },
-  "barcelona|real-sociedad": { pos: "Porter", nac: "Xile" },
-  "barcelona|sevilla": { pos: "Defensa", nac: "Brasil" },
-  "barcelona|valencia": { pos: "Davanter", nac: "Espanya" },
+  "atletico|chelsea": { pos: "Davanter", nac: "Espanya" },
   "psg|real-madrid": { pos: "Davanter", nac: "França" },
+  "atletico|psg": { pos: "Migcampista", nac: "Itàlia" },
+  "atletico|sevilla": { pos: "Migcampista", nac: "Argentina" },
   "real-madrid|valencia": { pos: "Migcampista", nac: "Rússia" },
-  "sevilla|valencia": { pos: "Migcampista", nac: "Rússia" }
+  "real-madrid|sevilla": { pos: "Defensa", nac: "Espanya" },
+  "athletic|sevilla": { pos: "Davanter", nac: "Espanya" },
+  "real-sociedad|sevilla": { pos: "Extrem", nac: "Bèlgica" },
+  "real-sociedad|valencia": { pos: "Migcampista", nac: "Espanya" },
+  "athletic|valencia": { pos: "Davanter", nac: "Espanya" },
+  "athletic|barcelona": { pos: "Davanter", nac: "Espanya" },
+  "barcelona|real-sociedad": { pos: "Porter", nac: "Xile" },
+  "real-sociedad|villarreal": { pos: "Davanter", nac: "Turquia" },
+  "barcelona|villarreal": { pos: "Porter", nac: "Espanya" }
+};
+
+// Fotos (img/jugadors/): nom -> fitxer
+window.FOTOS = {
+  "Samuel Eto'o": "samuel-eto-o.jpg",
+  "Cesc Fàbregas": "cesc-fabregas.jpg",
+  "Deco": "deco.jpg",
+  "Ricardo Quaresma": "ricardo-quaresma.jpg",
+  "João Félix": "joao-felix.jpg",
+  "Pedro": "pedro.jpg",
+  "Andreas Christensen": "andreas-christensen.jpg",
+  "Eiður Guðjohnsen": "ei-ur-gu-johnsen.jpg",
+  "Emmanuel Petit": "emmanuel-petit.jpg",
+  "Mark Hughes": "mark-hughes.jpg",
+  "Juliano Belletti": "juliano-belletti.jpg",
+  "Oriol Romeu": "oriol-romeu.jpg",
+  "Boudewijn Zenden": "boudewijn-zenden.jpg",
+  "Albert Ferrer": "albert-ferrer.jpg",
+  "Winston Bogarde": "winston-bogarde.jpg",
+  "Keira Walsh": "keira-walsh.jpg",
+  "Zlatan Ibrahimović": "zlatan-ibrahimovic.jpg",
+  "Ronaldinho": "ronaldinho.jpg",
+  "Dani Alves": "dani-alves.jpg",
+  "Thiago Motta": "thiago-motta.jpg",
+  "Rafinha": "rafinha.jpg",
+  "Maxwell": "maxwell.jpg",
+  "Juan Pablo Sorín": "juan-pablo-sorin.jpg",
+  "Frédéric Déhu": "frederic-dehu.jpg",
+  "Lieke Martens": "lieke-martens.jpg",
+  "Élise Bussaglia": "elise-bussaglia.jpg",
+  "Nataša Andonova": "natasa-andonova.jpg",
+  "Kheira Hamraoui": "kheira-hamraoui.jpg",
+  "Fernando Torres": "fernando-torres.jpg",
+  "Diego Costa": "diego-costa.jpg",
+  "César Azpilicueta": "cesar-azpilicueta.jpg",
+  "Filipe Luís": "filipe-luis.jpg",
+  "Tiago": "tiago.jpg",
+  "Mateja Kežman": "mateja-kezman.jpg",
+  "Jimmy Floyd Hasselbaink": "jimmy-floyd-hasselbaink.jpg",
+  "Nicolas Anelka": "nicolas-anelka.jpg",
+  "David Beckham": "david-beckham.jpg",
+  "Claude Makélélé": "claude-makelele.jpg",
+  "Pablo Sarabia": "pablo-sarabia.jpg",
+  "Gabriel Heinze": "gabriel-heinze.jpg",
+  "Lassana Diarra": "lassana-diarra.jpg",
+  "Kévin Gameiro": "kevin-gameiro.jpg",
+  "Grégory Coupet": "gregory-coupet.jpg",
+  "Souleymane Bamba": "souleymane-bamba.jpg",
+  "Peter Luccin": "peter-luccin.jpg",
+  "Diego Simeone": "diego-simeone.jpg",
+  "Éver Banega": "ever-banega.jpg",
+  "José Antonio Reyes": "jose-antonio-reyes.jpg",
+  "Luciano Vietto": "luciano-vietto.jpg",
+  "Vitolo": "vitolo.jpg",
+  "Manu del Moral": "manu-del-moral.jpg",
+  "Salva Ballesta": "salva-ballesta.jpg",
+  "Miquel Soler": "miquel-soler.jpg",
+  "Esteban Suárez": "esteban-suarez.jpg",
+  "Antonio López Habas": "antonio-lopez-habas.jpg",
+  "Lola Gallardo": "lola-gallardo.jpg",
+  "Alexandra López": "alexandra-lopez.jpg",
+  "Grace Kazadi": "grace-kazadi.jpg",
+  "Álvaro Negredo": "alvaro-negredo.jpg",
+  "Roberto Soldado": "roberto-soldado.jpg",
+  "Fernando Morientes": "fernando-morientes.jpg",
+  "Santiago Cañizares": "santiago-canizares.jpg",
+  "Rodrigo Moreno": "rodrigo-moreno.jpg",
+  "Dani Parejo": "dani-parejo.jpg",
+  "Predrag Mijatović": "predrag-mijatovic.jpg",
+  "Iván Helguera": "ivan-helguera.jpg",
+  "Iván Campo": "ivan-campo.jpg",
+  "César Sánchez Domínguez": "cesar-sanchez-dominguez.jpg",
+  "José Manuel Ochotorena": "jose-manuel-ochotorena.jpg",
+  "Gerardo": "gerardo.jpg"
 };
