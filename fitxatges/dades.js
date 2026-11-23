@@ -57,7 +57,7 @@ window.PARELLES = {
   "chelsea|man-city": ["Kevin De Bruyne", "Frank Lampard", "Nicolas Anelka", "Raheem Sterling", "Cole Palmer", "Mateo Kovačić", "Wayne Bridge", "Shaun Wright-Phillips", "Willy Caballero", "Nathan Aké", "Daniel Sturridge", "George Weah", "Tal Ben Haim", "Scott Sinclair"],
   "atletico|man-city": ["Sergio Agüero", "Julián Álvarez", "Rodri", "Martín Demichelis", "Martin Petrov", "Kiki Musampa"],
   "chelsea|psg": ["Thiago Silva", "David Luiz", "Nicolas Anelka", "Claude Makélélé", "Christopher Nkunku", "George Weah", "Lassana Diarra", "Mateja Kežman"],
-  "atletico|psg": ["Thiago Motta", "Kevin Gameiro", "Lucas Hernández", "Mateja Kežman", "Cristian Rodríguez", "Grégory Coupet", "Peter Luccin"],
+  "atletico|psg": ["Thiago Motta", "Kang-in Lee", "Kevin Gameiro", "Lucas Hernández", "Mateja Kežman", "Cristian Rodríguez", "Grégory Coupet", "Peter Luccin"],
   "chelsea|villarreal": ["Nicolas Jackson", "Alexandre Pato", "Juliano Belletti", "Bertrand Traoré"],
   "betis|chelsea": ["Gustavo Poyet", "Charly Musonda"],
   "atletico|villarreal": ["Diego Forlán", "Diego Godín", "Rodri", "Joan Capdevila", "Fabricio Coloccini", "Sergio Asenjo", "Luciano Vietto", "Adrián López", "Oliver Torres", "Ariel Ibagaza", "Léo Baptistão", "Rafael Santos Borré"],
@@ -67,4 +67,24 @@ window.PARELLES = {
   "barcelona|real-madrid": ["Luis Figo", "Ronaldo Nazário", "Michael Laudrup", "Bernd Schuster", "Luis Enrique", "Gheorghe Hagi", "Javier Saviola", "Julen Lopetegui", "Robert Prosinečki", "Samuel Eto'o", "Albert Celades", "Alfonso Pérez", "Ricardo Zamora", "José Samitier"],
   "betis|real-madrid": ["Isco", "Dani Ceballos", "Sergio Canales", "Antonio Adán", "Rafael van der Vaart", "Javi García", "Robert Jarni", "Willian José", "Rafael Gordillo", "Alfonso Pérez"],
   "real-madrid|villarreal": ["Denis Cheryshev", "Roberto Soldado", "Diego López", "Dani Parejo", "Raúl Albiol", "Borja Valero", "Cicinho"]
+};
+
+// Pistes: per a cada pas, la posició i la nacionalitat d'un dels jugadors possibles (el primer de la llista). Primer es dóna la posició i, si es torna a prémer, la nacionalitat.
+window.PISTES = {
+  "athletic|barcelona": { pos: "Davanter", nac: "Espanya" },
+  "athletic|real-sociedad": { pos: "Porter", nac: "Espanya" },
+  "athletic|valencia": { pos: "Davanter", nac: "Espanya" },
+  "atletico|barcelona": { pos: "Davanter", nac: "Argentina" },
+  "atletico|chelsea": { pos: "Davanter", nac: "Espanya" },
+  "atletico|psg": { pos: "Migcampista", nac: "Itàlia" },
+  "atletico|sevilla": { pos: "Migcampista", nac: "Argentina" },
+  "barcelona|chelsea": { pos: "Davanter", nac: "Camerun" },
+  "barcelona|psg": { pos: "Davanter", nac: "Suècia" },
+  "barcelona|real-madrid": { pos: "Extrem", nac: "Portugal" },
+  "barcelona|real-sociedad": { pos: "Porter", nac: "Xile" },
+  "barcelona|sevilla": { pos: "Defensa", nac: "Brasil" },
+  "barcelona|valencia": { pos: "Davanter", nac: "Espanya" },
+  "psg|real-madrid": { pos: "Davanter", nac: "França" },
+  "real-madrid|valencia": { pos: "Migcampista", nac: "Rússia" },
+  "sevilla|valencia": { pos: "Migcampista", nac: "Rússia" }
 };
