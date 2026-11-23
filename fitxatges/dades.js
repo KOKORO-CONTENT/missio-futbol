@@ -2,7 +2,6 @@
 // i ha de dir un jugador que hagi jugat als dos clubs (el de dalt i el triat). El triat és el punt de partida de la ronda següent.
 // Document de la proposta: Barça · Arsenal/Bayern · City/PSG · Chelsea/Atlètic · Vila-real/Betis · Barça/Madrid.
 // Ampliat (a petició del Jordi) amb més equips espanyols: · Sevilla/València · Athletic/Reial Societat.
-window.CONCURSANTS = ["Gemma", "Iris"];
 
 // [id (fitxer d'img/escuts), nom que es veu]
 window.CLUBS = {
