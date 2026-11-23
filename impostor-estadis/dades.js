@@ -1,5 +1,6 @@
 // Preguntes de "L'impostor d'estadis".
-// ESTADIS: clau -> nom que es mostra i escuts (img/escuts/<escut>.png) que surten al costat de la foto (img/estadis/<clau>.jpg).
+// ESTADIS: clau -> nom que es mostra i escuts (img/escuts/<escut>.png). La imatge de l'estadi és img/estadis/<clau>.png (maqueta).
+// Les maquetes dels 9 estadis nous (san-mames ... parc-des-princes) són provisionals (eines/maqueta.py); es poden substituir deixant el PNG a img/estadis/<clau>.png.
 window.ESTADIS = {
   "camp-nou": { nom: "Camp Nou", escuts: ["camp-nou"] },
   "bernabeu": { nom: "Santiago Bernabéu", escuts: ["bernabeu"] },
@@ -26,39 +27,50 @@ window.ESTADIS = {
   "maracana": { nom: "Maracanã", escuts: [] },
   "principality": { nom: "Cardiff (Principality)", escuts: ["principality"] },
   "luzhniki": { nom: "Luzhniki (Moscou)", escuts: [] },
-  "olimpiyskiy": { nom: "Olímpic de Kíiv", escuts: ["olimpiyskiy"] }
+  "olimpiyskiy": { nom: "Olímpic de Kíiv", escuts: ["olimpiyskiy"] },
+  // Nous (maqueta provisional)
+  "san-mames": { nom: "Nou San Mamés", escuts: ["san-mames"] },
+  "nu-stadium": { nom: "Nu Stadium", escuts: ["nu-stadium"] },
+  "mestalla": { nom: "Mestalla", escuts: ["mestalla"] },
+  "balaidos": { nom: "Balaídos", escuts: ["balaidos"] },
+  "la-rosaleda": { nom: "La Rosaleda", escuts: ["la-rosaleda"] },
+  "sanchez-pizjuan": { nom: "Sánchez-Pizjuán", escuts: ["sanchez-pizjuan"] },
+  "vallecas": { nom: "Vallecas", escuts: ["vallecas"] },
+  "mendizorroza": { nom: "Mendizorroza", escuts: ["mendizorroza"] },
+  "parc-des-princes": { nom: "Parc dels Prínceps", escuts: ["parc-des-princes"] }
 };
-// Preguntes: { q: enunciat (*verd*), f: sticker del jugador (stickers/), op: 4 estadis, ok: posició a "op" de la resposta correcta,
-//              fi: frase conclusió que surt en resoldre }
+// Preguntes: { q: enunciat (*verd*), f: sticker del jugador (stickers/; sense "f" no surt cap jugador al cap),
+//              op: 4 estadis, ok: posició a "op" de la resposta correcta,
+//              x: frase MOLT breu de cada estadi (mateix ordre que "op"), que surt a sota en resoldre }
 window.PREGUNTES = [
+  { q: "Quin d'aquests clubs ha passat *MÉS* temporades a Segona Divisió?",
+    op: ["camp-nou", "bernabeu", "metropolitano", "san-mames"], ok: 2,
+    x: ["Barça: mai ha baixat", "Madrid: mai ha baixat", "Atlètic: 2 temporades (2000-02)", "Athletic: mai ha baixat"] },
+  { q: "Quin estadi és el *MÉS NOU*?",
+    op: ["etihad", "nu-stadium", "san-mames", "rcde"], ok: 1,
+    x: ["Obert el 2002", "Obert el 2026", "Obert el 2013", "Obert el 2009"] },
   { q: "A quin estadi *NO* ha marcat mai Harry Kane?", f: "harry-kane",
-    op: ["wembley", "bernabeu", "allianz-arena", "metropolitano"], ok: 3,
-    fi: "Hi va jugar la final de la Champions del 2019 (0-2 contra el Liverpool), però no va marcar" },
-  { q: "A quin estadi *NO* ha marcat mai Vinícius?", f: "vinicius-junior",
-    op: ["bernabeu", "allianz-arena", "anfield", "old-trafford"], ok: 3,
-    fi: "El Reial Madrid no hi juga des del 2013, abans que ell arribés al club" },
+    op: ["camp-nou", "bernabeu", "metropolitano", "san-siro"], ok: 0,
+    x: ["Mai hi ha marcat", "Gol el 7-4-2026 (Bayern)", "Gol de penal el 15-11-2026 (amb Anglaterra)", "Gol el 16-4-2025 (Inter 2-2 Bayern)"] },
   { q: "A quin estadi han expulsat *MÉS* vegades Sergio Ramos?", f: "sergio-ramos",
-    op: ["camp-nou", "calderon", "old-trafford", "san-siro"], ok: 0,
-    fi: "Als clàssics del Camp Nou ha vist vermelles, com la del 2016" },
+    op: ["calderon", "camp-nou", "old-trafford", "parc-des-princes"], ok: 1,
+    x: ["1 vermella (2009)", "3 vermelles (2010, 2012 i 2016)", "Cap vermella", "Cap vermella"] },
   { q: "A quin estadi *NO* ha jugat mai Lamine?", f: "lamine-yamal",
     op: ["etihad", "allianz-arena", "wembley", "el-sadar"], ok: 0,
-    fi: "El City el va voler fitxar el 2023 i ell va dir que no: l'Etihad encara no l'ha trepitjat" },
-  { q: "A quin estadi *NO* ha jugat mai Vedat Muriqi?", f: "vedat-muriqi",
-    op: ["montilivi", "la-cartuja", "la-romareda", "da-luz"], ok: 2,
-    fi: "El Saragossa juga a Segona i el Mallorca de Muriqi, a Primera: no s'han creuat" },
+    x: ["Mai hi ha jugat", "Gol a França a l'Euro 2024", "Gol el 26-9-2026 (Anglaterra 2-3 Espanya)", "Hi va jugar: Osasuna 4-2 Barça (2024)"] },
   { q: "A quin estadi ha estat *EXPULSAT* Hansi Flick?", f: "hansi-flick",
     op: ["villamarin", "camp-nou", "rcde", "coliseum"], ok: 0,
-    fi: "El 7 de desembre de 2024 va veure la vermella al 2-2 del Barça, per protestar un penal" },
-  { q: "A quin estadi *NO* ha marcat mai Clàudia Pina?", f: "claudia-pina",
-    op: ["stamford-bridge", "camp-nou", "metropolitano", "parc-ol"], ok: 3,
-    fi: "Ha marcat a Stamford Bridge, al Camp Nou i al Metropolitano, però al Parc OL encara no" },
-  { q: "A quin estadi *NO* ha marcat mai Leo Messi?", f: "lionel-messi",
-    op: ["camp-nou", "bernabeu", "stamford-bridge", "old-trafford"], ok: 3,
-    fi: "Hi va jugar el 2008 i el 2019, però en cap dels dos partits va marcar" },
-  { q: "A quin estadi *NO* va marcar Cristiano en una final de Champions?", f: "cristiano-ronaldo",
-    op: ["principality", "da-luz", "luzhniki", "olimpiyskiy"], ok: 3,
-    fi: "El 2018 va guanyar la tretzena, però els gols van ser de Benzema i de Bale (dos)" },
-  { q: "A quin estadi *NO* va marcar Messi en una final?", f: "lionel-messi",
-    op: ["olimpico", "wembley", "lusail", "maracana"], ok: 3,
-    fi: "Hi va perdre la final del Mundial 2014 i hi va guanyar la Copa Amèrica 2021, però no va marcar" }
+    x: ["Vermella el 7-12-2024 (Betis 2-2 Barça)", "Obert el 1957", "Obert el 2009", "Obert el 1998"] },
+  { q: "Quin estadi té *MÉS* capacitat?",
+    op: ["stamford-bridge", "montilivi", "da-luz", "allianz-arena"], ok: 3,
+    x: ["Uns 40.000 seients", "14.624 seients", "68.100 seients", "75.024 seients"] },
+  { q: "Quin és l'estadi *MÉS ANTIC* de la Lliga?",
+    op: ["mestalla", "balaidos", "la-rosaleda", "sanchez-pizjuan"], ok: 0,
+    x: ["Obert el 1923", "Obert el 1928", "Obert el 1941", "Obert el 1958"] },
+  { q: "Quin estadi té *MENYS* reformes estructurals?",
+    op: ["vallecas", "san-mames", "metropolitano", "camp-nou"], ok: 1,
+    x: ["Obert el 1976", "Obert el 2013 i no s'ha tocat", "Obert el 1994, reformat fins al 2017", "Obert el 1957, en obres des del 2023"] },
+  { q: "Quin estadi té *MENYS* capacitat?",
+    op: ["coliseum", "el-sadar", "rcde", "mendizorroza"], ok: 0,
+    x: ["16.500 seients", "23.576 seients", "Uns 40.000 seients", "19.840 seients"] }
 ];

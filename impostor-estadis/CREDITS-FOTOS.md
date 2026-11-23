@@ -39,3 +39,32 @@
 - img/escuts/roma.png: AS Roma · AS ROMA Text Logo 2020 - 2021 .svg · Associazione Sportiva Roma S.p.A. · Public domain · https://en.wikipedia.org/wiki/File:AS%20ROMA%20Text%20Logo%202020%20-%202021%20.svg
 - img/escuts/lazio.png: SS Lazio · S.S. Lazio badge.svg ·  · Fair use · https://en.wikipedia.org/wiki/File:S.S.%20Lazio%20badge.svg
 - img/estadis/la-cartuja.jpg: Estadio Olímpico de La Cartuja, Sevilla.jpg · CC BY-SA 4.0 · https://commons.wikimedia.org/wiki/File:Estadio_Ol%C3%ADmpico_de_La_Cartuja,_Sevilla.jpg
+- img/estadis/san-mames.jpg: San Mamés Stadium · Panorama_im_San_Mamés_Stadion.jpg · Marco Almbauer · CC0 · https://en.wikipedia.org/wiki/File:Panorama_im_San_Mam%C3%A9s_Stadion.jpg
+- img/escuts/san-mames.png: Athletic Bilbao · Athletic Club crest 1901.png · Brgesto · Public domain · https://en.wikipedia.org/wiki/File:Athletic%20Club%20crest%201901.png
+- img/estadis/nu-stadium.jpg: Nu Stadium · Nu_Stadium_2026.jpg · Cuban Boy · CC0 · https://en.wikipedia.org/wiki/File:Nu_Stadium_2026.jpg
+- img/estadis/mestalla.jpg: Mestalla Stadium · Mestalla_Stadium_Valencia_vs_Villarreal_2026.7.jpg · Byxelized · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Mestalla_Stadium_Valencia_vs_Villarreal_2026.7.jpg
+- img/escuts/mestalla.png: Valencia CF · Escut de València.svg · Macondo · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Escut%20de%20Val%C3%A8ncia.svg
+- img/estadis/balaidos.jpg: Estadio Balaídos · Balaidos_hoy.jpg · BandidoBanderas · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Balaidos_hoy.jpg
+- img/estadis/la-rosaleda.jpg: La Rosaleda Stadium · IMG-20220228-WA0055.jpg · Meloptido · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:IMG-20220228-WA0055.jpg
+- img/estadis/sanchez-pizjuan.jpg: Ramón Sánchez Pizjuán Stadium · 2022-10-25_1_Estadio_Ramón_Sánchez_Pizjuán_(Sevilla_FC).jpg · Niels98 · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:2022-10-25_1_Estadio_Ram%C3%B3n_S%C3%A1nchez_Pizju%C3%A1n_(Sevilla_FC).jpg
+- img/estadis/mendizorroza.jpg: Mendizorroza Stadium · Mendizorrotza_diciembre_2021.jpg · MarcosMarinM · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Mendizorrotza_diciembre_2021.jpg
+- img/escuts/mendizorroza.png: Deportivo Alavés · Deportivo Alaves logo (2020).svg · Deportivo Alavés, SAD
+ · PD · https://en.wikipedia.org/wiki/File:Deportivo%20Alaves%20logo%20(2020).svg
+- img/estadis/parc-des-princes.jpg: Parc des Princes · Paris_Le_Parc_des_Princes.jpg · c:User:Arne mueseler
+ · CC-BY-SA-3.0 · https://en.wikipedia.org/wiki/File:Paris_Le_Parc_des_Princes.jpg
+- img/escuts/parc-des-princes.png: Paris Saint-Germain F.C. · Logo Paris SG 1992.svg · Paris Saint-Germain Football Club · Public domain · https://en.wikipedia.org/wiki/File:Logo%20Paris%20SG%201992.svg
+- img/escuts/nu-stadium.png: Inter Miami CF · Inter Miami CF logo.svg ·  · Fair use · https://en.wikipedia.org/wiki/File:Inter%20Miami%20CF%20logo.svg
+- img/escuts/balaidos.png: File:RC Celta de Vigo logo.svg ·  · Fair use
+- img/escuts/sanchez-pizjuan.png: File:Sevilla FC logo.svg ·  · Fair use
+- img/escuts/vallecas.png: File:Rayo Vallecano logo.svg ·  · Fair use
+- img/estadis/vallecas.jpg: File:Estadio de Vallecas 18 de febrero de 2025.jpg · 4theliberty · CC0
+- img/estadis/san-mames.jpg: San Mamés Stadium · Panorama_im_San_Mamés_Stadion.jpg · Marco Almbauer · CC0 · https://en.wikipedia.org/wiki/File:Panorama_im_San_Mam%C3%A9s_Stadion.jpg
+- img/estadis/nu-stadium.jpg: Nu Stadium · Nu_Stadium_2026.jpg · Cuban Boy · CC0 · https://en.wikipedia.org/wiki/File:Nu_Stadium_2026.jpg
+- img/estadis/mestalla.jpg: Mestalla Stadium · Mestalla_Stadium_Valencia_vs_Villarreal_2026.7.jpg · Byxelized · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Mestalla_Stadium_Valencia_vs_Villarreal_2026.7.jpg
+- img/estadis/balaidos.jpg: Estadio Balaídos · Balaidos_hoy.jpg · BandidoBanderas · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Balaidos_hoy.jpg
+- img/estadis/la-rosaleda.jpg: La Rosaleda Stadium · IMG-20220228-WA0055.jpg · Meloptido · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:IMG-20220228-WA0055.jpg
+- img/estadis/sanchez-pizjuan.jpg: Ramón Sánchez Pizjuán Stadium · 2022-10-25_1_Estadio_Ramón_Sánchez_Pizjuán_(Sevilla_FC).jpg · Niels98 · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:2022-10-25_1_Estadio_Ram%C3%B3n_S%C3%A1nchez_Pizju%C3%A1n_(Sevilla_FC).jpg
+- img/estadis/mendizorroza.jpg: Mendizorroza Stadium · Mendizorrotza_diciembre_2021.jpg · MarcosMarinM · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Mendizorrotza_diciembre_2021.jpg
+- img/estadis/parc-des-princes.jpg: Parc des Princes · Paris_Le_Parc_des_Princes.jpg · c:User:Arne mueseler
+ · CC-BY-SA-3.0 · https://en.wikipedia.org/wiki/File:Paris_Le_Parc_des_Princes.jpg
+- img/estadis/vallecas.jpg: File:Estadio de Vallecas 18 de febrero de 2025.jpg · 4theliberty · CC0
