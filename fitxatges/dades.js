@@ -3,27 +3,30 @@
 // (sense cap altre club entremig de la seva trajectòria; només fitxatges del 2005 en endavant).
 // Només aquests 14 clubs + el Barça. El Barça no surt fins a la ronda 10. Un club es pot repetir, però mai a la ronda següent.
 
-window.CLUBS = {"barcelona":"Barça","chelsea":"Chelsea","psg":"PSG","inter":"Inter","man-united":"Man. United","arsenal":"Arsenal","real-madrid":"Madrid","atletico":"Atlètic","bayern":"Bayern","dortmund":"Dortmund","man-city":"Man. City","athletic":"Athletic","liverpool":"Liverpool","tottenham":"Tottenham","napoli":"Nàpols"};
+window.CLUBS = {"barcelona":"Barça","chelsea":"Chelsea","psg":"PSG","inter":"Inter","man-united":"Man. United","arsenal":"Arsenal","real-madrid":"Madrid","atletico":"Atlètic","bayern":"Bayern","dortmund":"Dortmund","man-city":"Man. City","athletic":"Athletic","liverpool":"Liverpool","tottenham":"Tottenham","napoli":"Nàpols","juventus":"Juventus","milan":"Milan","real-sociedad":"Reial Societat"};
 
 // Traspassos directes possibles: de cada club cap a quins clubs hi ha algun jugador (ordenats de més a menys jugadors).
 window.GRAF = {
   inici: "barcelona", meta: "barcelona", minRonda: 10, primera: ["chelsea", "psg"],
   arestes: {
-  "barcelona": ["psg","atletico","man-city","chelsea","arsenal","bayern","inter","liverpool","man-united","dortmund","real-madrid","tottenham"],
+  "barcelona": ["psg","atletico","man-city","chelsea","arsenal","bayern","inter","liverpool","man-united","dortmund","real-madrid","tottenham","juventus","milan"],
   "arsenal": ["barcelona","man-city","chelsea","man-united","atletico","tottenham","inter","real-madrid"],
-  "atletico": ["barcelona","chelsea","inter","man-city","liverpool","real-madrid","bayern","tottenham"],
+  "atletico": ["barcelona","chelsea","inter","man-city","liverpool","real-madrid","bayern","tottenham","juventus","milan"],
   "athletic": ["barcelona","real-madrid","bayern","man-city"],
-  "psg": ["man-united","barcelona","arsenal","bayern","liverpool","atletico","man-city","athletic","real-madrid"],
-  "man-city": ["barcelona","chelsea","man-united","arsenal","liverpool","bayern","real-madrid","tottenham","inter","dortmund","atletico","napoli"],
+  "psg": ["man-united","barcelona","arsenal","bayern","liverpool","atletico","man-city","athletic","real-madrid","chelsea"],
+  "man-city": ["barcelona","chelsea","man-united","arsenal","liverpool","bayern","real-madrid","tottenham","inter","dortmund","atletico","napoli","milan","real-sociedad"],
   "liverpool": ["real-madrid","chelsea","barcelona","arsenal","man-united","napoli","man-city","tottenham","bayern","inter","dortmund"],
-  "man-united": ["arsenal","inter","real-madrid","dortmund","napoli","man-city","barcelona","chelsea","psg"],
+  "man-united": ["arsenal","inter","real-madrid","dortmund","napoli","man-city","barcelona","chelsea","psg","juventus"],
   "chelsea": ["arsenal","real-madrid","atletico","liverpool","man-city","tottenham","barcelona","inter","napoli","psg","bayern","dortmund","man-united"],
-  "real-madrid": ["bayern","inter","man-united","tottenham","psg","atletico","napoli","chelsea","arsenal","liverpool","man-city"],
-  "dortmund": ["bayern","man-united","man-city","arsenal","barcelona","real-madrid","chelsea"],
+  "real-madrid": ["bayern","inter","man-united","tottenham","psg","atletico","napoli","chelsea","arsenal","liverpool","man-city","juventus","real-sociedad"],
+  "dortmund": ["bayern","man-united","man-city","arsenal","barcelona","real-madrid","chelsea","real-sociedad"],
   "tottenham": ["napoli","atletico","liverpool","man-united","real-madrid","psg","dortmund","inter","bayern"],
   "bayern": ["arsenal","psg","man-united","dortmund","liverpool","chelsea","inter","barcelona","napoli","man-city","real-madrid","atletico"],
   "napoli": ["inter","psg","bayern","chelsea"],
-  "inter": ["psg","man-city","chelsea","napoli","real-madrid","tottenham","barcelona"]
+  "inter": ["psg","man-city","chelsea","napoli","real-madrid","tottenham","barcelona","juventus"],
+  "juventus": ["man-united","bayern","man-city","psg","real-madrid","atletico"],
+  "milan": ["psg","liverpool"],
+  "real-sociedad": ["atletico","arsenal"]
   }
 };
 
@@ -164,7 +167,29 @@ window.PARELLES = {
   "man-city>napoli": ["Kevin De Bruyne"],
   "man-united>psg": ["Ángel Di María"],
   "real-madrid>psg": ["Sergio Ramos", "Keylor Navas", "Marco Asensio"],
-  "bayern>barcelona": ["Robert Lewandowski", "Arturo Vidal"]
+  "bayern>barcelona": ["Robert Lewandowski", "Arturo Vidal"],
+  "real-madrid>juventus": ["Cristiano Ronaldo", "Álvaro Morata"],
+  "juventus>man-united": ["Cristiano Ronaldo", "Paul Pogba"],
+  "man-united>juventus": ["Paul Pogba"],
+  "juventus>bayern": ["Matthijs de Ligt"],
+  "inter>juventus": ["João Cancelo"],
+  "juventus>man-city": ["João Cancelo"],
+  "barcelona>juventus": ["Dani Alves"],
+  "juventus>psg": ["Dani Alves"],
+  "juventus>real-madrid": ["Álvaro Morata"],
+  "atletico>juventus": ["Álvaro Morata"],
+  "juventus>atletico": ["Álvaro Morata"],
+  "atletico>milan": ["Álvaro Morata"],
+  "barcelona>milan": ["Zlatan Ibrahimović"],
+  "milan>psg": ["Zlatan Ibrahimović", "Thiago Silva", "Gianluigi Donnarumma"],
+  "psg>chelsea": ["Thiago Silva"],
+  "milan>liverpool": ["Mario Balotelli"],
+  "man-city>milan": ["Mario Balotelli"],
+  "real-sociedad>atletico": ["Antoine Griezmann"],
+  "real-sociedad>arsenal": ["Mikel Merino", "Martín Zubimendi"],
+  "dortmund>real-sociedad": ["Alexander Isak"],
+  "man-city>real-sociedad": ["David Silva"],
+  "real-madrid>real-sociedad": ["Martin Ødegaard", "Takefusa Kubo"]
 };
 
 // Pistes del primer jugador de cada llista: 1) posició exacta (POR, DEF, LD, LI, MCD, MC, MCO, ED, EI, DC), 2) nacionalitat amb bandera (img/flags/), 3) any del traspàs.
@@ -303,7 +328,29 @@ window.PISTES = {
   "man-city>napoli": { pos: "MCO", iso: "be", nac: "Bèlgica", any: 2025 },
   "man-united>psg": { pos: "ED", iso: "ar", nac: "Argentina", any: 2015 },
   "real-madrid>psg": { pos: "DEF", iso: "es", nac: "Espanya", any: 2021 },
-  "bayern>barcelona": { pos: "DC", iso: "pl", nac: "Polònia", any: 2022 }
+  "bayern>barcelona": { pos: "DC", iso: "pl", nac: "Polònia", any: 2022 },
+  "real-madrid>juventus": { pos: "DC", iso: "pt", nac: "Portugal", any: 2018 },
+  "juventus>man-united": { pos: "DC", iso: "pt", nac: "Portugal", any: 2021 },
+  "man-united>juventus": { pos: "MC", iso: "fr", nac: "França", any: 2012 },
+  "juventus>bayern": { pos: "DEF", iso: "nl", nac: "Països Baixos", any: 2022 },
+  "inter>juventus": { pos: "LD", iso: "pt", nac: "Portugal", any: 2018 },
+  "juventus>man-city": { pos: "LD", iso: "pt", nac: "Portugal", any: 2019 },
+  "barcelona>juventus": { pos: "LD", iso: "br", nac: "Brasil", any: 2016 },
+  "juventus>psg": { pos: "LD", iso: "br", nac: "Brasil", any: 2017 },
+  "juventus>real-madrid": { pos: "DC", iso: "es", nac: "Espanya", any: 2016 },
+  "atletico>juventus": { pos: "DC", iso: "es", nac: "Espanya", any: 2020 },
+  "juventus>atletico": { pos: "DC", iso: "es", nac: "Espanya", any: 2022 },
+  "atletico>milan": { pos: "DC", iso: "es", nac: "Espanya", any: 2024 },
+  "barcelona>milan": { pos: "DC", iso: "se", nac: "Suècia", any: 2010 },
+  "milan>psg": { pos: "DC", iso: "se", nac: "Suècia", any: 2012 },
+  "psg>chelsea": { pos: undefined, iso: undefined, nac: undefined, any: 0 },
+  "milan>liverpool": { pos: "DC", iso: "it", nac: "Itàlia", any: 2014 },
+  "man-city>milan": { pos: "DC", iso: "it", nac: "Itàlia", any: 2013 },
+  "real-sociedad>atletico": { pos: "DC", iso: "fr", nac: "França", any: 2014 },
+  "real-sociedad>arsenal": { pos: "MC", iso: "es", nac: "Espanya", any: 2024 },
+  "dortmund>real-sociedad": { pos: "DC", iso: "se", nac: "Suècia", any: 2019 },
+  "man-city>real-sociedad": { pos: "MCO", iso: "es", nac: "Espanya", any: 2020 },
+  "real-madrid>real-sociedad": { pos: "MCO", iso: "no", nac: "Noruega", any: 2019 }
 };
 
 // Fotos (img/jugadors/): nom -> fitxer
@@ -590,5 +637,14 @@ window.FOTOS = {
   "Kevin De Bruyne": "kevin-de-bruyne.jpg",
   "Sergio Ramos": "sergio-ramos.jpg",
   "Keylor Navas": "keylor-navas.jpg",
-  "Marco Asensio": "marco-asensio.jpg"
+  "Marco Asensio": "marco-asensio.jpg",
+  "Paul Pogba": "paul-pogba.jpg",
+  "Dani Alves": "dani-alves.jpg",
+  "Thiago Silva": "thiago-silva.jpg",
+  "Mikel Merino": "mikel-merino.jpg",
+  "Martín Zubimendi": "martin-zubimendi.jpg",
+  "Alexander Isak": "alexander-isak.jpg",
+  "David Silva": "david-silva.jpg",
+  "Martin Ødegaard": "martin-degaard.jpg",
+  "Takefusa Kubo": "takefusa-kubo.jpg"
 };
