@@ -134,7 +134,7 @@ window.PARELLES = {
   "atletico>bayern": ["Lucas Hernández"],
   "tottenham>man-united": ["Michael Carrick", "Dimitar Berbatov"],
   "man-united>man-city": ["Owen Hargreaves", "Carlos Tevez"],
-  "real-madrid>man-united": ["Ángel Di María", "Raphaël Varane", "Álvaro Fernández"],
+  "real-madrid>man-united": ["Casemiro", "Ángel Di María", "Raphaël Varane", "Álvaro Fernández"],
   "man-united>dortmund": ["Shinji Kagawa", "Marcel Sabitzer", "Adnan Januzaj"],
   "man-united>napoli": ["Scott McTominay", "Rasmus Højlund", "Axel Tuanzebe"],
   "real-madrid>arsenal": ["Mesut Özil"],
@@ -295,7 +295,7 @@ window.PISTES = {
   "atletico>bayern": { pos: "LI", iso: "fr", nac: "França", any: 2019 },
   "tottenham>man-united": { pos: "MC", iso: "gb-eng", nac: "Anglaterra", any: 2006 },
   "man-united>man-city": { pos: "MC", iso: "gb-eng", nac: "Anglaterra", any: 2011 },
-  "real-madrid>man-united": { pos: "ED", iso: "ar", nac: "Argentina", any: 2014 },
+  "real-madrid>man-united": { pos: "MCD", iso: "br", nac: "Brasil", any: 2022 },
   "man-united>dortmund": { pos: "MCO", iso: "jp", nac: "Japó", any: 2014 },
   "man-united>napoli": { pos: "MC", iso: "gb-eng", nac: "Anglaterra", any: 2024 },
   "real-madrid>arsenal": { pos: "MCO", iso: "de", nac: "Alemanya", any: 2013 },
@@ -355,6 +355,7 @@ window.PISTES = {
 
 // Fotos (img/jugadors/): nom -> fitxer
 window.FOTOS = {
+  "Casemiro": "casemiro.jpg",
   "Lionel Messi": "lionel-messi.jpg",
   "Neymar": "neymar.jpg",
   "Ousmane Dembélé": "ousmane-dembele.jpg",
