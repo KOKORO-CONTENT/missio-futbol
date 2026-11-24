@@ -29,7 +29,7 @@ window.ESTADIS = {
   "luzhniki": { nom: "Luzhniki (Moscou)", escuts: [] },
   "olimpiyskiy": { nom: "Olímpic de Kíiv", escuts: ["olimpiyskiy"] },
   // Nous (maqueta provisional)
-  "san-mames": { nom: "Nou San Mamés", escuts: ["san-mames"] },
+  "san-mames": { nom: "San Mamés", escuts: ["san-mames"] },
   "nu-stadium": { nom: "Nu Stadium", escuts: ["nu-stadium"] },
   "mestalla": { nom: "Mestalla", escuts: ["mestalla"] },
   "balaidos": { nom: "Balaídos", escuts: ["balaidos"] },
@@ -44,7 +44,7 @@ window.ESTADIS = {
 //              x: frase MOLT breu de cada estadi (mateix ordre que "op"), que surt a sota en resoldre }
 window.PREGUNTES = [
   { q: "Quin d'aquests clubs ha passat *MÉS* temporades a Segona Divisió?",
-    op: ["camp-nou", "bernabeu", "metropolitano", "san-mames"], ok: 2,
+    op: ["camp-nou", "bernabeu", "calderon", "san-mames"], ok: 2,
     x: ["Barça: mai ha baixat", "Madrid: mai ha baixat", "Atlètic: 2 temporades (2000-02)", "Athletic: mai ha baixat"] },
   { q: "Quin estadi és el *MÉS NOU*?",
     op: ["etihad", "nu-stadium", "san-mames", "rcde"], ok: 1,
@@ -60,7 +60,7 @@ window.PREGUNTES = [
     x: ["Mai hi ha jugat", "Gol a França a l'Euro 2024", "Gol el 26-9-2026 (Anglaterra 2-3 Espanya)", "Hi va jugar: Osasuna 4-2 Barça (2024)"] },
   { q: "A quin estadi ha estat *EXPULSAT* Hansi Flick?", f: "hansi-flick",
     op: ["villamarin", "camp-nou", "rcde", "coliseum"], ok: 0,
-    x: ["Vermella el 7-12-2024 (Betis 2-2 Barça)", "Obert el 1957", "Obert el 2009", "Obert el 1998"] },
+    x: ["Vermella el 7-12-2024 (Betis 2-2 Barça)", "No l'han expulsat", "No l'han expulsat", "No l'han expulsat"] },
   { q: "Quin estadi té *MÉS* capacitat?",
     op: ["stamford-bridge", "montilivi", "da-luz", "allianz-arena"], ok: 3,
     x: ["Uns 40.000 seients", "14.624 seients", "68.100 seients", "75.024 seients"] },
@@ -68,8 +68,8 @@ window.PREGUNTES = [
     op: ["mestalla", "balaidos", "la-rosaleda", "sanchez-pizjuan"], ok: 0,
     x: ["Obert el 1923", "Obert el 1928", "Obert el 1941", "Obert el 1958"] },
   { q: "Quin estadi té *MENYS* reformes estructurals?",
-    op: ["vallecas", "san-mames", "metropolitano", "camp-nou"], ok: 1,
-    x: ["Obert el 1976", "Obert el 2013 i no s'ha tocat", "Obert el 1994, reformat fins al 2017", "Obert el 1957, en obres des del 2023"] },
+    op: ["vallecas", "san-mames", "metropolitano", "camp-nou"], ok: 0,
+    x: ["Obert el 1976, sense reformes", "Estadi nou el 2013, en lloc del vell", "Obert el 1994, reformat el 2017", "Obert el 1957, reformat el 1982, el 1994 i des del 2023"] },
   { q: "Quin estadi té *MENYS* capacitat?",
     op: ["coliseum", "el-sadar", "rcde", "mendizorroza"], ok: 0,
     x: ["16.500 seients", "23.576 seients", "Uns 40.000 seients", "19.840 seients"] }
