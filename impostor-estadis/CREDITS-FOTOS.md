@@ -68,3 +68,14 @@
 - img/estadis/parc-des-princes.jpg: Parc des Princes · Paris_Le_Parc_des_Princes.jpg · c:User:Arne mueseler
  · CC-BY-SA-3.0 · https://en.wikipedia.org/wiki/File:Paris_Le_Parc_des_Princes.jpg
 - img/estadis/vallecas.jpg: File:Estadio de Vallecas 18 de febrero de 2025.jpg · 4theliberty · CC0
+- img/estadis/emirates.jpg: Emirates Stadium · London_Emirates_Stadium_arsenal.jpg · Arne Müseler · CC BY-SA 3.0 de · https://en.wikipedia.org/wiki/File:London_Emirates_Stadium_arsenal.jpg
+- img/estadis/mercedes-benz.jpg: Mercedes-Benz Stadium · Mercedes_Benz_Stadium_time_lapse_capture_2017-08-13.jpg · Atlanta Falcons · CC BY 3.0 · https://en.wikipedia.org/wiki/File:Mercedes_Benz_Stadium_time_lapse_capture_2017-08-13.jpg
+- img/estadis/juventus-stadium.jpg: Juventus Stadium · 2021–22_UEFA_Women's_Champions_League_Final_in_Turin,_Italy_1.jpg · Sebleouf · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:2021%E2%80%9322_UEFA_Women's_Champions_League_Final_in_Turin%2C_Italy_1.jpg
+- img/estadis/johan-cruyff-arena.jpg: Johan Cruyff Arena · Arena,_Ajax_stadion,_Amsterdam.JPG · Alf van Beem · CC0 · https://en.wikipedia.org/wiki/File:Arena%2C_Ajax_stadion%2C_Amsterdam.JPG
+- img/estadis/tottenham-stadium.jpg: Tottenham Hotspur Stadium · London_Tottenham_Hotspur_Stadium.jpg · Arne Müseler · CC BY-SA 3.0 de · https://en.wikipedia.org/wiki/File:London_Tottenham_Hotspur_Stadium.jpg
+- img/estadis/bombonera.jpg: La Bombonera · Vista_aérea_del_Estadio_Alberto_J._Armando_"La_Bombonera"_01.jpg · ProtoplasmaKid · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Vista_a%C3%A9rea_del_Estadio_Alberto_J._Armando_%22La_Bombonera%22_01.jpg
+- img/estadis/baku.jpg: Baku Olympic Stadium · Baku_National_Stadium_2015-06.jpg · Kremlin.ru / Пресс-служба Президента Российской Федерации
+ · CC-BY-4.0 · https://en.wikipedia.org/wiki/File:Baku_National_Stadium_2015-06.jpg
+- img/estadis/puskas-arena.jpg: Puskás Aréna · Puskás_Aréna_01.jpg · OD Pictures · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Pusk%C3%A1s_Ar%C3%A9na_01.jpg
+- img/estadis/olimpic-atenes.jpg: Athens Olympic Stadium · Panathinaikos_Inter_CL2008_09_b.jpg · Sportingn · Public domain · https://en.wikipedia.org/wiki/File:Panathinaikos_Inter_CL2008_09_b.jpg
+- img/estadis/olimpic-berlin.jpg: Olympiastadion (Berlin) · Olympiastadion_Berlin-Marathontor-msu-2020-3139.jpg · Matthias Süßen · CC BY-SA 4.0 · https://en.wikipedia.org/wiki/File:Olympiastadion_Berlin-Marathontor-msu-2020-3139.jpg
